@@ -1,0 +1,46 @@
+#gallery-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.gallery-controls {
+    display: flex;
+    align-items: center;
+}
+
+.gallery {
+    width: 900px;
+    display: flex;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.cards {
+    display: flex;
+    gap: 19.5px;
+    padding: 10px;
+}
+
+.gallery img {
+    width: 287px;
+    filter: grayscale(100%);
+    transition: transform 0.5s;
+}
+
+.gallery::-webkit-scrollbar {
+    display: none;
+}
+
+#back, #forw {
+    width: 50px;
+    cursor: pointer;
+    margin: 40px;
+}
+
+.gallery img:hover {
+    filter: grayscale(0);
+    cursor: pointer;
+    transform: scale(1.1);
+}
+

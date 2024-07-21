@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Iceland:wght@400&display=swap');
+
+*{
+    font-family: Iceland;
+}
+
+header {
+    position: fixed;
+    height: 5vh;
+    width: 100vw;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #fff;
+    z-index: 100;
+}
+
+#logo {
+    height: 100%;
+    width: auto;
+    margin-left: 5%;
+}
+
+#top-icons {
+    height: 100%;
+    width: 60%;
+    display: flex;
+}
+
+#search-bar {
+    height: 100%;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    margin-left: 8%;
+}
+
+#search {
+    height: 70%;
+    width: 100%;
+    margin-left: 2%;
+    overflow: hidden;
+    border: 0.5px solid #000;
+    border-radius: 5px 5px 5px 5px;
+}
+
+#inner-icon-container {
+    height: 100%;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 15%;
+}
+
+.icon-box:not(#bars) {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#bars {
+    height: 100%;
+    width: 30%;
+    margin-left: 25%;
+}
+
+.logos:not(#bars-a) {
+    height: 90%;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15% 15% 15% 15%;
+}
+
+.top-icons {
+    height: auto;
+    width: 25px;
+    min-width: 25px;
+    color: #000;
+}
+
+
+#title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    height: auto;
+    font-size: 150px;
+    color: #9D0000;
+    top: 50px;
+    margin-bottom: 15px;
+}
+
+#prof-pic {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#prof-pic h2 {
+    font-size: 50px;
+}
+
+#face {
+    height: auto;
+    width: 200px;
+    
+}
+
+.contain {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.box {
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+}
+
+.box h2 {
+    color: #9D0000;
+}
+
+.info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.info h3 {
+    margin-bottom: -10px;
+}
+
+.info ul li {
+    margin-left: -30px;
+}
+
+.info span {
+    color: #9D0000;
+}
+
+.lst {
+    margin-bottom: -10px;
+}
+
+#motto {
+    padding-bottom: 30px;
+}
+
