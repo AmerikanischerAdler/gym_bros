@@ -64,7 +64,7 @@ header {
 
 #bars {
     height: 100%;
-    width: 30%;
+    width: 40%;
     margin-left: 25%;
 }
 
@@ -82,6 +82,44 @@ header {
     width: 25px;
     min-width: 25px;
     color: #000;
+}
+
+.drops {
+    height: 100%;
+    width: 100px;
+    display: inline-block;
+    position: relative;
+    padding-right: 75px;
+    margin-left: 35px;
+}
+
+.drops a {
+    margin-top: 5px;
+    margin-left: -15px;
+    display: block;
+    text-decoration: none;
+    color: #9D0000;
+}
+
+.drops ul.dropdown {
+    width: 100px;
+    background-color: #fff;
+    position: absolute;
+    z-index: 200;
+    display: none;
+    list-style: none;
+}
+
+.drops ul.dropdown li {
+    width: 100%;
+    display: block;
+    text-align: center;
+    margin-left: -100px;
+    border: 1px solid black;
+}
+
+.drops:hover ul.dropdown {
+    display: block;
 }
 
 #title {
@@ -127,6 +165,7 @@ h1 {
     width: 100%;
     filter: grayscale(100%);
     transition: transform 0.5s;
+    z-index: 5;
 }
 
 .gallery::-webkit-scrollbar {
@@ -150,6 +189,7 @@ h1 {
     filter: grayscale(0);
     cursor: pointer;
     transform: scale(1.1);
+    z-index: 15;
 }
 
 .see-more {
