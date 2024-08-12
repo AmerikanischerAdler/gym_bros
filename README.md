@@ -12,6 +12,14 @@ Open Terminal and Clone Repository:
 git clone https://github.com/AmerikanischerAdler/gym_bros
 ```
 
+Install Requirements:
+
+```bash
+pip install -r requirements.txt
+```
+
+**TIP**: You may need to install pip
+
 If python3 is not installed on your machine, run:
 
 **MacOS:**
