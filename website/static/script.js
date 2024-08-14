@@ -33,5 +33,3 @@ backScroll.addEventListener("click", () => {
     scrollContainer.scrollLeft -= 930;
 });
 
-
-
