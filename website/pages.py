@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, redirect, url_for, request
 
 pages = Blueprint("pages", __name__)
 
