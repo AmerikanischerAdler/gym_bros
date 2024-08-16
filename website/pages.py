@@ -18,4 +18,8 @@ def profile():
 @pages.route('/saved')
 def saved():
     return render_template('saved.html')
+
+@pages.route('/not-saved')
+def not_saved():
+    return render_template('not_saved.html')
  
