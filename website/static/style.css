@@ -4,6 +4,16 @@
     font-family: Iceland;
 }
 
+*::-moz-selection {
+    background: #9D0000;
+    color: #fff;
+}
+
+*::selection {
+    background: #9D0000;
+    color: #fff;
+}
+
 header {
     position: fixed;
     height: 5vh;
@@ -14,10 +24,10 @@ header {
     z-index: 100;
 }
 
-#logo {
+.logo {
     height: 100%;
     width: auto;
-    margin-left: 5%;
+    margin-left: 3%;
 }
 
 #top-icons {
@@ -44,6 +54,11 @@ header {
     overflow: hidden;
     border: 0.5px solid #000;
     border-radius: 5px 5px 5px 5px;
+    outline: none;
+}
+
+#search:focus {
+    border: 3px solid #9D0000;
 }
 
 #inner-icon-container {

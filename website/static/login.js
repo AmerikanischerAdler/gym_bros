@@ -1,4 +1,4 @@
-// Copied from ASMRProg YouTube tutorial: https://www.youtube.com/watch?v=PlpM2LJWu-s
+// Copied from ASMRProg: https://github.com/AsmrProg-YT/Modern-Login
 const container = document.getElementById('container');
 const registerBtn = document.getElementById('register');
 const loginBtn = document.getElementById('login');
