@@ -18,6 +18,9 @@ header {
     position: fixed;
     height: 5vh;
     width: 100vw;
+    top: 0;
+    padding-top: 0;
+    margin: 0;
     display: flex;
     justify-content: space-evenly;
     background-color: #fff;
