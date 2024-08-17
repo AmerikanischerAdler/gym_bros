@@ -12,7 +12,7 @@ Open Terminal and Clone Repository:
 git clone https://github.com/AmerikanischerAdler/gym_bros
 ```
 
-Install Requirements:
+Install Dependencies:
 
 ```bash
 pip install -r requirements.txt
