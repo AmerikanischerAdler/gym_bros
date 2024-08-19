@@ -164,6 +164,12 @@ h1 {
     margin-top: 5px;
 }
 
+#slogan {
+    font-size: 40px;
+    color: #9D0000;
+    margin: 0;
+}
+
 .gallery {
     width: 900px;
     display: flex;
