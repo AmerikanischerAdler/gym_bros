@@ -23,3 +23,7 @@ def saved():
 def not_saved():
     return render_template('not_saved.html')
  
+@pages.route('/settings')
+def settings():
+    return render_template('settings.html')
+ 
