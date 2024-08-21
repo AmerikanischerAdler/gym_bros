@@ -27,3 +27,7 @@ def not_saved():
 def settings():
     return render_template('settings.html')
  
+@pages.route('/not-settings')
+def not_settings():
+    return render_template('not_settings.html')
+ 
