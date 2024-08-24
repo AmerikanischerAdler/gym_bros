@@ -12,6 +12,20 @@ Open Terminal and Clone Repository:
 git clone https://github.com/AmerikanischerAdler/gym_bros
 ```
 
+Set Up Virtual Environment:
+
+```bash
+pip3 install virtualenv
+python3 -m venv env
+source env/bin/activate
+```
+
+**TIP**: To terminate your virtual environment, run:
+
+```bash
+deactivate
+```
+
 Install Dependencies:
 
 ```bash
