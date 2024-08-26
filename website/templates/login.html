@@ -10,6 +10,9 @@
   <link rel="stylesheet" href="../static/login.css">
 </head>
 <body>
+
+  <div id="error">{{ message }}</div> 
+
   <div class="container" id="container">
     <div class="form-container sign-up">
       <form method="post">
@@ -28,6 +31,7 @@
         <button type="submit">Sign Up</button>
       </form>
     </div>
+
     <div class="form-container sign-in">
       <form method="post">
         <h1>Sign In</h1>
@@ -44,6 +48,7 @@
         <button type="submit">Sign In</button>
       </form>
     </div>
+
     <div class="toggle-container">
       <div class="toggle">
         <div class="toggle-panel toggle-left">
@@ -59,12 +64,12 @@
       </div>
     </div>
   </div>
+
   <div id="credits">
     <p>Basic Design By: <a href="https://github.com/AsmrProg-YT/Modern-Login" target="_blank">ASMRProg</a></p>
   </div>
 
-  <div>{{ message }}</div> 
-
   <script src="../static/login.js"></script>
+
 </body>
 </html>

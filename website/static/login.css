@@ -29,6 +29,12 @@ body {
     height: 100vh;
 }
 
+#error {
+    margin-top: -100px;
+    margin-bottom: 100px;
+    font-size: 25px;
+}
+
 .container {
     background-color: #fff;
     border-radius: 30px;
