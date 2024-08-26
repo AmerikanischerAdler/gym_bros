@@ -1,3 +1,4 @@
+#from . import db
 from flask import Blueprint, render_template, redirect, url_for, request
 
 auth = Blueprint("auth", __name__)
@@ -34,7 +35,12 @@ def login():
                 user_exists = conn.execute(text(check_query), {'username': username}).fetchone()
                 conn.commit()
 
-            if user_exists:
+            check_query2 = "SELECT email FROM users WHERE email=:email;"
+            with db.engine.begin() as conn:
+                user_also_exists = conn.execute(text(check_query2), {'email': email}).fetchone()
+                conn.commit()
+
+            if user_exists or user_also_exists:
                 message = "User already exists!"
             else:
                 insert_query = "INSERT INTO users (name, email, username, password) VALUES (:name, :email, :username, :password);"
