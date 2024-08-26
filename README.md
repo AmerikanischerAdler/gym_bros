@@ -71,7 +71,13 @@ Once you are logged into your MYSQL environment, run the following commands:
 ```mysql
 CREATE DATABASE GymBros;
 USE GymBros;
-CREATE TABLE users (user_id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(255), email VARCHAR(255), username VARCHAR(255), password VARCHAR(255));
+CREATE TABLE users (
+    user_id INT PRIMARY KEY AUTO_INCREMENT, 
+    name VARCHAR(255), 
+    email VARCHAR(255), 
+    username VARCHAR(255), 
+    password VARCHAR(255)
+);
 ```
 
 ## Usage
