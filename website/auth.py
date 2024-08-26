@@ -4,14 +4,49 @@ auth = Blueprint("auth", __name__)
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
-    name = request.form.get("name")
-    username = request.form.get("username")
-    email = request.form.get("email")
-    password = request.form.get("password")
-    return render_template('login.html')
+    message = ''
+
+    if request.method == 'POST':
+        name = request.form.get("name")
+        email = request.form.get("email")
+        username = request.form.get("username")
+        password = request.form.get("password")
+
+        # Login
+        if name == None:
+            query_stmt = f"SELECT user_id, username FROM users WHERE email=:email AND password=:password;"
+    
+            with db.engine.begin() as conn:
+                result = conn.execute(text(query_stmt), {'email': email, 'password': password})
+                conn.commit()
+            user = result.fetchone()
+    
+            if user:
+                message = f"Welcome, {username}!"
+                return redirect(url_for('pages.home', user_id=user[0])) 
+            else:
+                message = "Incorrect Username or Password."
+
+        # Create Account
+        elif name != None and username != None:
+            check_query = "SELECT username FROM users WHERE username=:username;"
+            with db.engine.begin() as conn:
+                user_exists = conn.execute(text(check_query), {'username': username}).fetchone()
+                conn.commit()
+
+            if user_exists:
+                message = "User already exists!"
+            else:
+                insert_query = "INSERT INTO users (name, email, username, password) VALUES (:name, :email, :username, :password);"
+                with db.engine.begin() as conn:
+                    conn.execute(text(insert_query), {'name': name, 'email': email, 'username': username, 'password': password})
+                    conn.commit()
+
+                message = "Registration successful!"
+
+    return render_template('login.html', message=message)
 
 @auth.route('/logout')
 def logout():
     return redirect(url_for("pages.home"))
-
 
