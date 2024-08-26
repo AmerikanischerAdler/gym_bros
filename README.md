@@ -52,6 +52,28 @@ pip install -r requirements.txt
 deactivate
 ```
 
+6) Set Up MYSQL Environment Variable:
+
+Once you have created your mysql account, run this command in the terminal,
+substituting your own password for "mypassword":
+
+```bash
+echo 'export MYSQLPW="mypassword"' >> ~/.bashrc
+```
+
+**TIP**: This implies that you are using bash as your current shell. If not, run
+the command, substituting your own shell config file for ".bashrc"
+
+7) Create MYSQL Database and Tables:
+
+Once you are logged into your MYSQL environment, run the following commands:
+
+```mysql
+CREATE DATABASE GymBros;
+USE GymBros;
+CREATE TABLE users (user_id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(255), email VARCHAR(255), username VARCHAR(255), password VARCHAR(255));
+```
+
 ## Usage
 
 1) Open Terminal
@@ -89,7 +111,7 @@ python3 app.py
 
 5) Enter Server Address in Search Bar:
 
-You may be able to simply click this link: http://127.0.0.1:5000/home
+You may be able to simply click this link: http://127.0.0.1:5000/
 
 ## Inspiration
 
