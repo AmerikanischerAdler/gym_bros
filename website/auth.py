@@ -14,15 +14,11 @@ def login():
         username = request.form.get("username")
         password = request.form.get("password")
 
-        user = User.query.filter_by(email=email, password=password).first()
-
-        # When hash:
-        # delete above
-        #user = User.query.filter_by(email=email).first()
+        user = User.query.filter_by(email=email).first()
 
         # Login
         if name is None:
-            if user: #and check_password_hash(user.password, password):
+            if user and check_password_hash(user.password, password):
                 login_user(user, remember=True)
                 flash("Logged in Successfully!", "success")
                 return redirect(url_for("pages.home")) 

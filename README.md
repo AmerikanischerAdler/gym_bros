@@ -54,11 +54,16 @@ deactivate
 
 6) Set Up MYSQL Environment Variable:
 
-Once you have created your mysql account, run this command in the terminal,
-substituting your own password for "mypassword":
+Once you have created your MYSQL account, run this command in the terminal, substituting your own password for "my_password":
 
 ```bash
-echo 'export MYSQLPW="mypassword"' >> ~/.bashrc
+echo 'export MYSQLPW="my_password"' >> ~/.bashrc
+```
+
+Do the same to set up your own secret key, substituting its value for "my_secret_key":
+
+```bash
+echo 'export SECRET_KEY="my_secret_key"' >> ~/.bashrc
 ```
 
 **TIP**: This implies that you are using bash as your current shell. If not, run
