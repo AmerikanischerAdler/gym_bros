@@ -276,3 +276,25 @@ body {
 .icon {
     color: black;
 }
+
+#flash-contain {
+    height: 10vh;
+    width: 100vw;
+}
+
+.flash {
+    font-size: 25px;
+    text-align: center;
+    padding: 5px 0;
+}
+
+.success {
+    background-color: #90EE90;
+    color: #000;
+}
+
+.error {
+    background-color: #A82D29;
+    color: #000;
+}
+

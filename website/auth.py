@@ -1,65 +1,57 @@
-from flask import Blueprint, render_template, redirect, url_for, request
+from flask import Blueprint, render_template, redirect, url_for, request, flash
 from flask_login import login_user, logout_user, login_required, current_user
 from sqlalchemy import text
 from werkzeug.security import generate_password_hash, check_password_hash
-from . import db  
+from .models import db, User
 
 auth = Blueprint("auth", __name__)
 
 @auth.route("/login", methods=["GET", "POST"])
 def login():
-    message = ''
-
     if request.method == "POST":
         name = request.form.get("name")
         email = request.form.get("email")
         username = request.form.get("username")
         password = request.form.get("password")
 
+        user = User.query.filter_by(email=email, password=password).first()
+
+        # When hash:
+        # delete above
+        #user = User.query.filter_by(email=email).first()
+
         # Login
-        query_stmt = "SELECT user_id, username FROM users WHERE email=:email AND password=:password;"
         if name is None:
-            with db.engine.begin() as conn:
-                result = conn.execute(text(query_stmt), {'email': email, 'password': password})
-                user = result.fetchone()
-            
-            if user:
-                message = f"Welcome, {username}!"
-                #login_user(user[1], remember=True)
-                return redirect(url_for('pages.home', user_id=user[0])) 
+            if user: #and check_password_hash(user.password, password):
+                login_user(user, remember=True)
+                flash("Logged in Successfully!", "success")
+                return redirect(url_for("pages.home")) 
             else:
-                message = "Incorrect Username or Password."
+                flash("Incorrect Email or Password.", "error")
 
         # Create Account
         elif name and username:
-            check_query = "SELECT username FROM users WHERE username=:username;"
-            with db.engine.begin() as conn:
-                user_exists = conn.execute(text(check_query), {'username': username}).fetchone()
-
-            check_query2 = "SELECT email FROM users WHERE email=:email;"
-            with db.engine.begin() as conn:
-                user_also_exists = conn.execute(text(check_query2), {'email': email}).fetchone()
+            user_exists = User.query.filter_by(email=email).first()
+            user_also_exists = User.query.filter_by(username=username).first()
 
             if user_exists or user_also_exists:
-                message = "User already exists!"
+                flash("User Already Exists!", "error")
             else:
-                insert_query = "INSERT INTO users (name, email, username, password) VALUES (:name, :email, :username, :password);"
-                with db.engine.begin() as conn:
-                    conn.execute(text(insert_query), {'name': name, 'email': email, 'username': username, 'password': password})
+                hashed_password = generate_password_hash(password, method='scrypt')
+                new_user = User(email=email, password=hashed_password, username=username, name=name)
+                db.session.add(new_user)
+                db.session.commit()
 
-                with db.engine.begin() as conn:
-                    result = conn.execute(text(query_stmt), {'email': email, 'password': password})
-                user = result.fetchone()
+                flash("Registration Successful!", "success")
+                login_user(new_user, remember=True)
+                return redirect(url_for("pages.home")) 
 
-                message = "Registration successful!"
-                #login_user(user[1], remember=True)
-                return redirect(url_for('pages.home', user_id=user[0])) 
+    return render_template("login.html")
 
-    return render_template('login.html', message=message)
-
-@auth.route('/logout')
+@auth.route("/logout")
 @login_required
 def logout():
-    logout_user(user)
+    logout_user()
+    flash("You have been logged out.", "success")
     return redirect(url_for("pages.home"))
 

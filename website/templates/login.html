@@ -10,8 +10,15 @@
   <link rel="stylesheet" href="../static/login.css">
 </head>
 <body>
-
-  <div id="error">{{ message }}</div> 
+  <div id="flash-contain">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash {{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+  </div>
 
   <div class="container" id="container">
     <div class="form-container sign-up">
