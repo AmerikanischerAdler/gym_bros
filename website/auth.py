@@ -42,7 +42,7 @@ def login():
                 login_user(new_user, remember=True)
                 return redirect(url_for("pages.home")) 
 
-    return render_template("login.html")
+    return render_template("login.html", user=current_user)
 
 @auth.route("/logout")
 @login_required
