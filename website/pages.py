@@ -26,9 +26,18 @@ def saved():
 def not_saved():
     return render_template('not_saved.html', user=current_user)
 
-@pages.route('/post-template')
+@pages.route('/post-template', methods=["GET", "POST"])
 @login_required
 def post():
+    if request.method == "POST":
+        text = request.form.get("text")
+
+        if not text:
+            flash("Post Cannot be Empty", "error")
+        else:
+            flash("Post Created!", "success")
+            # link db
+
     return render_template('create_post.html', user=current_user)
  
 @pages.route('/settings')

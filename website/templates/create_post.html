@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block page %}Create Post{% endblock %}
+
+{% block style %}create_post{% endblock %}
+
+{% block title %}
+  <div id="title">
+    <h1>Post Template</h1>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div id="post-contain">
+    <form method="POST">
+      <textarea name="text" id="text" class="text-area"></textarea>
+      <br>
+      <div id="button-contain">
+        <button type="submit" class="sub_btn">Post</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}

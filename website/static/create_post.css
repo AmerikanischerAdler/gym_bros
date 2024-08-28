@@ -1,0 +1,54 @@
+#title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    height: auto;
+    font-size: 100px;
+    color: #9D0000;
+    top: 50px;
+    margin-bottom: 15px;
+}
+
+#post-contain {
+    height: 50vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.text-area {
+    height: 30vh;
+    width: 75vw;
+    margin-bottom: 25px;
+    font-size: 25px;
+}
+
+#button-contain {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sub_btn {
+    height: 10vh;
+    width: 25vw;
+    font-size: 50px;
+    background-color: #7D0000;
+    color: #fff;
+    padding: 10px 45px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.sub_btn:hover {
+    cursor: pointer;
+}
+

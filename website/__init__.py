@@ -1,6 +1,6 @@
 import os
 from flask import Flask, render_template, request, redirect, session, url_for, flash
-from flask_login import LoginManager 
+from flask_login import LoginManager, current_user
 from .models import db, User
 
 def create_app():
@@ -31,7 +31,7 @@ def create_app():
 
     @app.errorhandler(404)
     def page_not_found(e):
-        return render_template("404.html"), 404
+        return render_template("404.html", user=current_user), 404
 
     app.register_blueprint(pages, url_prefix="/")
     app.register_blueprint(auth, url_prefix="/")  
