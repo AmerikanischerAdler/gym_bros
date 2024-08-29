@@ -25,26 +25,20 @@
       </div>
       <div class="views">
         <h2>My Timezone</h2>
-        <form action="/settings" method="post">
-          <label for="timezone">Select Your Timezone:</label>
-          <select name="user_timezone_str" id="timezone">
-            <option value="UTC">UTC</option>
-            <option value="America/New_York">America/New_York (Eastern Time)</option>
-            <option value="America/Chicago">America/Chicago (Central Time)</option>
-            <option value="America/Denver">America/Denver (Mountain Time)</option>
-            <option value="America/Los_Angeles">America/Los_Angeles (Pacific Time)</option>
-            <option value="Europe/London">Europe/London (Greenwich Mean Time)</option>
-            <option value="Europe/Berlin">Europe/Berlin (Central European Time)</option>
-            <option value="Europe/Moscow">Europe/Moscow (Moscow Standard Time)</option>
-            <option value="Asia/Calcutta">Asia/Kolkata (India Standard Time)</option>
-            <option value="Asia/Tokyo">Asia/Tokyo (Japan Standard Time)</option>
-            <option value="Australia/Sydney">Australia/Sydney (Australian Eastern Time)</option>
-            <!-- Add More Timezones -->
-          </select>
-          <button type="submit">Save</button>
+        <form class="select-form" action="/settings" method="post">
+          <label class="select-label" for="timezone">Select Your Timezone:</label>
+          <div class="select-contain">
+            <select name="user_timezone_str" id="timezone" class="select-box">
+              {% for tz in all_timezones %}
+                <option value="{{ tz }}" {% if tz == user_timezone %}selected{% endif %}>
+                  {{ tz }}
+                </option>
+              {% endfor %}
+            </select>
+            <button class="select-btn" type="submit">Save</button>
+          </div>
         </form>
       </div>
     </div>
   </div>
-
 {% endblock %}

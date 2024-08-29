@@ -40,10 +40,9 @@ class User(db.Model, UserMixin):
 
 #class Post(db.Model):
 #    __tablename__ = 'posts'  
-#    
+
 #    user_id = db.Column(db.Integer, primary_key=True)
 #    text = db.Column(db.Text, nullable=False)
 #    date_created = db.Column(db.DateTime(timezone=True), default=func.now())
 #    author = db.Column(db.Integer, db.ForeignKey("user.user_id", ondelete="CASCADE"), nullable=False)
-#
 

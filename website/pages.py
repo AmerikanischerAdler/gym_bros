@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from flask_login import login_required, current_user
-from pytz import timezone, utc
 from datetime import datetime
 from .models import db, User
+import pytz
 
 pages = Blueprint("pages", __name__)
 
@@ -55,10 +55,10 @@ def settings():
         utc_time = datetime.utcnow()
         local_time = current_user.convert_to_localtime(utc_time)
         flash(f"Local Time Set to {user_timezone_str}: {local_time}", "success")
-
         return redirect(url_for('pages.settings'))
 
-    return render_template('settings.html', user=current_user)
+    all_timezones = pytz.all_timezones
+    return render_template('settings.html', user=current_user, user_timezone=current_user.timezone, all_timezones=all_timezones)
  
 @pages.route('/not-settings')
 def not_settings():
