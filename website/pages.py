@@ -1,12 +1,16 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from flask_login import login_required, current_user
+from pytz import timezone, utc
+from datetime import datetime
+from .models import db, User
 
 pages = Blueprint("pages", __name__)
 
 @pages.route('/')
 @pages.route('/home')
 def home():
-    return render_template('index.html', user=current_user)
+    local_time = current_user.convert_to_localtime(current_user.date_created, current_user.timezone)
+    return render_template('index.html', user=current_user, local_time=local_time)
 
 @pages.route('/gallery')
 def gallery():
@@ -40,9 +44,20 @@ def post():
 
     return render_template('create_post.html', user=current_user)
  
-@pages.route('/settings')
+@pages.route('/settings', methods=['GET', 'POST'])
 @login_required
 def settings():
+    if request.method == "POST":
+        # Timezone
+        user_timezone_str = request.form.get("user_timezone_str")
+        current_user.timezone = user_timezone_str
+        db.session.commit()
+        utc_time = datetime.utcnow()
+        local_time = current_user.convert_to_localtime(utc_time)
+        flash(f"Local Time Set to {user_timezone_str}: {local_time}", "success")
+
+        return redirect(url_for('pages.settings'))
+
     return render_template('settings.html', user=current_user)
  
 @pages.route('/not-settings')

@@ -23,6 +23,27 @@
         <p>Committed: Show Only Girls in My Feed</p>
         <p>Diverse: Show Girls & Guys in My Feed</p>
       </div>
+      <div class="views">
+        <h2>My Timezone</h2>
+        <form action="/settings" method="post">
+          <label for="timezone">Select Your Timezone:</label>
+          <select name="user_timezone_str" id="timezone">
+            <option value="UTC">UTC</option>
+            <option value="America/New_York">America/New_York (Eastern Time)</option>
+            <option value="America/Chicago">America/Chicago (Central Time)</option>
+            <option value="America/Denver">America/Denver (Mountain Time)</option>
+            <option value="America/Los_Angeles">America/Los_Angeles (Pacific Time)</option>
+            <option value="Europe/London">Europe/London (Greenwich Mean Time)</option>
+            <option value="Europe/Berlin">Europe/Berlin (Central European Time)</option>
+            <option value="Europe/Moscow">Europe/Moscow (Moscow Standard Time)</option>
+            <option value="Asia/Calcutta">Asia/Kolkata (India Standard Time)</option>
+            <option value="Asia/Tokyo">Asia/Tokyo (Japan Standard Time)</option>
+            <option value="Australia/Sydney">Australia/Sydney (Australian Eastern Time)</option>
+            <!-- Add More Timezones -->
+          </select>
+          <button type="submit">Save</button>
+        </form>
+      </div>
     </div>
   </div>
 
