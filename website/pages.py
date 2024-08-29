@@ -9,8 +9,7 @@ pages = Blueprint("pages", __name__)
 @pages.route('/')
 @pages.route('/home')
 def home():
-    local_time = current_user.convert_to_localtime(current_user.date_created, current_user.timezone)
-    return render_template('index.html', user=current_user, local_time=local_time)
+    return render_template('index.html', user=current_user)
 
 @pages.route('/gallery')
 def gallery():
