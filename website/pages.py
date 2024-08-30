@@ -16,10 +16,19 @@ def home():
 def gallery():
     return render_template('gallery.html', user=current_user)
 
-@pages.route('/profile')
+@pages.route('/profile/<username>')
 @login_required
-def profile():
-    return render_template('profile.html', user=current_user)
+def profile(username):
+    user = User.query.filter_by(username=username).first()
+
+    if not user:
+        flash("Username Does Not Exist", "error")
+        return redirect(url_for("pages.home"))
+
+    # To add posts to Profile page
+    #post = Post.query.filter_by(author=user.user_id).all()
+
+    return render_template('profile.html', user=current_user, username=username)#, posts=posts)
 
 @pages.route('/saved')
 @login_required

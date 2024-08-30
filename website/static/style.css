@@ -397,6 +397,10 @@ h2:not(.name) {
     width: 15px;
 }
 
+#del {
+    margin-top: -2px;
+}
+
 .extra-trash {
     width: 20%;
 }
