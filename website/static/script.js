@@ -36,29 +36,33 @@ backScroll.addEventListener("click", () => {
 
 // Post Comment Box
 document.addEventListener("DOMContentLoaded", function() {
-    const commentButtons = document.querySelectorAll(".post-button"); // Select all elements with the class 'post-button'
+    document.querySelectorAll('.comment-container .post-button').forEach(button => {
+        button.addEventListener('click', function() {
+            const postContainer = this.closest('.post');
+            const commentBox = postContainer.querySelector('.comment-box');
 
-    commentButtons.forEach(button => {
-        button.addEventListener("click", function() {
-            const commentBox = this.nextElementSibling; // Assuming the comment box is the next sibling element
-            if (commentBox.style.display === "none" || commentBox.style.display === "") {
-                commentBox.style.display = "block";
+            // Set Visibility 
+            if (!commentBox.classList.contains('show')) {
+                commentBox.classList.add('show');
+
+                const commentBoxHeight = commentBox.offsetHeight;
+
+                // Move Post Below
+                let nextPost = postContainer.nextElementSibling;
+                if (nextPost && nextPost.classList.contains('post')) {
+                    nextPost.style.marginTop = `${commentBoxHeight}px`;
+                }
             } else {
-                commentBox.style.display = "none";
+                commentBox.classList.remove('show');
+
+                // Reset Post Margins
+                let nextPost = postContainer.nextElementSibling;
+                while (nextPost && nextPost.classList.contains('post')) {
+                    nextPost.style.marginTop = '0';
+                    nextPost = nextPost.nextElementSibling;
+                }
             }
         });
-    });
-});
-
-// Comments in Comment Box
-document.querySelectorAll('.post-button').forEach(function(button) {
-    button.addEventListener('click', function() {
-        const commentBox = this.nextElementSibling;
-        if (commentBox.style.display === "none") {
-            commentBox.style.display = "block";
-        } else {
-            commentBox.style.display = "none";
-        }
     });
 });
 

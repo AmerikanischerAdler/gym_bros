@@ -110,8 +110,6 @@ def delete_comment(comment_id):
     else:
         db.session.delete(comment)
         db.session.commit()
-        flash("Comment Deleted", "success")
-        #Delete
 
     return redirect(url_for("pages.home"))
  

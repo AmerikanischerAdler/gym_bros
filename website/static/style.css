@@ -366,6 +366,7 @@ h2:not(.name) {
 
 .post {
     width: 50%;
+    transition: margin-top 0.3s ease;
 }
 
 #post1 {
@@ -404,6 +405,7 @@ h2:not(.name) {
 
 .comment-box {
     display: none;
+    max-height: 0;
     position: absolute;
     top: 40px; 
     right: -75px;
@@ -414,6 +416,14 @@ h2:not(.name) {
     padding: 10px;
     z-index: 1;
     width: 48vw;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    overflow: hidden;
+}
+
+.comment-box.show {
+    display: block;    
+    max-height: 200px; 
+    padding: 10px; 
 }
 
 .comment-list {
@@ -436,6 +446,7 @@ h2:not(.name) {
     border: 0.5px solid #000;
     border-radius: 5px 5px 5px 5px;
     outline: none;
+    font-size: 15px;
 }
 
 .comment-box input:focus {
