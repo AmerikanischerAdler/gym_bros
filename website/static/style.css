@@ -397,6 +397,54 @@ h2:not(.name) {
     width: 15px;
 }
 
+.comment-container {
+    position: relative;
+    display: inline-block;
+}
+
+.comment-box {
+    display: none;
+    position: absolute;
+    top: 40px; 
+    right: -75px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border-radius: 5px 5px 5px 5px;
+    padding: 10px;
+    z-index: 1;
+    width: 48vw;
+}
+
+.comment-box input {
+    width: 99%;
+    height: 25px;
+    resize: none;
+    border: 0.5px solid #000;
+    border-radius: 5px 5px 5px 5px;
+    outline: none;
+}
+
+.comment-box input:focus {
+    border: 2px solid #9D0000;
+}
+
+.comment-box button {
+    width: 99%;
+    margin-top: 10px;
+    margin-left: 2px;
+    background-color: #7D0000;
+    color: #fff;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.comment-box button:hover {
+    cursor: pointer;
+}
+
 #del {
     margin-top: -2px;
 }

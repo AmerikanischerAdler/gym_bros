@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from flask_login import login_required, current_user
 from datetime import datetime
-from .models import db, User, Post
+from .models import db, User, Post, Comment
 import pytz
 
 pages = Blueprint("pages", __name__)
@@ -26,7 +26,7 @@ def profile(username):
         return redirect(url_for("pages.home"))
 
     # To add posts to Profile page
-    #post = Post.query.filter_by(author=user.user_id).all()
+    #post = user.posts
 
     return render_template('profile.html', user=current_user, username=username)#, posts=posts)
 
@@ -74,6 +74,25 @@ def delete_post(id):
         db.session.delete(post)
         db.session.commit()
         flash("Post Deleted", "success")
+
+    return redirect(url_for("pages.home"))
+
+@pages.route('/comment/<post_id>', methods=["POST"])
+@login_required
+def comment(post_id):
+    text = request.form.get("text")
+
+    if not text:
+        flash("Comment Cannot be Empty", "error")
+    else:
+        post = Post.query.filter_by(id = post_id)
+
+        if not post:
+            flash("Post Does Not Exist", "error")
+        else:
+            comment = Comment(text=text, author=current_user.user_id, post_id=post_id)
+            db.session.add(comment)
+            db.session.commit()
 
     return redirect(url_for("pages.home"))
  

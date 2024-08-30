@@ -13,6 +13,7 @@ heart.addEventListener("click", () => {
 });
 */
 
+// Scroll Gallery
 let scrollContainer = document.querySelector(".gallery");
 let forwScroll = document.getElementById("forw");
 let backScroll = document.getElementById("back");
@@ -31,5 +32,21 @@ forwScroll.addEventListener("click", () => {
 backScroll.addEventListener("click", () => {
     scrollContainer.style.scrollBehavior = "smooth";
     scrollContainer.scrollLeft -= 930;
+});
+
+// Post Comment Box
+document.addEventListener("DOMContentLoaded", function() {
+    const commentButtons = document.querySelectorAll(".post-button"); // Select all elements with the class 'post-button'
+
+    commentButtons.forEach(button => {
+        button.addEventListener("click", function() {
+            const commentBox = this.nextElementSibling; // Assuming the comment box is the next sibling element
+            if (commentBox.style.display === "none" || commentBox.style.display === "") {
+                commentBox.style.display = "block";
+            } else {
+                commentBox.style.display = "none";
+            }
+        });
+    });
 });
 

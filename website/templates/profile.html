@@ -13,7 +13,7 @@
 {% block content %}
   <div id="prof-pic">
     <img id="face" src="{{ url_for('static', filename='./images/face.jpg') }}">
-    <h2>Dirk Rumfelt</h2>
+    <h2>{{ user.name }}</h2>
     <h3>Life Motto:</h3>
     <p id="motto">"You're only going to get what you absolutely demand of yourself"</p>
   </div>

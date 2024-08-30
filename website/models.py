@@ -18,6 +18,7 @@ class User(db.Model, UserMixin):
     timezone = db.Column(db.String(50), nullable=False, default='UTC')
     date_created = db.Column(db.DateTime(timezone=True), default=func.now())
     posts = db.relationship("Post", backref="user", passive_deletes=True)
+    comments = db.relationship("Comment", backref="user", passive_deletes=True)
 
     # Timezone Conversion
     def convert_to_utc(self, local_time):
@@ -45,5 +46,15 @@ class Post(db.Model):
     text = db.Column(db.Text, nullable=False)
     date_created = db.Column(db.DateTime(timezone=True), default=func.now())
     author = db.Column(db.Integer, db.ForeignKey("users.user_id", ondelete="CASCADE"), nullable=False)
-    #author = db.Column(db.Integer, db.ForeignKey("user.user_id", ondelete="CASCADE"), nullable=False)
+    comments = db.relationship("Comment", backref="post", passive_deletes=True)
+
+class Comment(db.Model):
+    __tablename__ = 'comments'  
+
+    id = db.Column(db.Integer, primary_key=True)
+    text = db.Column(db.String(200), nullable=False)
+    date_created = db.Column(db.DateTime(timezone=True), default=func.now())
+    author = db.Column(db.Integer, db.ForeignKey("users.user_id", ondelete="CASCADE"), nullable=False)
+    post_id = db.Column(db.Integer, db.ForeignKey("posts.id", ondelete="CASCADE"), nullable=False)
+
 

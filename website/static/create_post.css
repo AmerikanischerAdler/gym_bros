@@ -27,6 +27,13 @@ h1 {
     width: 75vw;
     margin-bottom: 25px;
     font-size: 25px;
+    border: 0.5px solid #000;
+    border-radius: 5px 5px 5px 5px;
+    outline: none;
+}
+
+.text-area:focus {
+    border: 3px solid #9D0000;
 }
 
 #button-contain {
