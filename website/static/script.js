@@ -50,3 +50,15 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+// Comments in Comment Box
+document.querySelectorAll('.post-button').forEach(function(button) {
+    button.addEventListener('click', function() {
+        const commentBox = this.nextElementSibling;
+        if (commentBox.style.display === "none") {
+            commentBox.style.display = "block";
+        } else {
+            commentBox.style.display = "none";
+        }
+    });
+});
+

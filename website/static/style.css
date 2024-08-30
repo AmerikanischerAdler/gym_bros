@@ -416,6 +416,19 @@ h2:not(.name) {
     width: 48vw;
 }
 
+.comment-list {
+    max-height: 60px; 
+    overflow-y: auto;
+    margin-bottom: 10px;
+    border-radius: 5px 5px 5px 5px;
+    background-color: #fff;
+}
+
+.single-comment {
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
+}
+
 .comment-box input {
     width: 99%;
     height: 25px;
@@ -445,8 +458,36 @@ h2:not(.name) {
     cursor: pointer;
 }
 
-#del {
-    margin-top: -2px;
+.com-info {
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    float: right;
+    margin-top: -35px;
+    padding-top: 5px;
+}
+
+.com-username {
+    text-decoration: none;
+    color: #9D0000;
+}
+
+.com-date {
+    color: #888;
+}
+
+#no-com {
+    text-align: center;
+}
+
+#com-trash {
+    height: auto;
+    width: 10px;
+}
+
+.del {
+    margin-top: -1px;
 }
 
 .extra-trash {
