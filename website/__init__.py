@@ -1,7 +1,7 @@
 import os
 from flask import Flask, render_template, request, redirect, session, url_for, flash
 from flask_login import LoginManager, current_user
-from .models import db, User
+from .models import db, User, Post
 
 def create_app():
     app = Flask(__name__)
@@ -13,7 +13,8 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://{app.config['MYSQL_USER']}:{app.config['MYSQL_PASSWORD']}@{app.config['MYSQL_HOST']}/{app.config['MYSQL_DB']}"
     # This is to connect a remote db (for production)
     # Delete all above config except SECRET_KEY
-    #app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')  # Replace with your remote database URI
+    #app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')  
+    # ^ Replace with your remote database URI ^
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     db.init_app(app)

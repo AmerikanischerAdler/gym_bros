@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from flask_login import login_required, current_user
 from datetime import datetime
-from .models import db, User
+from .models import db, User, Post
 import pytz
 
 pages = Blueprint("pages", __name__)
@@ -9,7 +9,8 @@ pages = Blueprint("pages", __name__)
 @pages.route('/')
 @pages.route('/home')
 def home():
-    return render_template('index.html', user=current_user)
+    posts = Post.query.all()
+    return render_template('index.html', user=current_user, posts=posts)
 
 @pages.route('/gallery')
 def gallery():
@@ -34,14 +35,38 @@ def not_saved():
 def post():
     if request.method == "POST":
         text = request.form.get("text")
+        # title = request.form.get("title")
+        # img = request.form.get("img")
 
         if not text:
             flash("Post Cannot be Empty", "error")
+#        elif not title:
+#            flash("Title Cannot be Empty", "error")
+#        elif not img:
+#            flash("Image Cannot be Empty", "error")
         else:
+            post = Post(text=text, author=current_user.user_id)#, title=title, img=img)
+            db.session.add(post)
+            db.session.commit()
             flash("Post Created!", "success")
-            # link db
+            return redirect(url_for("pages.home"))
 
     return render_template('create_post.html', user=current_user)
+
+@pages.route('/delete-post/<id>')
+def delete_post(id):
+    post = Post.query.filter_by(id=id).first()
+
+    if not post:
+        flash("Post Does Not Exist", "error")
+    elif current_user.user_id != post.user.user_id:
+        flash("You Must be Author to Delete Post", "error")
+    else:
+        db.session.delete(post)
+        db.session.commit()
+        flash("Post Deleted", "success")
+
+    return redirect(url_for("pages.home"))
  
 @pages.route('/settings', methods=['GET', 'POST'])
 @login_required

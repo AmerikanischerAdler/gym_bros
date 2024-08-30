@@ -17,7 +17,7 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(100))
     timezone = db.Column(db.String(50), nullable=False, default='UTC')
     date_created = db.Column(db.DateTime(timezone=True), default=func.now())
-#    posts = db.relationship("Post", backref="user", passive_deletes=True)
+    posts = db.relationship("Post", backref="user", passive_deletes=True)
 
     # Timezone Conversion
     def convert_to_utc(self, local_time):
@@ -38,11 +38,12 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return f'<User {self.username}>'
 
-#class Post(db.Model):
-#    __tablename__ = 'posts'  
+class Post(db.Model):
+    __tablename__ = 'posts'  
 
-#    user_id = db.Column(db.Integer, primary_key=True)
-#    text = db.Column(db.Text, nullable=False)
-#    date_created = db.Column(db.DateTime(timezone=True), default=func.now())
-#    author = db.Column(db.Integer, db.ForeignKey("user.user_id", ondelete="CASCADE"), nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
+    text = db.Column(db.Text, nullable=False)
+    date_created = db.Column(db.DateTime(timezone=True), default=func.now())
+    author = db.Column(db.Integer, db.ForeignKey("users.user_id", ondelete="CASCADE"), nullable=False)
+    #author = db.Column(db.Integer, db.ForeignKey("user.user_id", ondelete="CASCADE"), nullable=False)
 

@@ -347,6 +347,7 @@ hr {
 
 .title-lower {
     margin-top: -20px;
+    margin-bottom: 50px;
 }
 
 h2:not(.name) {
@@ -355,7 +356,7 @@ h2:not(.name) {
 }
 
 #post-container {
-    height: 100vh;
+    height: 100%;
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -390,12 +391,22 @@ h2:not(.name) {
     height: auto;
 }
 
+.post-button {
+    color: #000;
+    height: 100%;
+    width: 15px;
+}
+
+.extra-trash {
+    width: 20%;
+}
+
 #com:hover, #shr:hover {
     color: #7C7C7E;
     cursor: pointer;
 }
 
-#hrz:hover {
+#hrz:hover, #del:hover {
     color: #9D0000;
     cursor: pointer;
 }

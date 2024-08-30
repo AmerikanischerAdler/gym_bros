@@ -87,6 +87,13 @@ CREATE TABLE users (
     UNIQUE(email),
     UNIQUE(username)
 );
+CREATE TABLE posts (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    text TEXT NOT NULL,
+    date_created DATETIME DEFAULT CURRENT_TIMESTAMP,
+    author INT NOT NULL,
+    FOREIGN KEY (author) REFERENCES users(user_id) ON DELETE CASCADE
+);
 ```
 
 ## Usage
