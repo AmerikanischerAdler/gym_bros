@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from flask_login import login_required, current_user
 from datetime import datetime
-from .models import db, User, Post, Comment
+from .models import db, User, Post, Comment, Like
 import pytz
 
 pages = Blueprint("pages", __name__)
@@ -74,7 +74,6 @@ def delete_post(id):
     else:
         db.session.delete(post)
         db.session.commit()
-        flash("Post Deleted", "success")
 
     return redirect(url_for("pages.home"))
 

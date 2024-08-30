@@ -124,6 +124,20 @@ CREATE TABLE comments (
 );
 ```
 
+*Create Likes Table:*
+
+```mysql
+USE GymBros;
+CREATE TABLE likes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    date_created DATETIME DEFAULT CURRENT_TIMESTAMP,
+    author INT NOT NULL,
+    post_id INT NOT NULL,
+    FOREIGN KEY (author) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE
+);
+```
+
 ## Usage
 
 1) Open Terminal
