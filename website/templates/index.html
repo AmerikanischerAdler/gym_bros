@@ -117,8 +117,9 @@
     <div class="post">
       <div class="profile-container">
         <div class="profile-pic">
-          <a href="/profile/{{ post.user.username }}"><img src=""></a>
+          <a href="/profile/{{ user.username }}"><img src=""></a>
           <!-- Have src of profile img lead to profile pic in db -->
+          <!-- The above syntax "user.username" is incorrect -->
         </div>
         <div class="author">
           <h2 class="name">Brandon Viek</h2>
