@@ -73,8 +73,15 @@ the command, substituting your own shell config file for ".bashrc"
 
 Once you are logged into your MYSQL environment, run the following commands:
 
+*Create GymBros Database:*
+
 ```mysql
 CREATE DATABASE GymBros;
+```
+
+*Create Users Table:*
+
+```mysql
 USE GymBros;
 CREATE TABLE users (
     user_id INT PRIMARY KEY AUTO_INCREMENT, 
@@ -87,6 +94,12 @@ CREATE TABLE users (
     UNIQUE(email),
     UNIQUE(username)
 );
+``` 
+
+*Create Posts Table:*
+
+```mysql
+USE GymBros;
 CREATE TABLE posts (
     id INT PRIMARY KEY AUTO_INCREMENT,
     text TEXT NOT NULL,
