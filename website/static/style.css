@@ -510,7 +510,7 @@ h2:not(.name) {
     cursor: pointer;
 }
 
-#hrz:hover, .del:hover {
+.hrz:hover, .del:hover {
     color: #9D0000;
     cursor: pointer;
 }
