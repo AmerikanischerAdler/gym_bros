@@ -62,7 +62,7 @@ def post():
 
     return render_template('create_post.html', user=current_user)
 
-@pages.route('/delete-post/<id>')
+@pages.route('/delete-post/<id>', methods=["GET"])
 @login_required
 def delete_post(id):
     post = Post.query.filter_by(id=id).first()
@@ -96,7 +96,7 @@ def comment(post_id):
 
     return redirect(url_for("pages.home"))
 
-@pages.route('/delete-comment/<comment_id>')
+@pages.route('/delete-comment/<comment_id>', methods=["GET"])
 @login_required
 def delete_comment(comment_id):
     comment = Comment.query.filter_by(id=comment_id).first()
@@ -111,7 +111,25 @@ def delete_comment(comment_id):
         db.session.commit()
 
     return redirect(url_for("pages.home"))
+
+@pages.route('/like-post/<post_id>', methods=["GET"])
+@login_required
+def like(post_id):
+    post = Post.query.filter_by(id=post_id)
+    like = Like.query.filter_by(author=current_user.user_id, post_id=post_id).first()
+
+    if not post:
+        flash("Post Does Not Exist", "error")
+    elif like:
+        db.session.delete(like)
+        db.session.commit()
+    else:
+        like = Like(author=current_user.user_id, post_id=post_id)
+        db.session.add(like)
+        db.session.commit()
  
+    return redirect(url_for("pages.home"))
+
 @pages.route('/settings', methods=['GET', 'POST'])
 @login_required
 def settings():
@@ -131,4 +149,4 @@ def settings():
 @pages.route('/not-settings')
 def not_settings():
     return render_template('not_settings.html', user=current_user)
- 
+

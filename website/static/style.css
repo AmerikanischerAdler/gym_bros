@@ -515,3 +515,11 @@ h2:not(.name) {
     cursor: pointer;
 }
 
+.liked_post {
+    color: #9D0000;
+}
+
+.not_liked_post {
+    color: #000;
+}
+
