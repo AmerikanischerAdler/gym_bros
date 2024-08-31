@@ -13,3 +13,172 @@ h1 {
     margin-bottom: 15px;
 }
 
+#post-container {
+    height: 100%;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.post {
+    width: 50%;
+    transition: margin-top 0.3s ease;
+}
+
+#post1 {
+    height: auto;
+    width: 50vw;
+}
+
+.post-icons {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.inner-post-icons {
+    width: 15%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.resp {
+    width: 15px;
+    height: auto;
+}
+
+.post-button {
+    color: #000;
+    height: 100%;
+    width: 15px;
+}
+
+.comment-container {
+    position: relative;
+    display: inline-block;
+}
+
+.comment-box {
+    display: none;
+    max-height: 0;
+    position: absolute;
+    top: 40px; 
+    right: -75px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border-radius: 5px 5px 5px 5px;
+    padding: 10px;
+    z-index: 1;
+    width: 48vw;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    overflow: hidden;
+}
+
+.comment-box.show {
+    display: block;    
+    max-height: 200px; 
+    padding: 10px; 
+}
+
+.comment-list {
+    max-height: 60px; 
+    overflow-y: auto;
+    margin-bottom: 10px;
+    border-radius: 5px 5px 5px 5px;
+    background-color: #fff;
+}
+
+.single-comment {
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
+}
+
+.comment-box input {
+    width: 99%;
+    height: 25px;
+    resize: none;
+    border: 0.5px solid #000;
+    border-radius: 5px 5px 5px 5px;
+    outline: none;
+    font-size: 15px;
+}
+
+.comment-box input:focus {
+    border: 2px solid #9D0000;
+}
+
+.comment-box button {
+    width: 99%;
+    margin-top: 10px;
+    margin-left: 2px;
+    background-color: #7D0000;
+    color: #fff;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.comment-box button:hover {
+    cursor: pointer;
+}
+
+.com-info {
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    float: right;
+    margin-top: -35px;
+    padding-top: 5px;
+}
+
+.com-username {
+    text-decoration: none;
+    color: #9D0000;
+}
+
+.com-date {
+    color: #888;
+}
+
+#no-com {
+    text-align: center;
+}
+
+#com-trash {
+    height: auto;
+    width: 10px;
+}
+
+.del {
+    margin-top: -1px;
+}
+
+.extra-trash {
+    width: 20%;
+}
+
+#com:hover, #shr:hover {
+    color: #7C7C7E;
+    cursor: pointer;
+}
+
+#hrz:hover, .del:hover {
+    color: #9D0000;
+    cursor: pointer;
+}
+
+.liked_post {
+    color: #9D0000;
+}
+
+.not_liked_post {
+    color: #000;
+}
+
+

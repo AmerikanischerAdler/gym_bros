@@ -33,7 +33,9 @@ def profile(username):
 @pages.route('/saved')
 @login_required
 def saved():
-    return render_template('saved.html', user=current_user)
+    liked_posts = Post.query.join(Like, Post.id == Like.post_id).filter(Like.author == current_user.user_id).all()
+
+    return render_template('saved.html', user=current_user, liked_posts=liked_posts)
 
 @pages.route('/not-saved')
 def not_saved():
