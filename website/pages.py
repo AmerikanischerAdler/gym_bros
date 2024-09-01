@@ -112,6 +112,7 @@ def comment(post_id):
 @login_required
 def delete_comment(comment_id):
     comment = Comment.query.filter_by(id=comment_id).first()
+
     if not comment:
         return jsonify({"error": "Comment Does Not Exist"}), 400
 

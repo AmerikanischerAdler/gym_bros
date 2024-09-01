@@ -7,16 +7,13 @@ document.addEventListener("DOMContentLoaded", function() {
     
             fetch(`/delete-post/${postId}`, {
                 method: 'DELETE',
-                headers: {
-                    'X-CSRFToken': '{{ csrf_token() }}'
-                }
             })
             .then(response => response.json())
             .then(data => {
                 if (data.error) {
                     alert(data.error);
                 } else {
-                    // Remove the post from the DOM
+                    // Remove Post from DOM
                     const postElement = document.querySelector(`div.post[data-post-id="${postId}"]`);
                     if (postElement) {
                         postElement.remove();
@@ -27,11 +24,12 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
     
-    // Show/Hide Comment Box
+    // Show & Hide Comment Box
     document.querySelectorAll('.comment-container .post-button').forEach(button => {
         button.addEventListener('click', function() {
             const postContainer = this.closest('.post');
             const commentBox = postContainer.querySelector('.comment-box');
+
             if (!commentBox.classList.contains('show')) {
                 commentBox.classList.add('show');
                 commentBox.setAttribute('data-visible', 'true'); 
@@ -44,14 +42,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 commentBox.classList.remove('show');
                 commentBox.setAttribute('data-visible', 'false'); 
                 let nextPost = postContainer.nextElementSibling;
-                while (nextPost && nextPost.classList.contains('post')) {
+                if (nextPost && nextPost.classList.contains('post')) {
                     nextPost.style.marginTop = '0';
-                    nextPost = nextPost.nextElementSibling;
                 }
             }
         });
     });
 
+    // Add Comment
     document.querySelectorAll('.comment-form').forEach(form => {
         form.addEventListener('submit', function(event) {
             event.preventDefault(); 
@@ -103,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // Delete Comments
+    // Delete Comment
     document.addEventListener('click', function(event) {
         if (event.target.closest('#com-trash')) {
             event.preventDefault();
@@ -136,22 +134,29 @@ document.addEventListener("DOMContentLoaded", function() {
                         commentList.appendChild(noComments);
                     }
 
-                    if (commentBox.getAttribute('data-visible') === 'true') {
-                        commentBox.classList.add('show');
-                        commentBox.style.display = 'block'; 
-                    }
                 }
 
-                const commentBox = document.querySelector(`#comment-box-${postId}`);
-                if (commentBox.getAttribute('data-visible') === 'true') {
+                // Force Comment Box Open On Delete
+                const postContainer = document.querySelector(`.post[data-post-id="${postId}"]`);
+                const commentBox = postContainer.querySelector('.comment-box');
+
+                if (commentBox.getAttribute('data-visible') === 'false') {
                     commentBox.classList.add('show');
-                    commentBox.style.display = 'block';
+                    commentBox.setAttribute('data-visible', 'true'); 
+
+                    const commentBoxHeight = commentBox.offsetHeight;
+                    let nextPost = postContainer.nextElementSibling;
+                    if (nextPost && nextPost.classList.contains('post')) {
+                        nextPost.style.marginTop = `${commentBoxHeight}px`;
+                    }
+
                 }
 
             })
             .catch(error => console.error('Error:', error));
         }
 
+        // Click Anywhere to Close Comment Div
         document.addEventListener("click", function(event) {
             const clickedElement = event.target;
             const commentContainer = clickedElement.closest('.comment-container');
@@ -161,9 +166,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     box.setAttribute('data-visible', 'false');
 
                     let nextPost = box.closest('.post').nextElementSibling;
-                    while (nextPost && nextPost.classList.contains('post')) {
+                    if (nextPost && nextPost.classList.contains('post')) {
                         nextPost.style.marginTop = '0';
-                        nextPost = nextPost.nextElementSibling;
                     }
                 });
             }
