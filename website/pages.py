@@ -64,20 +64,19 @@ def post():
 
     return render_template('create_post.html', user=current_user)
 
-@pages.route('/delete-post/<id>', methods=["GET"])
+@pages.route('/delete-post/<id>', methods=["DELETE"])
 @login_required
 def delete_post(id):
     post = Post.query.filter_by(id=id).first()
 
     if not post:
-        flash("Post Does Not Exist", "error")
+        return {"error": "Post Does Not Exist"}, 404
     elif current_user.user_id != post.user.user_id:
-        flash("You Must be Author to Delete Post", "error")
+        return {"error": "You Must Be Author to Delete This Post"}, 403
     else:
         db.session.delete(post)
         db.session.commit()
-
-    return redirect(url_for("pages.home"))
+        return {"message": "Post Deleted", "post_id": id}, 200
 
 @pages.route('/comment/<post_id>', methods=["POST"])
 @login_required
@@ -85,34 +84,49 @@ def comment(post_id):
     text = request.form.get("text")
 
     if not text:
-        flash("Comment Cannot be Empty", "error")
-    else:
-        post = Post.query.filter_by(id = post_id)
+        return jsonify({"error": "Comment Cannot be Empty"}), 400
 
-        if not post:
-            flash("Post Does Not Exist", "error")
-        else:
-            comment = Comment(text=text, author=current_user.user_id, post_id=post_id)
-            db.session.add(comment)
-            db.session.commit()
+    post = Post.query.filter_by(id=post_id).first()
 
-    return redirect(url_for("pages.home"))
+    if not post:
+        return jsonify({"error": "Post Does Not Exist"}), 404
 
-@pages.route('/delete-comment/<comment_id>', methods=["GET"])
+    comment = Comment(text=text, author=current_user.user_id, post_id=post_id)
+    db.session.add(comment)
+    db.session.commit()
+
+    comments = Comment.query.filter_by(post_id=post_id).order_by(Comment.date_created.desc()).all()
+
+    response = {
+        'comment': {
+            'id': comment.id,
+            'text': comment.text,
+            'author': comment.user.username,
+            'date_created': comment.date_created.strftime('%Y-%m-%d %H:%M:%S')
+        },
+        'comments_count': len(comment.post.comments)  
+    }
+    return jsonify(response)
+
+@pages.route('/delete-comment/<comment_id>', methods=["POST"])
 @login_required
 def delete_comment(comment_id):
     comment = Comment.query.filter_by(id=comment_id).first()
-
     if not comment:
-        flash("Comment Does Not Exist", "error")
-    # Must be author of comment or post to delete comment
-    elif current_user.user_id != comment.author and current_user.user_id != comment.post.author:
-        flash("You Must be Author to Delete Comment", "error")
-    else:
-        db.session.delete(comment)
-        db.session.commit()
+        return jsonify({"error": "Comment Does Not Exist"}), 400
 
-    return redirect(url_for("pages.home"))
+    if current_user.user_id != comment.author and current_user.user_id != comment.post.author:
+        return jsonify({"error": "You Must be Author to Delete Comment"}), 403
+
+    db.session.delete(comment)
+    db.session.commit()
+
+    post = Post.query.filter_by(id=comment.post_id).first()
+
+    return jsonify({
+        "comments_count": len(post.comments),
+        "comment_id": comment_id
+    }), 200
 
 @pages.route('/like-post/<post_id>', methods=["POST"])
 @login_required

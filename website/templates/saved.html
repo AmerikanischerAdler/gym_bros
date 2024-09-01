@@ -48,11 +48,11 @@
           <div class="inner-post-icons">
             <div class="comment-container icon-num">
               <a class="post-button" id="com"><svg class="resp" id="comment" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M64 0C28.7 0 0 28.7 0 64V352c0 35.3 28.7 64 64 64h96v80c0 6.1 3.4 11.6 8.8 14.3s11.9 2.1 16.8-1.5L309.3 416H448c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H64z"/></svg></a>
-              <div class="comment-box">
+              <div class="comment-box" id="comment-box-{{ post.id }}" data-visible="true">
                 <div class="comment-list" id="comment-list-{{ post.id }}">
                   {% if post.comments|length > 0 %}
                     {% for comment in post.comments|sort(attribute='date_created', reverse=True) %}
-                      <div class="single-comment">
+                      <div class="single-comment" id="comment-{{ comment.id }}">
                         <p>{{ comment.text }}</p>
                         <div class="com-info">
                           <a class="com-username" href="{{ url_for('pages.profile', username=comment.user.username) }}">{{ comment.user.username }}</a>
@@ -62,17 +62,17 @@
                       </div>
                     {% endfor %}
                   {% else %}
-                    <div class="single-comment" id="no-com">
+                    <div class="single-comment no-comments">
                       <p>No Comments</p>
                     </div>
                   {% endif %}
                 </div>
-                <form class="comment-form" method="post" action="/comment/{{ post.id }}">
+                <form class="comment-form" method="post" id="comment-form-{{ post.id }}" action="/comment/{{ post.id }}">
                   <input type="text" id="text" name="text" placeholder=" Write a comment...">
                   <button type="submit">Post Comment</button>
                 </form>
               </div>
-              {{ post.comments|length }}
+              <span id="comments-count-{{ post.id }}">{{ post.comments|length }}</span>
             </div>
 
             <div class="icon-num">

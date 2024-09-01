@@ -412,8 +412,8 @@ h2:not(.name) {
     background-color: #f9f9f9;
     border: 1px solid #ccc;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    border-radius: 5px 5px 5px 5px;
-    padding: 10px;
+    border-radius: 5px;
+    padding: 0 10px;
     z-index: 1;
     width: 48vw;
     transition: max-height 0.3s ease, padding 0.3s ease;
@@ -421,7 +421,7 @@ h2:not(.name) {
 }
 
 .comment-box.show {
-    display: block;    
+    display: block;
     max-height: 200px; 
     padding: 10px; 
 }
@@ -488,7 +488,7 @@ h2:not(.name) {
     color: #888;
 }
 
-#no-com {
+.no-comments {
     text-align: center;
 }
 
