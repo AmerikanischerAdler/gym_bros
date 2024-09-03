@@ -8,15 +8,14 @@ This is a social media app, joining gym goers from around the world to celebrate
 
 **Type**: Flask
 
-#### Frontend:
-
 **Structure**: HTML5
+
 **Style**: CSS3
 
-#### Backend:
-
 **Elements**: JavaScript
+
 **Routes**: Python3
+
 **Database**: MYSQL
 
 ## Installation
