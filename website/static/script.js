@@ -92,6 +92,13 @@ document.addEventListener("DOMContentLoaded", function() {
                         commentsCount.textContent = data.comments_count;
             
                         this.querySelector('input[name="text"]').value = '';
+
+                        const commentBox = document.querySelector(`#comment-box-${postId}`);
+                        const noCommentsDiv = commentBox.querySelector('div.single-comment.no-comments');
+                        
+                        if (noCommentsDiv) {
+                            noCommentsDiv.remove();
+                        }
                     } else {
                         console.error('Comment data is undefined');
                     }

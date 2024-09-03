@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-    // Show/Hide Comment Box
+    // Show & Hide Comment Box
     document.querySelectorAll('.comment-container .post-button').forEach(button => {
         button.addEventListener('click', function() {
             const postContainer = this.closest('.post');
@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
+    // Add Comment
     document.querySelectorAll('.comment-form').forEach(form => {
         form.addEventListener('submit', function(event) {
             event.preventDefault(); 
@@ -62,6 +63,13 @@ document.addEventListener("DOMContentLoaded", function() {
                         commentsCount.textContent = data.comments_count;
             
                         this.querySelector('input[name="text"]').value = '';
+
+                        const commentBox = document.querySelector(`#comment-box-${postId}`);
+                        const noCommentsDiv = commentBox.querySelector('div.single-comment.no-comments');
+                        
+                        if (noCommentsDiv) {
+                            noCommentsDiv.remove();
+                        }
                     } else {
                         console.error('Comment data is undefined');
                     }
@@ -71,6 +79,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
+    // Click Anywhere to Close Comment Div
     document.addEventListener("click", function(event) {
         const clickedElement = event.target;
         const commentContainer = clickedElement.closest('.comment-container');
