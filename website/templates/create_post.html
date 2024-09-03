@@ -13,7 +13,14 @@
 {% block content %}
   <div id="post-contain">
     <form method="POST">
-      <textarea name="text" id="text" class="text-area"></textarea>
+      <div class="post-title">
+        <label for="post-title">Title</label>
+        <input type="text" id="post-title" name="title">
+      </div>
+      <div class="post-title">
+        <label for="text">Content</label>
+        <textarea name="text" id="text" class="text-area"></textarea>
+      </div>
       <br>
       <div id="button-contain">
         <button type="submit" class="sub_btn">Post</button>

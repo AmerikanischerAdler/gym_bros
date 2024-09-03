@@ -46,17 +46,17 @@ def not_saved():
 def post():
     if request.method == "POST":
         text = request.form.get("text")
-        # title = request.form.get("title")
+        title = request.form.get("title")
         # img = request.form.get("img")
 
         if not text:
             flash("Post Cannot be Empty", "error")
-#        elif not title:
-#            flash("Title Cannot be Empty", "error")
+        elif not title:
+            flash("Title Cannot be Empty", "error")
 #        elif not img:
 #            flash("Image Cannot be Empty", "error")
         else:
-            post = Post(text=text, author=current_user.user_id)#, title=title, img=img)
+            post = Post(text=text, author=current_user.user_id, title=title)#, img=img)
             db.session.add(post)
             db.session.commit()
             flash("Post Created!", "success")

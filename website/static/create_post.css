@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-bottom: 15px;
 }
 
 h1 {
@@ -22,17 +23,36 @@ h1 {
     justify-content: center;
 }
 
+.post-title {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 35px;
+    margin-top: 15px;
+}
+
+#post-title {
+    height: 40px;
+    font-size: 25px;
+    border: 0.5px solid #000;
+    border-radius: 5px;
+    outline: none;
+}
+
 .text-area {
     height: 30vh;
     width: 75vw;
     margin-bottom: 25px;
-    font-size: 25px;
+    font-size: 20px;
     border: 0.5px solid #000;
-    border-radius: 5px 5px 5px 5px;
+    border-radius: 5px;
     outline: none;
 }
 
-.text-area:focus {
+.text-area:focus, #post-title:focus {
     border: 3px solid #9D0000;
 }
 
