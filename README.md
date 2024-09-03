@@ -4,6 +4,21 @@
 
 This is a social media app, joining gym goers from around the world to celebrate progress and encourage one another. Users can post about their progress and view the words of other people, who are just as driven to succeed as they are.
 
+### Stack:
+
+**Type**: Flask
+
+#### Frontend:
+
+**Structure**: HTML5
+**Style**: CSS3
+
+#### Backend:
+
+**Elements**: JavaScript
+**Routes**: Python3
+**Database**: MYSQL
+
 ## Installation
 
 1) Open Terminal and Clone Repository:
