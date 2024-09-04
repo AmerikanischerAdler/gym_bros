@@ -118,6 +118,8 @@ CREATE TABLE posts (
     id INT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(200) NOT NULL,
     text TEXT NOT NULL,
+    image LONGBLOB NULL,
+    image_mime_type VARCHAR(50) NULL,
     date_created DATETIME DEFAULT CURRENT_TIMESTAMP,
     author INT NOT NULL,
     FOREIGN KEY (author) REFERENCES users(user_id) ON DELETE CASCADE

@@ -116,6 +116,7 @@
   <div id="post-container">
     {% for post in posts %}
     <div class="post" data-post-id="{{ post.id }}">
+
       <div class="profile-container">
         <div class="profile-pic">
           <a href="/profile/{{ post.user.username }}"><img src=""></a>
@@ -125,14 +126,12 @@
         <div class="author">
           <h2 class="name">{{ post.user.username }}</h2>
         </div>
-
       </div>
 
       <div class="post-pics">
-        <!--
-        <img src="">
-        ^ Get this to pull image from post db from post template ^
-        -->
+        {% if post.image %}
+          <img class="post-img" src="{{ url_for('pages.post_image', post_id=post.id) }}" alt="Post Image">
+        {% endif %}
       </div>
 
       <div class="post-text">

@@ -31,10 +31,9 @@
       </div>
 
       <div class="post-pics">
-        <!--
-        <img src="">
-        ^ Get this to pull image from post db from post template ^
-        -->
+        {% if post.image %}
+          <img class="post-img" src="{{ url_for('pages.post_image', post_id=post.id) }}" alt="Post Image">
+        {% endif %}
       </div>
 
       <div class="post-text">

@@ -46,6 +46,8 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200), nullable=False)
     text = db.Column(db.Text, nullable=False)
+    image = db.Column(db.LargeBinary, nullable=True)
+    image_mime_type = db.Column(db.String(50), nullable=True)
     date_created = db.Column(db.DateTime(timezone=True), default=func.now())
     author = db.Column(db.Integer, db.ForeignKey("users.user_id", ondelete="CASCADE"), nullable=False)
     comments = db.relationship("Comment", backref="post", passive_deletes=True)

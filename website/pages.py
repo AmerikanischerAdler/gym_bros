@@ -1,8 +1,10 @@
-from flask import Blueprint, render_template, redirect, url_for, request, flash, jsonify
+from flask import Blueprint, render_template, redirect, url_for, request, flash, jsonify, send_file, abort
 from flask_login import login_required, current_user
 from datetime import datetime
 from .models import db, User, Post, Comment, Like
 import pytz
+from werkzeug.utils import secure_filename
+import io
 
 pages = Blueprint("pages", __name__)
 
@@ -41,24 +43,47 @@ def saved():
 def not_saved():
     return render_template('not_saved.html', user=current_user)
 
+@pages.route('/post_image/<int:post_id>')
+def post_image(post_id):
+    post = Post.query.get(post_id)
+    if post and post.image and post.image_mime_type:
+        return send_file(
+            io.BytesIO(post.image),
+            mimetype=post.image_mime_type,
+            as_attachment=False,
+            download_name=f'post_{post_id}.jpeg'
+        )
+    else:
+        abort(404)
+
 @pages.route('/post-template', methods=["GET", "POST"])
 @login_required
 def post():
     if request.method == "POST":
         text = request.form.get("text")
         title = request.form.get("title")
-        # img = request.form.get("img")
+        image = request.files.get("image")
 
         if not text:
             flash("Post Cannot be Empty", "error")
+
         elif not title:
             flash("Title Cannot be Empty", "error")
-#        elif not img:
-#            flash("Image Cannot be Empty", "error")
+
+        elif not image:
+            #flash("Must Include Image", "error")
+            image_data = None
+            image_mime_type = None
+
         else:
-            post = Post(text=text, author=current_user.user_id, title=title)#, img=img)
+            filename = secure_filename(image.filename)
+            image_data = image.read()
+            image_mime_type = image.mimetype
+
+            post = Post(text=text, author=current_user.user_id, title=title, image=image_data, image_mime_type=image_mime_type)
             db.session.add(post)
             db.session.commit()
+
             flash("Post Created!", "success")
             return redirect(url_for("pages.home"))
 
