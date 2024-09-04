@@ -3,7 +3,6 @@ from flask_login import login_required, current_user
 from datetime import datetime
 from .models import db, User, Post, Comment, Like
 import pytz
-from werkzeug.utils import secure_filename
 import io
 
 pages = Blueprint("pages", __name__)
@@ -70,15 +69,15 @@ def post():
         elif not title:
             flash("Title Cannot be Empty", "error")
 
-        elif not image:
-            #flash("Must Include Image", "error")
-            image_data = None
-            image_mime_type = None
+        else: 
+            if not image:
+                #flash("Must Include Image", "error")
+                image_data = None
+                image_mime_type = None
 
-        else:
-            filename = secure_filename(image.filename)
-            image_data = image.read()
-            image_mime_type = image.mimetype
+            else:
+                image_data = image.read()
+                image_mime_type = image.mimetype
 
             post = Post(text=text, author=current_user.user_id, title=title, image=image_data, image_mime_type=image_mime_type)
             db.session.add(post)
