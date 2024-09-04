@@ -34,6 +34,10 @@ def create_app():
     def page_not_found(e):
         return render_template("404.html", user=current_user), 404
 
+    @app.errorhandler(403)
+    def page_not_found(e):
+        return render_template("403.html", user=current_user), 403
+
     app.register_blueprint(pages, url_prefix="/")
     app.register_blueprint(auth, url_prefix="/")  
 
