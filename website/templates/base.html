@@ -198,6 +198,71 @@
 
     footer {
         height: 10vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .scroller {
+        max-width: 600px;
+    }
+    
+    .scroller-inner {
+        padding-block: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .scroller .tag-list li {
+        list-style: none;
+        padding: 2px 5px;
+    }
+
+    .scroller .tag-list li p {
+        padding: 2px 5px;
+        border: 0.5px solid #000;
+        border-radius: 2px;
+    }
+
+    .scroller[data-animated="true"] {
+        overflow: hidden;
+        -webkit-mask: linear-gradient(
+            90deg,
+            transparent,
+            white 20%,
+            white 80%,
+            transparent
+        );
+        mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+    }
+    
+    .scroller[data-animated="true"] .scroller-inner {
+        width: max-content;
+        flex-wrap: nowrap;
+        animation: scroll var(--_animation-duration, 40s) var(--_animation-direction, forwards) linear infinite;
+    }
+    
+    .scroller[data-direction="right"] {
+        --_animation-direction: reverse;
+    }
+    
+    .scroller[data-direction="left"] {
+        --_animation-direction: forwards;
+    }
+    
+    .scroller[data-speed="fast"] {
+        --_animation-duration: 20s;
+    }
+    
+    .scroller[data-speed="slow"] {
+        --_animation-duration: 60s;
+    }
+    
+    @keyframes scroll {
+        to {
+            transform: translate(calc(-50% - 0.5rem));
+        }
     }
   </style>
 </head>
@@ -300,7 +365,66 @@
     {% block content %}{% endblock %}
   </div>
 
-  <footer></footer>
+  <footer>
+  {% block foot %}
+    <div class="scroller" data-speed="fast" data-direction="left">
+      <ul class="tag-list scroller-inner">
+          <li>
+              <!-- Profile Pic -->
+              <p>Influencer1</p>
+          </li>
+          <li>
+              <!-- Profile Pic -->
+              <p>Influencer2</p>
+          </li>
+          <li>
+              <!-- Profile Pic -->
+              <p>Influencer3</p>
+          </li>
+          <li>
+              <!-- Profile Pic -->
+              <p>Influencer4</p>
+          </li>
+          <li>
+              <!-- Profile Pic -->
+              <p>Influencer5</p>
+          </li>
+          <li>
+              <!-- Profile Pic -->
+              <p>Influencer6</p>
+          </li>
+          <li>
+              <!-- Profile Pic -->
+              <p>Influencer7</p>
+          </li>
+      </ul>
+    </div>
+
+    <script>
+        const scrollers = document.querySelectorAll(".scroller");
+        
+        // If a user hasn't opted in for recuded motion, then we add the animation
+        if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          addAnimation();
+        }
+        
+        function addAnimation() {
+          scrollers.forEach((scroller) => {
+            scroller.setAttribute("data-animated", true);
+        
+            const scrollerInner = scroller.querySelector(".scroller-inner");
+            const scrollerContent = Array.from(scrollerInner.children);
+        
+            scrollerContent.forEach((item) => {
+              const duplicatedItem = item.cloneNode(true);
+              duplicatedItem.setAttribute("aria-hidden", true);
+              scrollerInner.appendChild(duplicatedItem);
+            });
+          });
+        }
+    </script>
+  {% endblock %}
+  </footer>
   <script type="text/javascript" src="{{ url_for('static', filename='index.js') }}"></script>
 </body>
 </html>
