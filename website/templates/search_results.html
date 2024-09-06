@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block page %}Search Results{% endblock %}
+
+{% block style %}saved{% endblock %}
+
+{% block title %}
+  <div id="title">
+    <h2 style="font-size: 50px; color: #9D0000;">Search Results for: {{ query }}</h2>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="results">
+    <h2 style="font-size: 40px; margin-left: 15vw;">Posts</h2>
+    {% if posts %}
+    <div id="post-container">
+    {% for post in posts %}
+      <div class="post" id="post-{{ post.id }}">
+
+        <div class="profile-container">
+          <div class="profile-pic">
+            <a href="/profile/{{ post.user.username }}"><img src=""></a>
+            <!-- Have src of profile img lead to profile pic in db -->
+          </div>
+          <div class="author">
+            <h2 class="name">{{ post.user.username }}</h2>
+          </div>
+        </div>
+
+        <div class="post-pics">
+          {% if post.image %}
+            <img class="post-img" src="{{ url_for('pages.post_image', post_id=post.id) }}" alt="Post Image">
+          {% endif %}
+        </div>
+
+        <div class="post-text">
+          <h3>{{ post.title }}</h3>
+          <p>{{ post.text }}</p>
+          <p>{{ post.date_created }}</p>
+
+          <div class="post-icons">
+            <div class="inner-post-icons">
+              <div class="comment-container icon-num">
+                <a class="post-button" id="com"><svg class="resp" id="comment" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M64 0C28.7 0 0 28.7 0 64V352c0 35.3 28.7 64 64 64h96v80c0 6.1 3.4 11.6 8.8 14.3s11.9 2.1 16.8-1.5L309.3 416H448c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H64z"/></svg></a>
+                <div class="comment-box" id="comment-box-{{ post.id }}" data-visible="true">
+                  <div class="comment-list" id="comment-list-{{ post.id }}">
+                    {% if post.comments|length > 0 %}
+                      {% for comment in post.comments|sort(attribute='date_created', reverse=True) %}
+                        <div class="single-comment" id="comment-{{ comment.id }}">
+                          <p>{{ comment.text }}</p>
+                          <div class="com-info">
+                            <a class="com-username" href="{{ url_for('pages.profile', username=comment.user.username) }}">{{ comment.user.username }}</a>
+                            <p class="com-date">{{ comment.date_created }}</p>
+                          </div>
+                          <!-- ^ Maybe add profile picture? ^ -->
+                        </div>
+                      {% endfor %}
+                    {% else %}
+                      <div class="single-comment no-comments">
+                        <p>No Comments</p>
+                      </div>
+                    {% endif %}
+                  </div>
+                  <form class="comment-form" method="post" id="comment-form-{{ post.id }}" action="/comment/{{ post.id }}">
+                    <input type="text" id="text" name="text" placeholder=" Write a comment...">
+                    <button type="submit">Post Comment</button>
+                  </form>
+                </div>
+                <span id="comments-count-{{ post.id }}">{{ post.comments|length }}</span>
+              </div>
+
+              <div class="icon-num">
+                {% if current_user.user_id in post.likes|map(attribute="author")|list %}
+                  <a class="post-button liked_post hrz" id="like-button-{{ post.id }}" onclick="like({{ post.id }})"><svg class="resp" id="herz" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg></a>
+                {% else %}
+                  <a class="post-button not_liked_post hrz" id="like-button-{{ post.id }}" onclick="like({{ post.id }})"><svg class="resp" id="herz" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg></a>
+                {% endif %}
+                <span id="likes-count-{{ post.id }}">{{ post.likes|length }}</span>
+              </div>
+
+              <a class="post-button" id="shr"><svg class="resp" id="share" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      {% else %}
+      <h3 style="text-align: center;">No Posts Found</h3>
+      {% endif %}
+    </div>
+    <script src="{{ url_for('static', filename='saved.js') }}"></script>
+  </div>
+  <div class="results" style="display: flex; flex-direction: column; width: 100vw;">
+    <h2 style="font-size: 40px; margin-left: 15vw;">Users</h2>
+    <div class="user-contain" style="width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+      {% if users %}
+      {% for user in users %}
+      <!-- Add Profile Pic -->
+      <a href="{{ url_for('pages.profile', username=user.username) }}" style="font-size: 25px;">{{ user.username }}</a>
+      {% endfor %}
+      {% else %}
+      <h3 style="margin-left: -12px;">No Users Found</h3>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}
+

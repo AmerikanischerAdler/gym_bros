@@ -57,12 +57,22 @@
         flex-wrap: nowrap;
         margin-left: 8%;
     }
+
+    #search-btn {
+        background-color: transparent;
+        border: none;
+    }
+
+    #search-btn:hover {
+        cursor: pointer;
+    }
     
     #search {
         height: 70%;
         width: 100%;
         margin-left: 2%;
         overflow: hidden;
+        background-color: transparent;
         border: 0.5px solid #000;
         border-radius: 5px 5px 5px 5px;
         outline: none;
@@ -280,10 +290,10 @@
 
   <header>
     <a class="logo" href="{{ url_for('pages.home') }}"><img class="logo" src={{ url_for('static', filename='./images/bro_logo.png') }}></a>
-    <div id="search-bar">
-      <svg class="top-icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg>
-      <input id="search" type="text" placeholder="Find Your Favorite Content Here">
-    </div>
+    <form id="search-bar" method="GET" action="/search">
+      <button id="search-btn" type="submit"><svg class="top-icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg></button>
+      <input id="search" type="text" name="query" placeholder="Find Your Favorite Content Here">
+    </form>
     <div id="top-icons">
       <div id="inner-icon-container">
         <div class="icon-box">

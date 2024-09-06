@@ -15,6 +15,15 @@ def home():
     posts = Post.query.all()
     return render_template('index.html', user=current_user, posts=posts, i_usernames=i_usernames)
 
+@pages.route('/search')
+def search():
+    query = request.args.get('query')
+
+    posts = Post.query.filter(Post.title.ilike(f'%{query}%') | Post.text.like(f'%{query}%')).all()
+    users = User.query.filter(User.username.ilike(f'%{query}%')).all()
+
+    return render_template('search_results.html', query=query, posts=posts, users=users, user=current_user)
+
 @pages.route('/gallery')
 def gallery():
     return render_template('gallery.html', user=current_user, i_usernames=i_usernames)
