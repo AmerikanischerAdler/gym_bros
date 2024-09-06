@@ -218,10 +218,21 @@
         padding: 2px 5px;
     }
 
+    .scroller .tag-list li a {
+        text-decoration: none;
+        background-color: #fff;
+        color: #9D0000;
+    }
+
     .scroller .tag-list li p {
         padding: 2px 5px;
         border: 0.5px solid #000;
         border-radius: 2px;
+    }
+
+    .scroller .tag-list li p:hover {
+        background-color: #9D0000;
+        color: #fff;
     }
 
     .scroller[data-animated="true"] {
@@ -368,34 +379,12 @@
   {% block foot %}
     <div class="scroller" data-speed="fast" data-direction="left">
       <ul class="tag-list scroller-inner">
+        {% for i_username in i_usernames %}
           <li>
               <!-- Profile Pic -->
-              <p>Influencer1</p>
+              <a href="{{ url_for('pages.profile', username=i_username) }}"><p>{{ i_username }}</p></a>
           </li>
-          <li>
-              <!-- Profile Pic -->
-              <p>Influencer2</p>
-          </li>
-          <li>
-              <!-- Profile Pic -->
-              <p>Influencer3</p>
-          </li>
-          <li>
-              <!-- Profile Pic -->
-              <p>Influencer4</p>
-          </li>
-          <li>
-              <!-- Profile Pic -->
-              <p>Influencer5</p>
-          </li>
-          <li>
-              <!-- Profile Pic -->
-              <p>Influencer6</p>
-          </li>
-          <li>
-              <!-- Profile Pic -->
-              <p>Influencer7</p>
-          </li>
+        {% endfor %}
       </ul>
     </div>
 

@@ -7,15 +7,17 @@ import io
 
 pages = Blueprint("pages", __name__)
 
+i_usernames = ["bro", "thatguy", "username", "andy", "Smithy", "WiseGuy"]
+
 @pages.route('/')
 @pages.route('/home')
 def home():
     posts = Post.query.all()
-    return render_template('index.html', user=current_user, posts=posts)
+    return render_template('index.html', user=current_user, posts=posts, i_usernames=i_usernames)
 
 @pages.route('/gallery')
 def gallery():
-    return render_template('gallery.html', user=current_user)
+    return render_template('gallery.html', user=current_user, i_usernames=i_usernames)
 
 @pages.route('/profile/<username>')
 @login_required
@@ -36,11 +38,11 @@ def profile(username):
 def saved():
     liked_posts = Post.query.join(Like, Post.id == Like.post_id).filter(Like.author == current_user.user_id).all()
 
-    return render_template('saved.html', user=current_user, liked_posts=liked_posts)
+    return render_template('saved.html', user=current_user, liked_posts=liked_posts, i_usernames=i_usernames)
 
 @pages.route('/not-saved')
 def not_saved():
-    return render_template('not_saved.html', user=current_user)
+    return render_template('not_saved.html', user=current_user, i_usernames=i_usernames)
 
 @pages.route('/post_image/<int:post_id>')
 def post_image(post_id):
