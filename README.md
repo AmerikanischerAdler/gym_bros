@@ -202,6 +202,8 @@ Contributions are welcome from developers of all skill levels!
 
 * Ty Peachey
 
+*Check Out JustPeachy Store Here:* [link]https://www.justpeachy.store
+
 ## Inspiration
 
 I love the gym, but find it difficult to share in a community of like-minded peers. This platform is designed to facilitate positive social interaction between guys and girls who are passionate about physical fitness.
