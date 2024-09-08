@@ -202,7 +202,7 @@ Contributions are welcome from developers of all skill levels!
 
 * Ty Peachey
 
-*Check Out JustPeachy Store Here:* [link]https://www.justpeachy.store
+*Check Out JustPeachy Store Here:* https://www.justpeachy.store
 
 ## Inspiration
 
