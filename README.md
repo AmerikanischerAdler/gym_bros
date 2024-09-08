@@ -194,6 +194,14 @@ python3 app.py
 
 You may be able to simply click this link: http://127.0.0.1:5000/
 
+## Contributions
+
+Contributions are welcome from developers of all skill levels!
+
+### Acknowledgements
+
+* Ty Peachey
+
 ## Inspiration
 
 I love the gym, but find it difficult to share in a community of like-minded peers. This platform is designed to facilitate positive social interaction between guys and girls who are passionate about physical fitness.
