@@ -52,6 +52,36 @@ h1 {
     color: #9D0000;
 }
 
+.box .ranks {
+    width: 40%;
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    padding: 2px;
+    margin-top: 5px;
+    gap: 5px;
+}
+
+.box .first-goal {
+    margin-top: 15px;
+}
+
+.ranks label {
+    font-weight: 700;
+}
+
+.ranks input {
+    width: 80%;
+    font-size: 15px;
+    border: 0.5px solid #000;
+    border-radius: 5px;
+    outline: none;
+}
+
+.ranks input:focus, #dream-build:focus, #natty:focus {
+    border: 1.5px solid #9D0000;
+}
+
 .info {
     width: 100%;
     display: flex;
@@ -76,7 +106,34 @@ h1 {
     margin-bottom: -10px;
 }
 
-#motto {
+#bio {
+    width: 50%;
     padding-bottom: 30px;
+}
+
+.info select {
+    width: 40%;
+    font-size: 15px;
+    border: 0.5px solid #000;
+    border-radius: 5px;
+    outline: none;
+}
+
+.info option:target {
+    background-color: #9D0000;
+}
+
+#natty, #relation {
+    margin-top: 20px;
+}
+
+#dream-build {
+    width: 80%;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    border: 0.5px solid #000;
+    border-radius: 5px;
+    outline: none;
 }
 

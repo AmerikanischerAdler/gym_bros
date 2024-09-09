@@ -16,9 +16,11 @@
     <h2>{{ user.name }}</h2>
     <h3>Life Motto:</h3>
     <p id="motto">"You're only going to get what you absolutely demand of yourself"</p>
+    <h3>Bio:</h3>
+    <p id="bio">Eiusmod veniam ad eu sunt consequat excepteur occaecat id Lorem minim officia adipisicing sit dolor tempor. Laborum non occaecat cillum enim. Nostrud in elit aute deserunt consequat laboris laborum. Ex aliqua do enim eiusmod occaecat minim aliqua sunt aute. Proident aliqua consequat sunt laboris sunt laborum commodo adipisicing Lorem sint voluptate quis pariatur culpa nostrud. Proident consectetur dolor ullamco ea culpa deserunt eiusmod voluptate est sint commodo pariatur in. Laborum magna sit in in est ad. Amet occaecat nisi occaecat.</p>
   </div>
   <div class="contain">
-    <div class="box" id="info">
+    <form class="box" id="info">
       <h2>Basic Info</h2>
       <div class="info">
         <h3>Birthday:</h3>
@@ -26,11 +28,18 @@
       </div>
       <div class="info">
         <h3>Gender:</h3>
-        <p><strong>Gym Bro</strong>/Gym Girl</p>
+        <p><em>And Please NO BULLSHIT! </em></p>
+        <select id="gender">
+          <option value="bro">Gym Bro</option>
+          <option value="girl">Gym Girl</option>
+        </select>
       </div>
       <div class="info">
         <h3>Relationship Status:</h3>
-        <p>Single Pringle</p>
+        <select id="relation">
+          <option value="true">Single Pringle</option>
+          <option value="false">I AM NOT SINGLE</option>
+        </select>
       </div>
       <div class="info">
         <h3>Proteins & Supplements:</h3>
@@ -40,16 +49,28 @@
           <li>Jocko Mölk</li>
         </ul>
       </div>
-    </div>
+    </form>
 
-    <div class="box" id="stats">
+    <form class="box" id="stats">
       <h2>Current Stats</h2>
       <div class="info">
         <h3>Max Lifts:</h3>
-        <p class="lst"><strong>Bench</strong>: <span>235</span></p>
-        <p class="lst"><strong>Squat</strong>: <span>265</span></p>
-        <p class="lst"><strong>Clean</strong>: <span>140</span></p>
-        <p><strong>Deadlift</strong>: <span>320</span></p>
+        <div class="ranks first-goal">
+          <label for="bench-now">Bench:</label>
+          <input type="text" id="bench-now" name="bench-now">
+        </div>
+        <div class="ranks">
+          <label for="squat-now">Squat:</label>
+          <input type="text" id="squat-now" name="squat-now">
+        </div>
+        <div class="ranks">
+          <label for="clean-now">Clean:</label>
+          <input type="text" id="clean-now" name="clean-now">
+        </div>
+        <div class="ranks">
+          <label for="deadlift-now">Deadlift:</label>
+          <input type="text" id="deadlift-now" name="deadlift-now">
+        </div>
       </div>
       <div class="info">
         <h3>Other Sports:</h3>
@@ -59,18 +80,33 @@
       </div>
       <div class="info">
         <h3>Natty Status:</h3>
-        <p>Positive</p>
+        <select id="natty">
+          <option value="true">Positive (I am Natty)</option>
+          <option value="false">Negative (I am not Natty)</option>
+        </select>
       </div>
-    </div>
+    </form>
 
-    <div class="box" id="goals">
+    <form class="box" id="goals">
       <h2>Future Goals</h2>
       <div class="info">
         <h3>Max Lifts by End of Year:</h3>
-        <p class="lst"><strong>Bench</strong>: <span>295</span></p>
-        <p class="lst"><strong>Squat</strong>: <span>315</span></p>
-        <p class="lst"><strong>Clean</strong>: <span>180</span></p>
-        <p><strong>Deadlift</strong>: <span>380</span></p>
+        <div class="ranks first-goal">
+          <label for="bench-future">Bench:</label>
+          <input type="text" id="bench-future" name="bench-future">
+        </div>
+        <div class="ranks">
+          <label for="squat-future">Squat:</label>
+          <input type="text" id="squat-future" name="squat-future">
+        </div>
+        <div class="ranks">
+          <label for="clean-future">Clean:</label>
+          <input type="text" id="clean-future" name="clean-future">
+        </div>
+        <div class="ranks">
+          <label for="deadlift-future">Deadlift:</label>
+          <input type="text" id="deadlift-future" name="deadlift-future">
+        </div>
       </div>
       <div class="info">
         <h3>Sports:</h3>
@@ -80,9 +116,9 @@
       </div>
       <div class="info">
         <h3>Dream Physique:</h3>
-        <p>...</p>
+        <input type="text" id="dream-build" name="dream-build" placeholder="Briefly Describe Your Vision...">
       </div>
-    </div>
+    </form>
   </div>
 {% endblock %}
 
