@@ -17,6 +17,26 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(100))
     timezone = db.Column(db.String(50), nullable=False, default='UTC')
     date_created = db.Column(db.DateTime(timezone=True), default=func.now())
+
+    # Profile
+    life_motto = db.Column(db.String(250), nullable=True)
+    bio = db.Column(db.Text, nullable=True)
+    birthday = db.Column(db.Date, nullable=True)
+    gender = db.Column(db.String(50), nullable=True)
+    relationship_status = db.Column(db.String(50), nullable=True)
+
+    bench_now = db.Column(db.Integer, nullable=True)
+    squat_now = db.Column(db.Integer, nullable=True)
+    clean_now = db.Column(db.Integer, nullable=True)
+    deadlift_now = db.Column(db.Integer, nullable=True)
+
+    bench_future = db.Column(db.Integer, nullable=True)
+    squat_future = db.Column(db.Integer, nullable=True)
+    clean_future = db.Column(db.Integer, nullable=True)
+    deadlift_future = db.Column(db.Integer, nullable=True)
+    dream_build = db.Column(db.String(250), nullable=True)
+
+    # Relationships
     posts = db.relationship("Post", backref="user", passive_deletes=True)
     comments = db.relationship("Comment", backref="user", passive_deletes=True)
     likes = db.relationship("Like", backref="user", passive_deletes=True)

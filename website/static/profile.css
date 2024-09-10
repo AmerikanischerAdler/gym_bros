@@ -78,7 +78,7 @@ h1 {
     outline: none;
 }
 
-.ranks input:focus, #dream-build:focus, #natty:focus {
+.ranks input:focus, #dream-build:focus, #natty:focus, #bio:focus, #motto:focus {
     border: 1.5px solid #9D0000;
 }
 
@@ -106,9 +106,24 @@ h1 {
     margin-bottom: -10px;
 }
 
+#motto {
+    width: 49%;
+    padding: 10px;
+    font-size: 20px;
+    border: 0.5px solid #000;
+    border-radius: 5px;
+    outline: none;
+}
+
 #bio {
     width: 50%;
     padding-bottom: 30px;
+    padding-top: 15px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    border: 0.5px solid #000;
+    border-radius: 5px;
+    outline: none;
 }
 
 .info select {
@@ -119,11 +134,7 @@ h1 {
     outline: none;
 }
 
-.info option:target {
-    background-color: #9D0000;
-}
-
-#natty, #relation {
+#natty, #relation, #birthday {
     margin-top: 20px;
 }
 
@@ -135,5 +146,23 @@ h1 {
     border: 0.5px solid #000;
     border-radius: 5px;
     outline: none;
+}
+
+#sub-all-btn {
+    width: 40%;
+    margin: 20px;
+    font-size: 30px;
+    background-color: #7D0000;
+    color: #fff;
+    padding: 10px 45px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+
+#sub-all-btn:hover {
+    cursor: pointer;
 }
 

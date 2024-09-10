@@ -42,6 +42,50 @@ def profile(username):
 
     return render_template('profile.html', user=current_user, username=username)#, posts=posts)
 
+@pages.route('/update-profile', methods=["POST"])
+@login_required
+def update_profile():
+    user = current_user
+    
+    #user.firstname = request.form.get("firstname")
+    #user.lastname = request.form.get("lastname")
+    user.life_motto = request.form.get('motto')
+    user.bio = request.form.get('bio')
+
+    #Birthday
+    birthday_month = request.form.get('birthday-month')
+    birthday_day = request.form.get('birthday-day')
+    birthday_year = request.form.get('birthday-year')
+
+    if birthday_month and birthday_day and birthday_year:
+        user.birthday = f"{birthday_year}-{birthday_month}-{birthday_day}"
+
+    # Gender & Relationship
+    user.gender = request.form.get('gender')
+    user.relationship_status = request.form.get('relation')
+
+    # Current Stats
+    user.bench_now = request.form.get('bench-now')
+    user.squat_now = request.form.get('squat-now')
+    user.clean_now = request.form.get('clean-now')
+    user.deadlift_now = request.form.get('deadlift-now')
+
+    # Future Goals
+    user.bench_future = request.form.get('bench-future')
+    user.squat_future = request.form.get('squat-future')
+    user.clean_future = request.form.get('clean-future')
+    user.deadlift_future = request.form.get('deadlift-future')
+    user.dream_build = request.form.get('dream-build')
+
+    try:
+        db.session.commit()
+        flash("Profile updated successfully!", "success")
+    except Exception as e:
+        db.session.rollback()
+        flash(f"An error occurred: {e}", "error")
+
+    return redirect(url_for('pages.profile', username=user.username))
+
 @pages.route('/saved')
 @login_required
 def saved():
