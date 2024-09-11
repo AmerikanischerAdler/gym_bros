@@ -24,6 +24,7 @@ class User(db.Model, UserMixin):
     birthday = db.Column(db.Date, nullable=True)
     gender = db.Column(db.String(50), nullable=True)
     relationship_status = db.Column(db.String(50), nullable=True)
+    natty_status = db.Column(db.String(50), nullable=True)
 
     bench_now = db.Column(db.Integer, nullable=True)
     squat_now = db.Column(db.Integer, nullable=True)

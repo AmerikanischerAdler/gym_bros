@@ -63,6 +63,7 @@ def update_profile():
     # Gender & Relationship
     user.gender = request.form.get('gender')
     user.relationship_status = request.form.get('relation')
+    user.natty_status = request.form.get('natty')
 
     # Current Stats
     user.bench_now = request.form.get('bench-now')

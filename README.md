@@ -110,6 +110,7 @@ CREATE TABLE users (
     birthday DATE NULL,
     gender VARCHAR(50) NULL,
     relationship_status VARCHAR(50) NULL,
+    natty_status VARCHAR(50) NULL,
     bench_now INT NULL,
     squat_now INT NULL,
     clean_now INT NULL,

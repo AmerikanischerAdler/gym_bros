@@ -16,13 +16,13 @@
     <h2>{{ user.name }}</h2>
     <h3>Life Motto:</h3>
     {% if user.life_motto %}
-    <p id="motto">{{ user.life_motto }}</p>
+    <p id="motto" style="border: none; text-align: center;">"{{ user.life_motto }}"</p>
     {% else %}
     <input id="motto" type="text" name="motto" placeholder="Enter Your Life Motto...">
     {% endif %}
     <h3>Bio:</h3>
     {% if user.bio %}
-    <p id="bio">{{ user.bio }}</p>
+    <p id="bio" style="border: none; text-align: center;">{{ user.bio }}</p>
     {% else %}
     <textarea id="bio" name="bio" placeholder="Enter a Brief Description of Yourself..."></textarea>
     {% endif %}
@@ -210,10 +210,10 @@
       <div class="info">
         <h3>Relationship Status:</h3>
         {% if user.relationship_status %}
-          {% if user.relationship_status == true %}
-          <p>Taken</p>
-          {% else %}
+          {% if user.relationship_status == 'true' %}
           <p>Single Pringle</p>
+          {% else %}
+          <p>Taken</p>
           {% endif %}
         {% else %}
         <select id="relation" name="relation">
@@ -238,7 +238,7 @@
         <h3>Max Lifts:</h3>
         <div class="ranks first-goal">
         {% if user.bench_now %}
-          <p class="lst"><strong>Bench</strong>: <span>{{ user.bench_now }}</span></p>
+          <p class="lst" style="margin-left: 25px;"><strong>Bench</strong>: <span>{{ user.bench_now }}</span></p>
         {% else %}
           <label for="bench-now">Bench:</label>
           <input type="text" id="bench-now" name="bench-now">
@@ -246,7 +246,7 @@
         </div>
         <div class="ranks">
         {% if user.squat_now %}
-          <p class="lst"><strong>Squat</strong>: <span>{{ user.squat_now }}</span></p>
+          <p class="lst" style="margin-left: 25px;"><strong>Squat</strong>: <span>{{ user.squat_now }}</span></p>
         {% else %}
           <label for="squat-now">Squat:</label>
           <input type="text" id="squat-now" name="squat-now">
@@ -254,7 +254,7 @@
         </div>
         <div class="ranks">
         {% if user.clean_now %}
-          <p class="lst"><strong>Clean</strong>: <span>{{ user.clean_now }}</span></p>
+          <p class="lst" style="margin-left: 25px;"><strong>Clean</strong>: <span>{{ user.clean_now }}</span></p>
         {% else %}
           <label for="clean-now">Clean:</label>
           <input type="text" id="clean-now" name="clean-now">
@@ -262,7 +262,7 @@
         </div>
         <div class="ranks">
         {% if user.deadlift_now %}
-          <p><strong>Deadlift</strong>: <span>{{ user.deadlift_now }}</span></p>
+          <p style="margin-left: 25px;"><strong>Deadlift</strong>: <span>{{ user.deadlift_now }}</span></p>
         {% else %}
           <label for="deadlift-now">Deadlift:</label>
           <input type="text" id="deadlift-now" name="deadlift-now">
@@ -278,9 +278,13 @@
       <div class="info">
         <h3>Natty Status:</h3>
         {% if user.natty_status %}
-        <p>{{ user.natty_status }}</p>
+          {% if user.natty_status == 'true' %}
+          <p>Natty</p>
+          {% else %}
+          <p>NOT Natty</p>
+          {% endif %}
         {% else %}
-        <select id="natty">
+        <select id="natty" name="natty">
           <option value="true">Positive (I am Natty)</option>
           <option value="false">Negative (I am not Natty)</option>
         </select>
@@ -342,7 +346,8 @@
     </form>
   </div>
 
-  {% if user.dream_build and user.life_motto and user.bio and user.birthday and user.gender and user.relationship_status and user.bench_now and user.squat_now and user.clean_now and user.deadlift_now and user.bench_future and user.squat_future and user.clean_future and user.deadlift_future %}
+  {% if user.dream_build and user.life_motto and user.bio and user.birthday and user.gender and user.relationship_status and user.natty_status and user.bench_now and user.squat_now and user.clean_now and user.deadlift_now and user.bench_future and user.squat_future and user.clean_future and user.deadlift_future %}
+  {% else %}
   <div style="display: flex; align-items: center; justify-content: center;">
     <button id="sub-all-btn" type="button" onclick="submitAllForms()">Save Profile</button>
   </div>
