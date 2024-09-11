@@ -30,6 +30,22 @@ h1 {
     
 }
 
+.prog-bar-contain {
+    height: 30px;
+    width: 70%;
+    background-color: #ccc;
+    border: none;
+    border-radius: 5px;
+}
+
+.prog-bar {
+    height: 30px;
+    width: 1%;
+    background-color: #9D0000;
+    border: none;
+    border-radius: 5px;
+}
+
 .contain {
     width: 100vw;
     display: flex;

@@ -14,6 +14,36 @@
   <form id="prof-pic">
     <img id="face" src="{{ url_for('static', filename='./images/face.jpg') }}">
     <h2>{{ user.name }}</h2>
+    <h3>Yearly Goals</h3>
+    {% if user.bench_now and user.bench_future or user.squat_now and user.squat_future or user.clean_now and user.clean_future or user.deadlift_now and user.deadlift_future %}
+    {% if user.bench_now and user.bench_future %}
+    <h4>Bench Progress</h4>
+    <div class="prog-bar-contain">
+      <div class="prog-bar" id="prog-bench" data-prog="{{ user.bench_now }}" data-goal="{{ user.bench_future }}"></div>
+    </div>
+    {% endif %}
+    {% if user.squat_now and user.squat_future %}
+    <h4>Squat Progress</h4>
+    <div class="prog-bar-contain">
+      <div class="prog-bar" id="prog-squat" data-prog="{{ user.squat_now }}" data-goal="{{ user.squat_future }}"></div>
+    </div>
+    {% endif %}
+    {% if user.clean_now and user.clean_future %}
+    <h4>Clean Progress</h4>
+    <div class="prog-bar-contain">
+      <div class="prog-bar" id="prog-clean" data-prog="{{ user.clean_now }}" data-goal="{{ user.clean_future }}"></div>
+    </div>
+    {% endif %}
+    {% if user.deadlift_now and user.deadlift_future %}
+    <h4>Deadlift Progress</h4>
+    <div class="prog-bar-contain">
+      <div class="prog-bar" id="prog-deadlift" data-prog="{{ user.deadlift_now }}" data-goal="{{ user.deadlift_future }}"></div>
+    </div>
+    {% endif %}
+    {% else %}
+    <p>{{ user.username }} has not added any yearly goals</p>
+    {% endif %}
+
     <h3>Life Motto:</h3>
     {% if user.life_motto %}
     <p id="motto" style="border: none; text-align: center;">"{{ user.life_motto }}"</p>
@@ -394,8 +424,8 @@
   <div style="display: flex; align-items: center; justify-content: center;">
     <button id="sub-all-btn" type="button" onclick="submitAllForms()">Save Profile</button>
   </div>
-  <script src="{{ url_for('static', filename='profile.js') }}"
   {% endif %}
+  <script src="{{ url_for('static', filename='profile.js') }}"
 {% endblock %}
 
 {% block foot %}{% endblock %}

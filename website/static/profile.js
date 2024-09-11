@@ -16,3 +16,30 @@ function submitAllForms() {
   document.body.appendChild(finalForm);
   finalForm.submit();
 }
+
+function move(bar) {
+  var prog = parseInt(bar.dataset.prog);
+  var goal = parseInt(bar.dataset.goal);
+  
+  var width = 1;
+  var end = Math.floor((prog / goal) * 100);
+
+  var ev = setInterval(frame, 10);
+  function frame() {
+    if (width >= end) {
+      clearInterval(ev);
+    } else {
+      width++;
+      bar.style.width = width + "%";
+    }
+  }
+}
+
+window.onload = function() {
+  var bars = document.querySelectorAll(".prog-bar");
+  
+  bars.forEach(function(bar) {
+    move(bar);
+  });
+};
+
