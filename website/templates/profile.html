@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block page %}Profile | {{ username }}{% endblock %}
+{% block page %}Profile | {{ user.username }}{% endblock %}
 
 {% block style %}profile{% endblock %}
 
@@ -17,12 +17,16 @@
     <h3>Life Motto:</h3>
     {% if user.life_motto %}
     <p id="motto" style="border: none; text-align: center;">"{{ user.life_motto }}"</p>
+    {% elif not user.life_motto and current_user.user_id != user.user_id %}
+    <p>{{ user.username }} has not added a life motto</p>
     {% else %}
     <input id="motto" type="text" name="motto" placeholder="Enter Your Life Motto...">
     {% endif %}
     <h3>Bio:</h3>
     {% if user.bio %}
     <p id="bio" style="border: none; text-align: center;">{{ user.bio }}</p>
+    {% elif not user.bio and current_user.user_id != user.user_id %}
+    <p style="margin-bottom: 45px;">{{ user.username }} has not added a bio</p>
     {% else %}
     <textarea id="bio" name="bio" placeholder="Enter a Brief Description of Yourself..."></textarea>
     {% endif %}
@@ -347,6 +351,7 @@
   </div>
 
   {% if user.dream_build and user.life_motto and user.bio and user.birthday and user.gender and user.relationship_status and user.natty_status and user.bench_now and user.squat_now and user.clean_now and user.deadlift_now and user.bench_future and user.squat_future and user.clean_future and user.deadlift_future %}
+  {% elif current_user.user_id != user.user_id %}
   {% else %}
   <div style="display: flex; align-items: center; justify-content: center;">
     <button id="sub-all-btn" type="button" onclick="submitAllForms()">Save Profile</button>

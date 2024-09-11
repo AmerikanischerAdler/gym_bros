@@ -31,16 +31,20 @@ def gallery():
 @pages.route('/profile/<username>')
 @login_required
 def profile(username):
-    user = User.query.filter_by(username=username).first()
+    if username == current_user.username:
+        user = current_user
 
-    if not user:
-        flash("Username Does Not Exist", "error")
-        return redirect(url_for("pages.home"))
+    else:
+        user = User.query.filter_by(username=username).first()
 
-    # To add posts to Profile page
-    #post = user.posts
+        if not user:
+            flash("Username Does Not Exist", "error")
+            return redirect(url_for("pages.home"))
 
-    return render_template('profile.html', user=current_user, username=username)#, posts=posts)
+        # To add posts to Profile page
+        #posts = user.posts
+
+    return render_template('profile.html', user=user)#, posts=posts)
 
 @pages.route('/update-profile', methods=["POST"])
 @login_required
