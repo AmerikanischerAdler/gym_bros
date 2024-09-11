@@ -40,6 +40,8 @@
 
         {% if user.birthday %}
         <p>{{ user.birthday }}</p>
+        {% elif not user.birthday and current_user.user_id != user.user_id %}
+        <p>Unknown</p>
         {% else %}
         <select id="birthday" name="birthday-month">
           <option value="01">January</option>
@@ -203,6 +205,8 @@
           {% else %}
           <p>Gym Girl</p>
           {% endif %}
+        {% elif not user.gender and current_user.user_id != user.user_id %}
+        <p>Unknown</p>
         {% else %}
         <p><em>And Please NO BULLSHIT! </em></p>
         <select id="gender" name="gender">
@@ -219,6 +223,8 @@
           {% else %}
           <p>Taken</p>
           {% endif %}
+        {% elif not user.relationship_status and current_user.user_id != user.user_id %}
+        <p>Unknown</p>
         {% else %}
         <select id="relation" name="relation">
           <option value="true">Single Pringle</option>
@@ -241,24 +247,36 @@
       <div class="info">
         <h3>Max Lifts:</h3>
         <div class="ranks first-goal">
-        {% if user.bench_now %}
+        {% if user.bench_now and user.squat_now %}
           <p class="lst" style="margin-left: 25px;"><strong>Bench</strong>: <span>{{ user.bench_now }}</span></p>
+        {% elif user.bench_now and not user.squat_now %}
+          <p class="lst" style="margin-left: 25px; padding-bottom: 10px;"><strong>Bench</strong>: <span>{{ user.bench_now }}</span></p>
+        {% elif not user.bench_now and current_user.user_id != user.user_id %}
+          <p class="lst" style="margin-left: 25px;"><strong>Bench</strong>: <span>Unknown</span></p>
         {% else %}
           <label for="bench-now">Bench:</label>
           <input type="text" id="bench-now" name="bench-now">
         {% endif %}
         </div>
         <div class="ranks">
-        {% if user.squat_now %}
+        {% if user.squat_now and user.clean_now %}
           <p class="lst" style="margin-left: 25px;"><strong>Squat</strong>: <span>{{ user.squat_now }}</span></p>
+        {% elif user.squat_now and not user.clean_now %}
+          <p class="lst" style="margin-left: 25px; padding-bottom: 10px;"><strong>Squat</strong>: <span>{{ user.squat_now }}</span></p>
+        {% elif not user.squat_now and current_user.user_id != user.user_id %}
+          <p class="lst" style="margin-left: 25px;"><strong>Squat</strong>: <span>Unknown</span></p>
         {% else %}
           <label for="squat-now">Squat:</label>
           <input type="text" id="squat-now" name="squat-now">
         {% endif %}
         </div>
         <div class="ranks">
-        {% if user.clean_now %}
+        {% if user.clean_now and user.deadlift_now %}
           <p class="lst" style="margin-left: 25px;"><strong>Clean</strong>: <span>{{ user.clean_now }}</span></p>
+        {% elif user.clean_now and not user.deadlift_now %}
+          <p class="lst" style="margin-left: 25px; padding-bottom: 10px;"><strong>Clean</strong>: <span>{{ user.clean_now }}</span></p>
+        {% elif not user.clean_now and current_user.user_id != user.user_id %}
+          <p class="lst" style="margin-left: 25px;"><strong>Clean</strong>: <span>Unknown</span></p>
         {% else %}
           <label for="clean-now">Clean:</label>
           <input type="text" id="clean-now" name="clean-now">
@@ -267,6 +285,8 @@
         <div class="ranks">
         {% if user.deadlift_now %}
           <p style="margin-left: 25px;"><strong>Deadlift</strong>: <span>{{ user.deadlift_now }}</span></p>
+        {% elif not user.deadlift_now and current_user.user_id != user.user_id %}
+          <p style="margin-left: 25px;"><strong>Deadlift</strong>: <span>Unknown</span></p>
         {% else %}
           <label for="deadlift-now">Deadlift:</label>
           <input type="text" id="deadlift-now" name="deadlift-now">
@@ -287,6 +307,8 @@
           {% else %}
           <p>NOT Natty</p>
           {% endif %}
+        {% elif not user.natty_status and current_user.user_id != user.user_id %}
+        <p>Unknown</p>
         {% else %}
         <select id="natty" name="natty">
           <option value="true">Positive (I am Natty)</option>
@@ -301,24 +323,36 @@
       <div class="info">
         <h3>Max Lifts by End of Year:</h3>
         <div class="ranks first-goal">
-        {% if user.bench_future %}
+        {% if user.bench_future and user.squat_future %}
           <p class="lst"><strong>Bench</strong>: <span>{{ user.bench_future }}</span></p>
+        {% elif user.bench_future and not user.squat_future %}
+          <p class="lst" style="padding-bottom: 10px;"><strong>Bench</strong>: <span>{{ user.bench_future }}</span></p>
+        {% elif not user.bench_future and current_user.user_id != user.user_id %}
+          <p class="lst"><strong>Bench</strong>: <span>Unknown</span></p>
         {% else %}
           <label for="bench-future">Bench:</label>
           <input type="text" id="bench-future" name="bench-future">
         {% endif %}
         </div>
         <div class="ranks">
-        {% if user.squat_future %}
+        {% if user.squat_future and user.clean_future %}
           <p class="lst"><strong>Squat</strong>: <span>{{ user.squat_future }}</span></p>
+        {% elif user.squat_future and not user.clean_future %}
+          <p class="lst" style="padding-bottom: 10px;"><strong>Squat</strong>: <span>{{ user.squat_future }}</span></p>
+        {% elif not user.squat_future and current_user.user_id != user.user_id %}
+          <p class="lst"><strong>Squat</strong>: <span>Unknown</span></p>
         {% else %}
           <label for="squat-future">Squat:</label>
           <input type="text" id="squat-future" name="squat-future">
         {% endif %}
         </div>
         <div class="ranks">
-        {% if user.clean_future %}
+        {% if user.clean_future and user.deadlift_future %}
           <p class="lst"><strong>Clean</strong>: <span>{{ user.clean_future }}</span></p>
+        {% elif user.clean_future and not user.deadlift_future %}
+          <p class="lst" style="padding-bottom: 10px;"><strong>Clean</strong>: <span>{{ user.clean_future }}</span></p>
+        {% elif not user.clean_future and current_user.user_id != user.user_id %}
+          <p class="lst"><strong>Clean</strong>: <span>Unknown</span></p>
         {% else %}
           <label for="clean-future">Clean:</label>
           <input type="text" id="clean-future" name="clean-future">
@@ -327,6 +361,8 @@
         <div class="ranks">
         {% if user.deadlift_future %}
           <p><strong>Deadlift</strong>: <span>{{ user.deadlift_future }}</span></p>
+        {% elif not user.deadlift_future and current_user.user_id != user.user_id %}
+          <p><strong>Deadlift</strong>: <span>Unknown</span></p>
         {% else %}
           <label for="deadlift-future">Deadlift:</label>
           <input type="text" id="deadlift-future" name="deadlift-future">
@@ -343,6 +379,8 @@
         <h3>Dream Physique:</h3>
         {% if user.dream_build %}
         <p>{{ user.dream_build }}</p>
+        {% elif not user.dream_build and current_user.user_id != user.user_id %}
+        <p>{{ user.username }} had not added a dream physique</p>
         {% else %}
         <input type="text" id="dream-build" name="dream-build" placeholder="Briefly Describe Your Vision...">
         {% endif %}

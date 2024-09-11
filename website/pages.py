@@ -51,36 +51,61 @@ def profile(username):
 def update_profile():
     user = current_user
     
-    #user.firstname = request.form.get("firstname")
-    #user.lastname = request.form.get("lastname")
-    user.life_motto = request.form.get('motto')
-    user.bio = request.form.get('bio')
+    #if request.form.get("firstname"):
+    #    user.firstname = request.form.get("firstname")
+    #if request.form.get("lastname"):
+    #    user.lastname = request.form.get("lastname")
+    if request.form.get("motto"):
+        user.life_motto = request.form.get('motto')
+    if request.form.get("bio"):
+        user.bio = request.form.get('bio')
 
     #Birthday
-    birthday_month = request.form.get('birthday-month')
-    birthday_day = request.form.get('birthday-day')
-    birthday_year = request.form.get('birthday-year')
+    if request.form.get("birthday-month"):
+        birthday_month = request.form.get('birthday-month')
+    else:
+        birthday_month = None
+    if request.form.get("birthday-day"):
+        birthday_day = request.form.get('birthday-day')
+    else:
+        birthday_day = None
+    if request.form.get("birthday-year"):
+        birthday_year = request.form.get('birthday-year')
+    else:
+        birthday_year = None
 
     if birthday_month and birthday_day and birthday_year:
         user.birthday = f"{birthday_year}-{birthday_month}-{birthday_day}"
 
     # Gender & Relationship
-    user.gender = request.form.get('gender')
-    user.relationship_status = request.form.get('relation')
-    user.natty_status = request.form.get('natty')
+    if request.form.get("gender"):
+        user.gender = request.form.get('gender')
+    if request.form.get("relation"):
+        user.relationship_status = request.form.get('relation')
+    if request.form.get("natty"):
+        user.natty_status = request.form.get('natty')
 
     # Current Stats
-    user.bench_now = request.form.get('bench-now')
-    user.squat_now = request.form.get('squat-now')
-    user.clean_now = request.form.get('clean-now')
-    user.deadlift_now = request.form.get('deadlift-now')
+    if request.form.get("bench-now"):
+        user.bench_now = request.form.get('bench-now')
+    if request.form.get("squat-now"):
+        user.squat_now = request.form.get('squat-now')
+    if request.form.get("clean-now"):
+        user.clean_now = request.form.get('clean-now')
+    if request.form.get("deadlift-now"):
+        user.deadlift_now = request.form.get('deadlift-now')
 
     # Future Goals
-    user.bench_future = request.form.get('bench-future')
-    user.squat_future = request.form.get('squat-future')
-    user.clean_future = request.form.get('clean-future')
-    user.deadlift_future = request.form.get('deadlift-future')
-    user.dream_build = request.form.get('dream-build')
+    if request.form.get("bench-future"):
+        user.bench_future = request.form.get('bench-future')
+    if request.form.get("squat-future"):
+        user.squat_future = request.form.get('squat-future')
+    if request.form.get("clean-future"):
+        user.clean_future = request.form.get('clean-future')
+    if request.form.get("deadlift-future"):
+        user.deadlift_future = request.form.get('deadlift-future')
+    if request.form.get("dream-build"):
+        user.dream_build = request.form.get('dream-build')
 
     try:
         db.session.commit()
