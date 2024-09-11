@@ -260,13 +260,21 @@ def like(post_id):
 @login_required
 def settings():
     if request.method == "POST":
+        # Feed Filter
+        if request.form.get("feed-filter"):
+            current_user.feed_filter = request.form.get("feed-filter")
+            db.session.commit()
+            flash("Settings updated successfully!", "success")
+
         # Timezone
-        user_timezone_str = request.form.get("user_timezone_str")
-        current_user.timezone = user_timezone_str
-        db.session.commit()
-        utc_time = datetime.utcnow()
-        local_time = current_user.convert_to_localtime(utc_time)
-        flash(f"Local Time Set to {user_timezone_str}: {local_time}", "success")
+        if current_user.timezone != request.form.get("user_timezone_str") and request.form.get("user_timezone_str") != None:
+            user_timezone_str = request.form.get("user_timezone_str")
+            current_user.timezone = user_timezone_str
+            db.session.commit()
+            utc_time = datetime.utcnow()
+            local_time = current_user.convert_to_localtime(utc_time)
+            flash(f"Local Time Set to {user_timezone_str}: {local_time}", "success")
+
         return redirect(url_for('pages.settings'))
 
     all_timezones = pytz.all_timezones

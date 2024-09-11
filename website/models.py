@@ -16,6 +16,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(100))
     timezone = db.Column(db.String(50), nullable=False, default='UTC')
+    feed_filter = db.Column(db.String(50), nullable=True)
     date_created = db.Column(db.DateTime(timezone=True), default=func.now())
 
     # Profile

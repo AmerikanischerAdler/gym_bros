@@ -14,15 +14,23 @@
 {% block content %}
   <div class="contain-all">
     <div class="settings-contain">
-      <div class="views">
+      <form class="views" action="/settings" method="post">
         <h2>Regulating My Feed</h2>
+        {% if user.gender == "bro" %}
         <h3>For Gym Bros:</h3>
-        <p>Committed: Show Only Guys in My Feed</p>
-        <p>Diverse: Show Guys & Girls in My Feed</p>
+        <select class="select-box" name="feed-filter">
+          <option value="committed">Committed: Show Only Guys in My Feed</option>
+          <option value="diverse">Diverse: Show Guys & Girls in My Feed</option>
+        </select>
+        {% else %}
         <h3>For Gym Girls:</h3>
-        <p>Committed: Show Only Girls in My Feed</p>
-        <p>Diverse: Show Girls & Guys in My Feed</p>
-      </div>
+        <select class="select-box" name="feed-filter">
+          <option value="committed">Committed: Show Only Girls in My Feed</option>
+          <option value="diverse">Diverse: Show Girls & Guys in My Feed</option>
+        </select>
+        {% endif %}
+        <button class="select-btn" type="submit">Save</button>
+      </form>
       <div class="views">
         <h2>My Timezone</h2>
         <form class="select-form" action="/settings" method="post">
