@@ -142,6 +142,64 @@ h1 {
     outline: none;
 }
 
+.follow-friend {
+    height: 50px;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 25px;
+}
+
+.add-btn {
+    width: 30px;
+}
+
+.social-add {
+    position: relative;      
+    display: inline-block;      
+    cursor: pointer;
+}
+
+.social-add p {
+    margin-left: -20px;
+}
+
+#add-social {
+    height: 25px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 10px 0;
+    min-width: 160px;
+    z-index: 10;
+}
+
+.dropdown-content a {
+    color: black;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.dropdown-content a p {
+    padding: 1px 16px;
+    text-align: center;
+}
+
+.dropdown-content a svg {
+    width: 25px;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
 .info select {
     width: 40%;
     font-size: 15px;

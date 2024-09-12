@@ -43,3 +43,16 @@ window.onload = function() {
   });
 };
 
+document.addEventListener("DOMContentLoaded", function() {
+  var socialAdd = document.getElementById('social-add');
+  var dropdownContent = socialAdd.querySelector('.dropdown-content');
+
+  socialAdd.addEventListener('mouseover', function() {
+    dropdownContent.style.display = 'block';
+  });
+
+  socialAdd.addEventListener('mouseout', function() {
+    dropdownContent.style.display = 'none';
+  });
+});
+
