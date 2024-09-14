@@ -46,13 +46,54 @@ window.onload = function() {
 document.addEventListener("DOMContentLoaded", function() {
   var socialAdd = document.getElementById('social-add');
   var dropdownContent = socialAdd.querySelector('.dropdown-content');
+  
+  if (socialAdd && dropdownContent) {
+    socialAdd.addEventListener('mouseover', function() {
+      dropdownContent.style.display = 'block';
+    });
 
-  socialAdd.addEventListener('mouseover', function() {
-    dropdownContent.style.display = 'block';
-  });
+    socialAdd.addEventListener('mouseout', function() {
+      dropdownContent.style.display = 'none';
+    });
+  }
 
-  socialAdd.addEventListener('mouseout', function() {
-    dropdownContent.style.display = 'none';
+//  var socialAdd = document.getElementById('social-add');
+//  var dropdownContent = socialAdd.querySelector('.dropdown-content');
+//  
+//  if (socialAdd && dropdownContent) {
+//    socialAdd.addEventListener('mouseover', function() {
+//      dropdownContent.style.display = 'block';
+//    });
+//
+//    socialAdd.addEventListener('mouseout', function() {
+//      dropdownContent.style.display = 'none';
+//    });
+//  }
+
+  var socialProfiles = document.querySelectorAll('.social-profile');
+  
+  socialProfiles.forEach(function(profile) {
+    profile.addEventListener('click', function() {
+      var newDiv = document.createElement('div');
+      newDiv.classList.add('add-btn', 'socials'); 
+      newDiv.style.padding = "0 10px";
+
+      var newText = document.createElement('p');
+      newText.textContent = profile.querySelector('p').textContent;
+      newText.style.width = '70px';
+      newText.style.marginLeft = '-13px';
+      newDiv.appendChild(newText);
+
+      var newSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      newSvg.setAttribute("viewBox", profile.querySelector('svg').getAttribute('viewBox'));
+      newSvg.innerHTML = profile.querySelector('svg').innerHTML;
+      newSvg.style.width = '25px';
+      newDiv.appendChild(newSvg);
+
+      const socialAddDiv = document.getElementById("social-add");
+      const parentDiv = socialAddDiv.parentNode;
+      parentDiv.insertBefore(newDiv, socialAddDiv);
+    });
   });
 });
 
