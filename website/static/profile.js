@@ -46,7 +46,7 @@ window.onload = function() {
 document.addEventListener("DOMContentLoaded", function() {
   var socialAdd = document.getElementById('social-add');
   var dropdownContent = socialAdd.querySelector('.dropdown-content');
-  
+
   if (socialAdd && dropdownContent) {
     socialAdd.addEventListener('mouseover', function() {
       dropdownContent.style.display = 'block';
@@ -57,19 +57,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
-//  var socialAdd = document.getElementById('social-add');
-//  var dropdownContent = socialAdd.querySelector('.dropdown-content');
-//  
-//  if (socialAdd && dropdownContent) {
-//    socialAdd.addEventListener('mouseover', function() {
-//      dropdownContent.style.display = 'block';
-//    });
-//
-//    socialAdd.addEventListener('mouseout', function() {
-//      dropdownContent.style.display = 'none';
-//    });
-//  }
-
   var socialProfiles = document.querySelectorAll('.social-profile');
   
   socialProfiles.forEach(function(profile) {
@@ -79,7 +66,8 @@ document.addEventListener("DOMContentLoaded", function() {
       newDiv.style.padding = "0 10px";
 
       var newText = document.createElement('p');
-      newText.textContent = profile.querySelector('p').textContent;
+      var profileText = profile.querySelector('p').textContent;
+      newText.textContent = profileText;
       newText.style.width = '70px';
       newText.style.marginLeft = '-13px';
       newDiv.appendChild(newText);
@@ -93,6 +81,18 @@ document.addEventListener("DOMContentLoaded", function() {
       const socialAddDiv = document.getElementById("social-add");
       const parentDiv = socialAddDiv.parentNode;
       parentDiv.insertBefore(newDiv, socialAddDiv);
+
+      var anchorTags = dropdownContent.querySelectorAll('a');
+      anchorTags.forEach(function(anchor) {
+        var anchorText = anchor.querySelector('p').textContent;
+        if (anchorText === profileText) {
+          dropdownContent.removeChild(anchor);
+        }
+      });
+
+      if (dropdownContent.children.length === 0) {
+        socialAdd.remove();
+      }
     });
   });
 });
