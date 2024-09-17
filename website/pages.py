@@ -116,6 +116,26 @@ def update_profile():
 
     return redirect(url_for('pages.profile', username=user.username))
 
+@pages.route('/add-social-link', methods=['POST'])
+@login_required
+def add_social_link():
+    user = current_user  
+
+    try:
+        data = request.get_json()
+        social_link = data.get('link')
+
+        if not social_link or social_link.strip() == "":
+            return jsonify({'error': 'Social link cannot be empty'}), 400
+
+        user.social_link = social_link
+        db.session.commit()
+
+        return jsonify({'message': 'Social link added successfully', 'link': social_link}), 200
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 @pages.route('/saved')
 @login_required
 def saved():

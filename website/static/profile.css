@@ -94,7 +94,7 @@ h1 {
     outline: none;
 }
 
-.ranks input:focus, #dream-build:focus, #natty:focus, #bio:focus, #motto:focus {
+.ranks input:focus, #dream-build:focus, #natty:focus, #bio:focus, #motto:focus, .social-input input:focus {
     border: 1.5px solid #9D0000;
 }
 
@@ -239,5 +239,28 @@ h1 {
 
 #sub-all-btn:hover {
     cursor: pointer;
+}
+
+.social-profile {
+    display: inline-flex;
+    align-items: center;
+}
+
+.social-input {
+    display: none;
+    align-items: center;
+    padding: 5px;
+    gap: 5px;
+}
+
+.social-input input {
+    font-size: 15px;
+    border: 0.5px solid #000;
+    border-radius: 5px;
+    outline: none;
+}
+
+.social-input a svg {
+    width: 15px;
 }
 

@@ -106,6 +106,7 @@ CREATE TABLE users (
     date_created DATETIME DEFAULT CURRENT_TIMESTAMP,
     timezone VARCHAR(50) NOT NULL DEFAULT 'UTC',
     feed_filter VARCHAR(50) NULL,
+    social_link VARCHAR(250) NULL,
     life_motto VARCHAR(250) NULL,
     bio TEXT NULL,
     birthday DATE NULL,

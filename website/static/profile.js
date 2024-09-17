@@ -49,7 +49,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
   if (socialAdd && dropdownContent) {
     socialAdd.addEventListener('mouseover', function() {
-      dropdownContent.style.display = 'block';
+      dropdownContent.style.display = 'flex';
+      dropdownContent.style.flexDirection = 'column';
     });
 
     socialAdd.addEventListener('mouseout', function() {
@@ -61,38 +62,83 @@ document.addEventListener("DOMContentLoaded", function() {
   
   socialProfiles.forEach(function(profile) {
     profile.addEventListener('click', function() {
-      var newDiv = document.createElement('div');
-      newDiv.classList.add('add-btn', 'socials'); 
-      newDiv.style.padding = "0 10px";
+      var socialInput = document.querySelector(".social-input");
 
-      var newText = document.createElement('p');
-      var profileText = profile.querySelector('p').textContent;
-      newText.textContent = profileText;
-      newText.style.width = '70px';
-      newText.style.marginLeft = '-13px';
-      newDiv.appendChild(newText);
+      if (socialInput.parentNode) {
+        socialInput.parentNode.removeChild(socialInput);
+      }
 
-      var newSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-      newSvg.setAttribute("viewBox", profile.querySelector('svg').getAttribute('viewBox'));
-      newSvg.innerHTML = profile.querySelector('svg').innerHTML;
-      newSvg.style.width = '25px';
-      newDiv.appendChild(newSvg);
+      profile.insertAdjacentElement('afterend', socialInput);
+      socialInput.style.display = "inline-flex";
+      
+      var submitLink = document.getElementById('submit-link');
+      submitLink.addEventListener('click', function(event) {
+        event.preventDefault();
 
-      const socialAddDiv = document.getElementById("social-add");
-      const parentDiv = socialAddDiv.parentNode;
-      parentDiv.insertBefore(newDiv, socialAddDiv);
+        var socialLink = document.getElementById('soclink').value.trim();
 
-      var anchorTags = dropdownContent.querySelectorAll('a');
-      anchorTags.forEach(function(anchor) {
-        var anchorText = anchor.querySelector('p').textContent;
-        if (anchorText === profileText) {
-          dropdownContent.removeChild(anchor);
+        if (socialLink && !/^https?:\/\//i.test(socialLink)) {
+          socialLink = "https://" + socialLink;
+        }
+
+        if (socialLink !== "") {
+          console.log("Social link submitted: " + socialLink);
+
+          fetch('/add-social-link', {
+            method: 'POST',
+            body: JSON.stringify({ link: socialLink }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+          }).then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                
+                var newDiv = document.createElement('div');
+                newDiv.classList.add('add-btn', 'socials'); 
+                newDiv.style.padding = "0 10px";
+  
+                var newText = document.createElement('p');
+                var profileText = profile.querySelector('p').textContent;
+                newText.textContent = profileText;
+                newText.style.width = '70px';
+                newText.style.marginLeft = '-13px';
+                newDiv.appendChild(newText);
+  
+                var newSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                newSvg.setAttribute("viewBox", profile.querySelector('svg').getAttribute('viewBox'));
+                newSvg.innerHTML = profile.querySelector('svg').innerHTML;
+                newSvg.style.width = '25px';
+                newDiv.appendChild(newSvg);
+  
+                var newAnchor = document.createElement('a');
+                newAnchor.href = socialLink; 
+                newAnchor.target = '_blank';  
+                newAnchor.appendChild(newDiv);
+  
+                const socialAddDiv = document.getElementById("social-add");
+                const parentDiv = socialAddDiv.parentNode;
+                parentDiv.insertBefore(newAnchor, socialAddDiv);
+  
+                var anchorTags = dropdownContent.querySelectorAll('a');
+                anchorTags.forEach(function(anchor) {
+                  var anchorText = anchor.querySelector('p').textContent;
+                  if (anchorText === profileText) {
+                    dropdownContent.removeChild(anchor);
+                  }
+                });
+  
+                if (dropdownContent.children.length === 0) {
+                  socialAdd.remove();
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        } else {
+          console.log("Please enter a social link before submitting.");
         }
       });
-
-      if (dropdownContent.children.length === 0) {
-        socialAdd.remove();
-      }
     });
   });
 });

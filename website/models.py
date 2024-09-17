@@ -20,6 +20,7 @@ class User(db.Model, UserMixin):
     date_created = db.Column(db.DateTime(timezone=True), default=func.now())
 
     # Profile
+    social_link = db.Column(db.String(250), nullable=True)
     life_motto = db.Column(db.String(250), nullable=True)
     bio = db.Column(db.Text, nullable=True)
     birthday = db.Column(db.Date, nullable=True)
