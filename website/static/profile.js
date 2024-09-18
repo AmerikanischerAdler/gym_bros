@@ -143,3 +143,35 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
+document.addEventListener("DOMContentLoaded", function() {
+  var followButton = document.querySelector('.add-btn');
+
+  followButton.addEventListener('click', function(event) {
+    event.preventDefault();
+    var followedUserId = followButton.getAttribute('data-userId');
+
+    if (followedUserId) {
+      fetch(`/follow/${followedUserId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({}) 
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.message) {
+          console.log(data.message); 
+        } else if (data.error) {
+          console.error(data.error);  
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    } else {
+      console.error("No user ID found.");
+    }
+  });
+});
+

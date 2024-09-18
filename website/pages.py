@@ -136,6 +136,18 @@ def add_social_link():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+@pages.route('/follow/<int:user_id>', methods=['POST'])
+@login_required
+def follow_user(user_id):
+    user_to_follow = User.query.get_or_404(user_id)
+    if user_to_follow == current_user:
+        return jsonify({'error': 'You cannot follow yourself.'}), 400
+    
+    current_user.follow(user_to_follow)
+    db.session.commit()
+    
+    return jsonify({'message': f'You are now following {user_to_follow.username}'}), 200
+
 @pages.route('/saved')
 @login_required
 def saved():

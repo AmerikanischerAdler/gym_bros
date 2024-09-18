@@ -44,6 +44,20 @@ class User(db.Model, UserMixin):
     comments = db.relationship("Comment", backref="user", passive_deletes=True)
     likes = db.relationship("Like", backref="user", passive_deletes=True)
 
+    # Following
+    def follow(self, user):
+        if not self.is_following(user):
+            follow = Follow(follower_id=self.user_id, followed_id=user.user_id)
+            db.session.add(follow)
+    
+    def unfollow(self, user):
+        follow = Follow.query.filter_by(follower_id=self.user_id, followed_id=user.user_id).first()
+        if follow:
+            db.session.delete(follow)
+    
+    def is_following(self, user):
+        return Follow.query.filter_by(follower_id=self.user_id, followed_id=user.user_id).count() > 0
+
     # Timezone Conversion
     def convert_to_utc(self, local_time):
         user_timezone = timezone(self.timezone)
@@ -73,6 +87,7 @@ class Post(db.Model):
     image_mime_type = db.Column(db.String(50), nullable=True)
     date_created = db.Column(db.DateTime(timezone=True), default=func.now())
     author = db.Column(db.Integer, db.ForeignKey("users.user_id", ondelete="CASCADE"), nullable=False)
+
     comments = db.relationship("Comment", backref="post", passive_deletes=True)
     likes = db.relationship("Like", backref="post", passive_deletes=True)
 
@@ -94,4 +109,14 @@ class Like(db.Model):
     date_created = db.Column(db.DateTime(timezone=True), default=func.now())
     author = db.Column(db.Integer, db.ForeignKey("users.user_id", ondelete="CASCADE"), nullable=False)
     post_id = db.Column(db.Integer, db.ForeignKey("posts.id", ondelete="CASCADE"), nullable=False)
+
+class Follow(db.Model):
+    __tablename__ = 'follows'
+
+    follower_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), primary_key=True)
+    followed_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), primary_key=True)
+    timestamp = db.Column(db.DateTime, default=func.now(), nullable=False)
+
+    follower = db.relationship('User', foreign_keys=[follower_id], backref=db.backref('following', lazy='dynamic'))
+    followed = db.relationship('User', foreign_keys=[followed_id], backref=db.backref('followers', lazy='dynamic'))
 

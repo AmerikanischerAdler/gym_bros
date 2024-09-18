@@ -156,6 +156,10 @@ h1 {
     width: 30px;
 }
 
+.add-btn:hover {
+    cursor: pointer;
+}
+
 .social-add {
     position: relative;      
     display: inline-block;      
