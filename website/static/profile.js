@@ -162,6 +162,11 @@ document.addEventListener("DOMContentLoaded", function() {
       .then(data => {
         if (data.message) {
           console.log(data.message); 
+
+          var followersCountElement = document.querySelector(`#followers-count-${followedUserId}`);
+          if (followersCountElement && data.followers_count !== undefined) {
+            followersCountElement.textContent = data.followers_count;
+          }
         } else if (data.error) {
           console.error(data.error);  
         }

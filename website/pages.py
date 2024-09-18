@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash, jsonify, send_file, abort
 from flask_login import login_required, current_user
 from datetime import datetime
-from .models import db, User, Post, Comment, Like
+from .models import db, User, Post, Comment, Like, Follow
 import pytz
 import io
 
@@ -44,7 +44,9 @@ def profile(username):
         # To add posts to Profile page
         #posts = user.posts
 
-    return render_template('profile.html', user=user)#, posts=posts)
+    followers = Follow.query.filter_by(followed_id=user.user_id).count()
+
+    return render_template('profile.html', user=user, followers=followers)#, posts=posts)
 
 @pages.route('/update-profile', methods=["POST"])
 @login_required
@@ -140,13 +142,30 @@ def add_social_link():
 @login_required
 def follow_user(user_id):
     user_to_follow = User.query.get_or_404(user_id)
+    already_followed = Follow.query.filter_by(follower_id=current_user.user_id, followed_id=user_id).first()
+
     if user_to_follow == current_user:
         return jsonify({'error': 'You cannot follow yourself.'}), 400
-    
-    current_user.follow(user_to_follow)
-    db.session.commit()
-    
-    return jsonify({'message': f'You are now following {user_to_follow.username}'}), 200
+
+    if already_followed:
+        current_user.unfollow(user_to_follow)
+        db.session.commit()
+        followers_count = Follow.query.filter_by(followed_id=user_id).count()
+
+        return jsonify({
+            'message': f'You are no longer following {user_to_follow.username}',
+            'followers_count': followers_count
+        }), 200
+
+    else:
+        current_user.follow(user_to_follow)
+        db.session.commit()
+        followers_count = Follow.query.filter_by(followed_id=user_id).count()
+
+        return jsonify({
+            'message': f'You are now following {user_to_follow.username}',
+            'followers_count': followers_count
+        }), 200
 
 @pages.route('/saved')
 @login_required

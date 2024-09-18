@@ -1,7 +1,7 @@
 import os
 from flask import Flask, render_template, request, redirect, session, url_for, flash
 from flask_login import LoginManager, current_user
-from .models import db, User, Post, Comment, Like
+from .models import db, User, Post, Comment, Like, Follow
 
 def create_app():
     app = Flask(__name__)

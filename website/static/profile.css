@@ -152,6 +152,10 @@ h1 {
     margin-bottom: 25px;
 }
 
+.f-count {
+    margin-left: -35px;
+}
+
 .add-btn {
     width: 30px;
 }
