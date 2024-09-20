@@ -18,6 +18,10 @@ This is a social media app, joining gym goers from around the world to celebrate
 
 **Database**: MYSQL
 
+### Main Features:
+
+Coming Soon!
+
 ## Installation
 
 1) Open Terminal and Clone Repository:
