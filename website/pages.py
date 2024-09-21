@@ -335,3 +335,7 @@ def settings():
 def not_settings():
     return render_template('not_settings.html', user=current_user)
 
+@pages.route('/tools')
+def tools():
+    return render_template('tools.html', user=current_user)
+
