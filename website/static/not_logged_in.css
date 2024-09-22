@@ -9,7 +9,7 @@ h1 {
     height: auto;
     font-size: 100px;
     color: #9D0000;
-    top: 50px;
+    margin-top: 0;
     margin-bottom: 15px;
 }
 
