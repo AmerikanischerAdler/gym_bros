@@ -24,6 +24,11 @@ def search():
 
     return render_template('search_results.html', query=query, posts=posts, users=users, user=current_user)
 
+@pages.route('/leagues')
+@login_required
+def leagues():
+    return render_template('leagues.html', user=current_user)
+
 @pages.route('/gallery')
 def gallery():
     return render_template('gallery.html', user=current_user, i_usernames=i_usernames)
