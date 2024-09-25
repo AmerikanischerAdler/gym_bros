@@ -7,36 +7,26 @@
 {% block title %}
   <div id="title">
     <h1>Plate Calculator</h1>
-    <h3>Description:</h3>
-    <h5>This tool is a calculator to return which plates are needed on each side. It will also calculate how much weight comes from the plates you are using</h5>
+    <h2 class="h2-key">Description</h2>
+    <h4>This tool is a calculator to return which plates are needed on each side. It will also calculate how much weight comes from the plates you are using</h4>
   </div>
 {% endblock %}
 
 {% block content %}
   <div class="contain-plates">
-    <!--
-    <div class="plate-ani">
-      <div class="plate-2-5"></div>
-      <div class="plate-5"></div>
-      <div class="plate-10"></div>
-      <div class="plate-25"></div>
-      <div class="plate-35"></div>
-      <div class="plate-45"></div>
-      <div class="bar"></div>
-      <div class="plate-45"></div>
-      <div class="plate-35"></div>
-      <div class="plate-25"></div>
-      <div class="plate-10"></div>
-      <div class="plate-5"></div>
-      <div class="plate-2-5"></div>
-    </div>
-    -->
+    <form class="form-contain" id="form-contain" onsubmit="return textReturn(event)">
+      <label for="barWeight">Bar Weight</label>
+      <input type="text" id="barWeight" placeholder="Enter Weight of Bar in Pounds">
+      <label for="weight">Weight</label>
+      <input type="text" id="weight" placeholder="Enter Weight in Pounds">
+      <button type="submit" class="hidden">Submit</button>
+    </form>
 
     <div class="plate-ani" id="aniPlate">
       <div class="bar" id="theBar"></div>
     </div>
 
-    <h2 id="h2-key">Plate Key</h2>
+    <h2 class="h2-key">Plate Key</h2>
     <div class="plate-key">
       <!--
         Create differentiation for lbs and kg
@@ -49,26 +39,32 @@
       <div class="key-contain">
         <h2>45 lbs</h2>
         <div class="plate-45"></div>
+        <h2 id="h2-45"></h2>
       </div>
       <div class="key-contain">
         <h2>35 lbs</h2>
         <div class="plate-35"></div>
+        <h2 id="h2-35"></h2>
       </div>
       <div class="key-contain">
         <h2>25 lbs</h2>
         <div class="plate-25"></div>
+        <h2 id="h2-25"></h2>
       </div>
       <div class="key-contain">
         <h2>10 lbs</h2>
         <div class="plate-10"></div>
+        <h2 id="h2-10"></h2>
       </div>
       <div class="key-contain">
         <h2>5 lbs</h2>
         <div class="plate-5"></div>
+        <h2 id="h2-5"></h2>
       </div>
       <div class="key-contain">
         <h2>2.5 lbs</h2>
         <div class="plate-2-5"></div>
+        <h2 id="h2-2-5"></h2>
       </div>
     </div>
     <div class="plate-key borderless">
