@@ -32,10 +32,11 @@ h5 {
     align-items: center;
     justify-content: center;
     gap: 2px;
+    padding-bottom: 100px;
+    padding-top: 50px;
 }
 
 #h2-key {
-    margin-top: 50px;
     font-size: 30px;
     letter-spacing: 5px;
 }
@@ -56,6 +57,26 @@ h5 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.key-contain a {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.borderless {
+    border: none;
+}
+
+.add-plate {
+    padding: 5px;
+    border: 1px solid #000;
+    border-radius: 5px;
+}
+
+.add-plate:hover {
+    cursor: pointer
 }
 
 .bar {

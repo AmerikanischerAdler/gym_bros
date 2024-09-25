@@ -14,6 +14,7 @@
 
 {% block content %}
   <div class="contain-plates">
+    <!--
     <div class="plate-ani">
       <div class="plate-2-5"></div>
       <div class="plate-5"></div>
@@ -29,6 +30,12 @@
       <div class="plate-5"></div>
       <div class="plate-2-5"></div>
     </div>
+    -->
+
+    <div class="plate-ani" id="aniPlate">
+      <div class="bar" id="theBar"></div>
+    </div>
+
     <h2 id="h2-key">Plate Key</h2>
     <div class="plate-key">
       <!--
@@ -64,5 +71,26 @@
         <div class="plate-2-5"></div>
       </div>
     </div>
+    <div class="plate-key borderless">
+      <div class="key-contain">
+        <a id="plate-45" class="add-plate" onclick="add45()">Add</a>
+      </div>
+      <div class="key-contain">
+        <a id="plate-35" class="add-plate" onclick="add35()">Add</a>
+      </div>
+      <div class="key-contain">
+        <a id="plate-25" class="add-plate" onclick="add25()">Add</a>
+      </div>
+      <div class="key-contain">
+        <a id="plate-10" class="add-plate" onclick="add10()">Add</a>
+      </div>
+      <div class="key-contain">
+        <a id="plate-5" class="add-plate" onclick="add5()">Add</a>
+      </div>
+      <div class="key-contain">
+        <a id="plate-2-5" class="add-plate" onclick="add2_5()">Add</a>
+      </div>
+    </div>
   </div>
+  <script type="text/javascript" src="{{ url_for('static', filename='plate_calc.js') }}"></script>
 {% endblock %}
