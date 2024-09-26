@@ -19,10 +19,12 @@ h1 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-top: 50px;
     gap: 15px;
 }
 
 .tool-contain a {
+    width: 50%;
     text-align: center;
     text-decoration: none;
     font-size: 20px;
