@@ -149,6 +149,9 @@ def follow_user(user_id):
     user_to_follow = User.query.get_or_404(user_id)
     already_followed = Follow.query.filter_by(follower_id=current_user.user_id, followed_id=user_id).first()
 
+    if not user_to_follow:
+        return jsonify({"error": "User not found"}), 404
+
     if user_to_follow == current_user:
         return jsonify({'error': 'You cannot follow yourself.'}), 400
 
