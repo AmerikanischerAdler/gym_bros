@@ -158,27 +158,22 @@ def follow_user(user_id):
 
     if already_followed:
         current_user.unfollow(user_to_follow)
-        db.session.commit()
-        followers_count = Follow.query.filter_by(followed_id=user_id).count()
-        friends = user_to_follow.mutual_followers_count()
-
-        return jsonify({
-            'message': f'You are no longer following {user_to_follow.username}',
-            'followers_count': followers_count,
-            'friends_count': friends
-        }), 200
+        message = f"You are no longer following {user_to_follow.username}"
 
     else:
         current_user.follow(user_to_follow)
-        db.session.commit()
-        followers_count = Follow.query.filter_by(followed_id=user_id).count()
-        friends = user_to_follow.mutual_followers_count()
+        message = f"You are now following {user_to_follow.username}"
+    
+    db.session.commit()
 
-        return jsonify({
-            'message': f'You are now following {user_to_follow.username}',
-            'followers_count': followers_count,
-            'friends_count': friends
-        }), 200
+    followers_count = Follow.query.filter_by(followed_id=user_id).count()
+    friends = user_to_follow.mutual_followers_count()
+
+    return jsonify({
+        'message': message,
+        'followers_count': followers_count,
+        'friends_count': friends
+    }), 200
 
 @pages.route('/saved')
 @login_required
