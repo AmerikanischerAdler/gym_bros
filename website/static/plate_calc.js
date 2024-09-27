@@ -12,9 +12,18 @@ function clearPlates() {
 function updateWeight(amount) {
     const weightInput = document.getElementById("weight");
     const weightText = document.getElementById('weight-output');  
+    const barWeightInput = document.getElementById('barWeight');  
 
+    var barWeight = parseInt(barWeightInput.value) || 45;  
     var currentWeight = parseInt(weightInput.value) || 0;
+
+    if (currentWeight === 0) {
+        currentWeight += barWeight;
+    }
+
     currentWeight += amount;
+
+    barWeightInput.value = barWeight;
     weightInput.value = currentWeight;
     weightText.textContent = `Entered weight: ${currentWeight}`;  
 }
