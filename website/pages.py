@@ -160,20 +160,24 @@ def follow_user(user_id):
         current_user.unfollow(user_to_follow)
         db.session.commit()
         followers_count = Follow.query.filter_by(followed_id=user_id).count()
+        friends = user_to_follow.mutual_followers_count()
 
         return jsonify({
             'message': f'You are no longer following {user_to_follow.username}',
-            'followers_count': followers_count
+            'followers_count': followers_count,
+            'friends_count': friends
         }), 200
 
     else:
         current_user.follow(user_to_follow)
         db.session.commit()
         followers_count = Follow.query.filter_by(followed_id=user_id).count()
+        friends = user_to_follow.mutual_followers_count()
 
         return jsonify({
             'message': f'You are now following {user_to_follow.username}',
-            'followers_count': followers_count
+            'followers_count': followers_count,
+            'friends_count': friends
         }), 200
 
 @pages.route('/saved')

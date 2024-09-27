@@ -167,6 +167,12 @@ document.addEventListener("DOMContentLoaded", function() {
           if (followersCountElement && data.followers_count !== undefined) {
             followersCountElement.textContent = data.followers_count;
           }
+
+          var friendsCountElement = document.querySelector(`#friends-count-${followedUserId}`);
+          if (friendsCountElement && data.friends_count !== undefined) {
+            friendsCountElement.textContent = data.friends_count;
+          }
+
         } else if (data.error) {
           console.error(data.error);  
         }
