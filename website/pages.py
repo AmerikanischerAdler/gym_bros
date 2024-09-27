@@ -50,8 +50,9 @@ def profile(username):
         #posts = user.posts
 
     followers = Follow.query.filter_by(followed_id=user.user_id).count()
+    friends = user.mutual_followers_count()
 
-    return render_template('profile.html', user=user, followers=followers)#, posts=posts)
+    return render_template('profile.html', user=user, followers=followers, friends=friends)#, posts=posts)
 
 @pages.route('/update-profile', methods=["POST"])
 @login_required

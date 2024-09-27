@@ -58,6 +58,17 @@ class User(db.Model, UserMixin):
     def is_following(self, user):
         return Follow.query.filter_by(follower_id=self.user_id, followed_id=user.user_id).count() > 0
 
+    def mutual_followers_count(self):
+        following_query = Follow.query.filter_by(follower_id=self.user_id).subquery()
+        followers_query = Follow.query.filter_by(followed_id=self.user_id).subquery()
+
+        mutual_followers = db.session.query(Follow).filter(
+            Follow.follower_id == self.user_id,  
+            Follow.followed_id.in_(db.session.query(Follow.follower_id).filter_by(followed_id=self.user_id))  
+        )
+
+        return mutual_followers.count()
+
     # Timezone Conversion
     def convert_to_utc(self, local_time):
         user_timezone = timezone(self.timezone)
