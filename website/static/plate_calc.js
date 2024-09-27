@@ -2,11 +2,11 @@ const bar = document.getElementById("theBar");
 const parentDiv = document.getElementById("aniPlate");
 
 function clearPlates() {
-  const leftPlates = document.querySelectorAll('.left-plate');
-  const rightPlates = document.querySelectorAll('.right-plate');
-
-  leftPlates.forEach(plate => plate.remove()); 
-  rightPlates.forEach(plate => plate.remove()); 
+    const leftPlates = document.querySelectorAll('.left-plate');
+    const rightPlates = document.querySelectorAll('.right-plate');
+  
+    leftPlates.forEach(plate => plate.remove()); 
+    rightPlates.forEach(plate => plate.remove()); 
 }
 
 function updateWeight(amount) {
@@ -48,6 +48,25 @@ function add45(fromBtn = true) {
     }
 }
 
+function rem45(fromBtn = true) {
+    const h45 = document.getElementById("h2-45");
+    var count = parseInt(h45.textContent) || 0;  
+
+    if (count !== 0) {
+        const leftPlates = document.querySelectorAll('.plate-45.left-plate');
+        const rightPlates = document.querySelectorAll('.plate-45.right-plate');
+  
+        leftPlates[0].remove()
+        rightPlates[rightPlates.length - 1].remove();
+
+        h45.textContent = count - 1;  
+
+        if (fromBtn === true) {
+            updateWeight(-90);
+        }
+    }
+}
+
 function add35(fromBtn = true) {
     var newDivLeft = document.createElement('div');
     newDivLeft.classList.add("plate-35", "left-plate"); 
@@ -76,6 +95,25 @@ function add35(fromBtn = true) {
 
     if (fromBtn === true) {
         updateWeight(70);
+    }
+}
+
+function rem35(fromBtn = true) {
+    const h35 = document.getElementById("h2-35");
+    var count = parseInt(h35.textContent) || 0;  
+
+    if (count !== 0) {
+        const leftPlates = document.querySelectorAll('.plate-35.left-plate');
+        const rightPlates = document.querySelectorAll('.plate-35.right-plate');
+  
+        leftPlates[0].remove()
+        rightPlates[rightPlates.length - 1].remove();
+
+        h35.textContent = count - 1;  
+
+        if (fromBtn === true) {
+            updateWeight(-70);
+        }
     }
 }
 
@@ -115,6 +153,25 @@ function add25(fromBtn = true) {
 
     if (fromBtn === true) {
         updateWeight(50);
+    }
+}
+
+function rem25(fromBtn = true) {
+    const h25 = document.getElementById("h2-25");
+    var count = parseInt(h25.textContent) || 0;  
+
+    if (count !== 0) {
+        const leftPlates = document.querySelectorAll('.plate-25.left-plate');
+        const rightPlates = document.querySelectorAll('.plate-25.right-plate');
+  
+        leftPlates[0].remove()
+        rightPlates[rightPlates.length - 1].remove();
+
+        h25.textContent = count - 1;  
+
+        if (fromBtn === true) {
+            updateWeight(-50);
+        }
     }
 }
 
@@ -162,6 +219,25 @@ function add10(fromBtn = true) {
 
     if (fromBtn === true) {
         updateWeight(20);
+    }
+}
+
+function rem10(fromBtn = true) {
+    const h10 = document.getElementById("h2-10");
+    var count = parseInt(h10.textContent) || 0;  
+
+    if (count !== 0) {
+        const leftPlates = document.querySelectorAll('.plate-10.left-plate');
+        const rightPlates = document.querySelectorAll('.plate-10.right-plate');
+  
+        leftPlates[0].remove()
+        rightPlates[rightPlates.length - 1].remove();
+
+        h10.textContent = count - 1;  
+
+        if (fromBtn === true) {
+            updateWeight(-20);
+        }
     }
 }
 
@@ -217,6 +293,25 @@ function add5(fromBtn = true) {
 
     if (fromBtn === true) {
         updateWeight(10);
+    }
+}
+
+function rem5(fromBtn = true) {
+    const h5 = document.getElementById("h2-5");
+    var count = parseInt(h5.textContent) || 0;  
+
+    if (count !== 0) {
+        const leftPlates = document.querySelectorAll('.plate-5.left-plate');
+        const rightPlates = document.querySelectorAll('.plate-5.right-plate');
+  
+        leftPlates[0].remove()
+        rightPlates[rightPlates.length - 1].remove();
+
+        h5.textContent = count - 1;  
+
+        if (fromBtn === true) {
+            updateWeight(-10);
+        }
     }
 }
 
@@ -280,6 +375,25 @@ function add2_5(fromBtn = true) {
 
     if (fromBtn === true) {
         updateWeight(5);
+    }
+}
+
+function rem2_5(fromBtn = true) {
+    const h2_5 = document.getElementById("h2-2-5");
+    var count = parseInt(h2_5.textContent) || 0;  
+
+    if (count !== 0) {
+        const leftPlates = document.querySelectorAll('.plate-2-5.left-plate');
+        const rightPlates = document.querySelectorAll('.plate-2-5.right-plate');
+  
+        leftPlates[0].remove()
+        rightPlates[rightPlates.length - 1].remove();
+
+        h2_5.textContent = count - 1;  
+
+        if (fromBtn === true) {
+            updateWeight(-5);
+        }
     }
 }
 

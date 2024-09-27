@@ -99,6 +99,10 @@ h5 {
     text-align: center;
 }
 
+.add-rem {
+    gap: 10px;
+}
+
 .borderless {
     border: none;
 }
