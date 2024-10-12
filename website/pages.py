@@ -13,7 +13,10 @@ i_usernames = ["bro", "thatguy", "username", "andy", "Smithy", "WiseGuy"]
 @pages.route('/home')
 def home():
     posts = Post.query.all()
-    return render_template('index.html', user=current_user, posts=posts, i_usernames=i_usernames)
+    if current_user.is_authenticated:
+        return render_template('index.html', user=current_user, posts=posts, i_usernames=i_usernames)
+    else:
+        return render_template('welcome.html', user=current_user, i_usernames=i_usernames)
 
 @pages.route('/search')
 def search():
