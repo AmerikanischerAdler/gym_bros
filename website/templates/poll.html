@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block page %}Daily Poll{% endblock %}
+
+{% block style %}poll{% endblock %}
+
+{% block title %}
+  <div id="title">
+    <h1>Daily Poll</h1>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="basic-container">
+    <div id="widget-container">
+      <div class="widget" id="quote1">
+        <img src="{{ url_for('static', filename='./images/gym1.jpeg') }}">
+      </div>
+
+      <div class="widget" id="poll">
+        <h3>Daily Poll</h3>
+        <h4>What Kind of a Gym Bro are You?</h4>
+        <div class="wrapper">
+          <div class="poll-area">
+            <input type="checkbox" name="poll" id="opt-1">
+            <input type="checkbox" name="poll" id="opt-2">
+            <input type="checkbox" name="poll" id="opt-3">
+            <input type="checkbox" name="poll" id="opt-4">
+            <label for="opt-1" class="opt-1">
+              <div class="row">
+                <div class="column">
+                  <span class="circle"></span>
+                  <span class="text">Bodybuilder</span>
+                </div>
+                <span class="percent">30%</span>
+              </div>
+              <div class="progress" style='--w:30;'></div>
+            </label>
+            <label for="opt-2" class="opt-2">
+              <div class="row">
+                <div class="column">
+                  <span class="circle"></span>
+                  <span class="text">Calisthenics Guy</span>
+                </div>
+                <span class="percent">20%</span>
+              </div>
+              <div class="progress" style='--w:20;'></div>
+            </label>
+            <label for="opt-3" class="opt-3">
+              <div class="row">
+                <div class="column">
+                  <span class="circle"></span>
+                  <span class="text">Athlete</span>
+                </div>
+                <span class="percent">40%</span>
+              </div>
+              <div class="progress" style='--w:40;'></div>
+            </label>
+            <label for="opt-4" class="opt-4">
+              <div class="row">
+                <div class="column">
+                  <span class="circle"></span>
+                  <span class="text">Just here for the girls</span>
+                </div>
+                <span class="percent">10%</span>
+              </div>
+              <div class="progress" style='--w:10;'></div>
+            </label>
+          </div>
+        </div>
+        <script src="{{ url_for('static', filename='poll.js') }}"></script>
+      </div>
+
+      <div class="widget" id="quote2">
+        <img src="{{ url_for('static', filename='./images/gym3.jpeg') }}">
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{% block foot %}{% endblock %}

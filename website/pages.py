@@ -350,6 +350,11 @@ def not_settings():
 def tools():
     return render_template('tools.html', user=current_user)
 
+
+@pages.route('/poll')
+def poll():
+    return render_template('poll.html', user=current_user)
+
 @pages.route('/plate_calc')
 def plate_calc():
     return render_template('plate_calc.html', user=current_user)
