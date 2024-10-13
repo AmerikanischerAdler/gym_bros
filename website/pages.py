@@ -162,10 +162,12 @@ def follow_user(user_id):
     if already_followed:
         current_user.unfollow(user_to_follow)
         message = f"You are no longer following {user_to_follow.username}"
+        is_following = False
 
     else:
         current_user.follow(user_to_follow)
         message = f"You are now following {user_to_follow.username}"
+        is_following = True
     
     db.session.commit()
 
@@ -175,7 +177,8 @@ def follow_user(user_id):
     return jsonify({
         'message': message,
         'followers_count': followers_count,
-        'friends_count': friends
+        'friends_count': friends,
+        'isFollowing': is_following,
     }), 200
 
 @pages.route('/saved')

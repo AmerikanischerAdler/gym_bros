@@ -43,8 +43,16 @@ class User(db.Model, UserMixin):
     posts = db.relationship("Post", backref="user", passive_deletes=True)
     comments = db.relationship("Comment", backref="user", passive_deletes=True)
     likes = db.relationship("Like", backref="user", passive_deletes=True)
+    followers = db.relationship('Follow', foreign_keys='Follow.followed_id', backref='followed_user', lazy='dynamic', cascade='all, delete-orphan')
+    following = db.relationship('Follow', foreign_keys='Follow.follower_id', backref='follower_user', lazy='dynamic', cascade='all, delete-orphan')
 
     # Following
+    def follower_count(self):
+        return self.followers.count()
+
+    def following_count(self):
+        return self.following.count()
+
     def follow(self, user):
         if not self.is_following(user):
             follow = Follow(follower_id=self.user_id, followed_id=user.user_id)
@@ -128,6 +136,6 @@ class Follow(db.Model):
     followed_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), primary_key=True)
     timestamp = db.Column(db.DateTime, default=func.now(), nullable=False)
 
-    follower = db.relationship('User', foreign_keys=[follower_id], backref=db.backref('following', lazy='dynamic'))
-    followed = db.relationship('User', foreign_keys=[followed_id], backref=db.backref('followers', lazy='dynamic'))
+    follower = db.relationship('User', foreign_keys=[follower_id], backref=db.backref('follower_users', lazy='dynamic'))
+    followed = db.relationship('User', foreign_keys=[followed_id], backref=db.backref('followed_users', lazy='dynamic'))
 
