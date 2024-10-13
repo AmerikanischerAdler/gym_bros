@@ -279,7 +279,7 @@ body {
 
 #flash-contain {
     height: 10vh;
-    width: 100vw;
+    width: 100%;
 }
 
 .flash {

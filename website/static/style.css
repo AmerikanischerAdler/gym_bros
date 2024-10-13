@@ -4,6 +4,7 @@
     align-items: center;
     justify-content: center;
     z-index: 5;
+    padding-bottom: 25px;
 }
 
 h1 {
@@ -39,10 +40,10 @@ h2:not(.name) {
 
 .follow-friend {
     height: 50px;
-    width: 30%;
+    width: 15%;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
     margin-bottom: 0px;
 }
 
@@ -60,7 +61,7 @@ h2:not(.name) {
 
 #post-container {
     height: 100%;
-    width: 100vw;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
