@@ -34,7 +34,10 @@ def leagues():
 
 @pages.route('/gallery')
 def gallery():
-    return render_template('gallery.html', user=current_user, i_usernames=i_usernames)
+    # Just for Test
+    badges = ["natty", "influencer", "five", "bom", "new"]
+
+    return render_template('gallery.html', user=current_user, i_usernames=i_usernames, badges=badges)
 
 @pages.route('/profile/<username>')
 @login_required
