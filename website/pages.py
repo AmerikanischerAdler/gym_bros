@@ -35,9 +35,17 @@ def leagues():
 @pages.route('/gallery')
 def gallery():
     # Just for Test
+    pictures = ["man5.jpg", "man2.jpg", "man3.jpg", "girl4.jpg", "girl8.jpg",
+                "girl3.jpg", "man25.jpg", "girl.jpeg", "man24.jpg", "man4.jpg",
+                "man7.jpg", "man6.jpg", "man1.jpg", "man8.jpg", "man17.jpg",
+                "man9.jpg", "man11.jpg", "man15.jpg", "man16.jpg", "man13.jpg",
+                "man18.jpg", "man22.jpg", "girl1.jpeg", "man12.jpg",
+                "man20.jpg", "man21.jpg", "man19.jpg", "girl7.jpg", "man26.jpg",
+                "girl5.jpg", "bro3.avif", "bro2.avif", "bro1.avif", "bro5.jpeg",
+                "nerd.jpeg", "bro4.jpeg"]
     badges = ["natty", "influencer", "five", "bom", "new"]
 
-    return render_template('gallery.html', user=current_user, i_usernames=i_usernames, badges=badges)
+    return render_template('gallery.html', user=current_user, i_usernames=i_usernames, badges=badges, pictures=pictures)
 
 @pages.route('/profile/<username>')
 @login_required

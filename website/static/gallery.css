@@ -62,7 +62,6 @@ h1 {
 .gallery div img:not(.profile-pic):hover {
     filter: grayscale(0);
     cursor: pointer;
-    z-index: 15;
 }
 
 #badge-contain {
@@ -80,12 +79,14 @@ h1 {
 
 #badge-contain:hover {
     transform: scale(1.1);
+    z-index: 15;
 }
 
 #scroll {
     width: 90%;
     z-index: 50;
     margin-bottom: -75px;
+    pointer-events: none;
 }
 
 #scroll svg {
@@ -97,11 +98,17 @@ h1 {
     margin-top: -55px;
     display: flex;
     z-index: 50;
+    pointer-events: none;
 }
 
-#img-bottom img {
+#img-bottom a {
     width: 50px;
     margin-left: 75%;
+    pointer-events: auto;
+}
+
+#img-bottom a img {
+    width: 100%;
     clip-path: circle(50%);
 }
 
