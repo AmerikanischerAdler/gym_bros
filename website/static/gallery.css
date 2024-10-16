@@ -39,7 +39,6 @@ h1 {
 .gallery div img:not(.profile-pic) {
     width: 100%;
     filter: grayscale(100%);
-    transition: transform 0.5s;
     z-index: 5;
 }
 
@@ -63,7 +62,6 @@ h1 {
 .gallery div img:not(.profile-pic):hover {
     filter: grayscale(0);
     cursor: pointer;
-    transform: scale(1.1);
     z-index: 15;
 }
 
@@ -73,10 +71,15 @@ h1 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    transition: transform 0.5s;
 }
 
 #badge-contain img {
     width: 100%;
+}
+
+#badge-contain:hover {
+    transform: scale(1.1);
 }
 
 #scroll {
