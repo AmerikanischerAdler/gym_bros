@@ -186,11 +186,21 @@
         padding-left: 10px;
     }
 
-    #flash-contain {
+    #empty-flash-copy {
         margin-top: 6vh;
         margin-bottom: -11vh;
         height: 15vh;
         width: 100%;
+        z-index: 0;
+    }
+
+    #flash-contain {
+        margin-top: 0vh;
+        margin-bottom: -11vh;
+        height: 15vh;
+        width: 100%;
+        position: fixed;
+        z-index: 75;
     }
 
     .flash {
@@ -404,6 +414,8 @@
       {% endif %}
     {% endwith %}
   </div>
+
+  <div id="empty-flash-copy"></div>
 
   <div id="title">
     {% block title %}{% endblock %}
