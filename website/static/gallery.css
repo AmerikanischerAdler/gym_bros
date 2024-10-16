@@ -89,3 +89,16 @@ h1 {
     color: #9D0000;
 }
 
+#img-bottom {
+    width: 100%;
+    margin-top: -55px;
+    display: flex;
+    z-index: 50;
+}
+
+#img-bottom img {
+    width: 50px;
+    margin-left: 75%;
+    clip-path: circle(50%);
+}
+
