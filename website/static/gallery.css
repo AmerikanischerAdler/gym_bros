@@ -1,7 +1,9 @@
 #title {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-bottom: 15px;
 }
 
 h1 {
@@ -10,7 +12,11 @@ h1 {
     letter-spacing: -10px;
     color: #9D0000;
     margin-top: 0;
-    margin-bottom: 15px;
+    margin-bottom: 0;
+}
+
+h3 {
+    margin: 0;
 }
 
 .gallery-container {
@@ -53,15 +59,33 @@ h1 {
     margin: 10% auto;
 }
 
-#back, #forw {
-    width: 50px;
-    cursor: pointer;
-    margin: 40px;
-}
-
 .gallery div img:not(.profile-pic):hover {
     filter: grayscale(0);
     cursor: pointer;
+}
+
+#badge-contain-nonmoving {
+    width: 90%;
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    gap: 15px;
+    margin-top: 20px;
+    margin-bottom: -50px;
+    z-index: 50;
+    pointer-events: none;
+}
+
+.badges {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.badges svg {
+    color: #9D0000;
 }
 
 #badge-contain {

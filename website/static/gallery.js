@@ -52,3 +52,13 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
+document.addEventListener("DOMContentLoaded", function() {
+    const badges = document.querySelectorAll(".badges");
+    badges.forEach(badge => {
+        const badgeStyle = window.getComputedStyle(badge); 
+        if (badgeStyle.width === "0px") {
+            badge.remove();
+        }
+    });
+});
+
