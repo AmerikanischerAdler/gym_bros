@@ -103,6 +103,8 @@
                       {% endif %}
                     </div>
                   </div>
+                  {% else %}
+                  <div id="icon-holder"></div>
                   {% endif %}
                   <a href="{{ url_for('pages.profile', username = user.username) }}"><img class="profile-pic" src="{{ url_for('static', filename='./images/face.jpg') }}"></a>
                 </div>
