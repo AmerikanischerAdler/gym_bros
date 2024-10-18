@@ -95,15 +95,14 @@ h1 {
 
 #img-bottom {
     width: 100%;
-    margin-top: -55px;
+    margin-top: -65px;
     display: flex;
     z-index: 50;
     pointer-events: none;
 }
 
 #img-bottom a {
-    width: 50px;
-    margin-left: 75%;
+    width: 20%;
     pointer-events: auto;
 }
 
@@ -111,4 +110,57 @@ h1 {
     width: 100%;
     clip-path: circle(50%);
 }
+
+#icon-holder {
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#voteBtn {
+    width: 100%;
+}
+
+#vote {
+    border: 2px solid #fff;
+    border-radius: 15px;
+    pointer-events: auto;
+    margin-left: -5px;
+}
+
+.follow-friend {
+    height: 50px;
+    width: 45%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0px;
+    margin-left: 15px;
+}
+
+.follow-friend svg {
+    color: #fff;
+    margin-bottom: -20px;
+}
+
+.follow-friend p {
+    color: #fff;
+}
+
+.f-count {
+    margin-left: -35px;
+    color: #9D0000;
+}
+
+.add-btn {
+    width: 30px;
+    pointer-events: auto;
+}
+
+.add-btn:hover {
+    cursor: pointer;
+}
+
+
 
