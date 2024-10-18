@@ -7,7 +7,7 @@
 {% block title %}
   <div id="title">
     <h1>Photo Gallery</h1>
-    {% if user.is_authenticated %} <!-- and user.league -->
+    {% if current_user.is_authenticated %} <!-- and user.league -->
     <h3>The Best Pictures from Your League</h3>
     {% endif %}
   </div>
@@ -59,8 +59,11 @@
                   </ul>
                 </div>
                 {% endif %}
+
                 <img src="{{ url_for('static', filename='images/photo_gallery/' + picture) }}" alt="{{ picture }}">
+
                 <div id="img-bottom">
+                  {% if current_user.is_authenticated %}
                   <div id="icon-holder">
                     <a href="#" class="voteBtn">
                       <svg id="vote" width="50" height="30" xmlns="http://www.w3.org/2000/svg">
@@ -100,6 +103,7 @@
                       {% endif %}
                     </div>
                   </div>
+                  {% endif %}
                   <a href="{{ url_for('pages.profile', username = user.username) }}"><img class="profile-pic" src="{{ url_for('static', filename='./images/face.jpg') }}"></a>
                 </div>
               </div>

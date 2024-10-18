@@ -128,6 +128,7 @@ h3 {
 #img-bottom a {
     width: 20%;
     pointer-events: auto;
+    margin-left: 3px;
 }
 
 #img-bottom a img {
