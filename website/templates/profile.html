@@ -15,485 +15,516 @@
 {% endblock %}
 
 {% block content %}
-  <form id="prof-pic">
-    <img id="face" src="{{ url_for('static', filename='./images/face.jpg') }}">
-    <h2>{{ user.name }}</h2>
-    <h3>Bio:</h3>
-    {% if user.bio %}
-    <p id="bio" style="border: none; text-align: center;">{{ user.bio }}</p>
-    {% elif not user.bio and current_user.user_id != user.user_id %}
-    <p style="margin-bottom: 45px;">{{ user.username }} has not added a bio</p>
-    {% else %}
-    <textarea id="bio" name="bio" placeholder="Enter a Brief Description of Yourself..."></textarea>
-    {% endif %}
+  <div class="profile-contain">
+    <div class="sidebar">
+      <div class="views">
 
-    <div class="follow-friend">
-      {% if current_user.user_id == user.user_id %}
-      <div class="add-btn followBtn" id="follow-div" data-userId="{{ user.user_id }}">
-        <p class="add-btn" style="margin-left: -18px;">Followers</p>
-        <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M14 14.252v2.09A6 6 0 0 0 6 22H4a8 8 0 0 1 10-7.749M12 13c-3.315 0-6-2.685-6-6s2.685-6 6-6s6 2.685 6 6s-2.685 6-6 6m0-2c2.21 0 4-1.79 4-4s-1.79-4-4-4s-4 1.79-4 4s1.79 4 4 4m5.793 8.914l3.535-3.535l1.415 1.414l-4.95 4.95l-3.536-3.536l1.415-1.414z"/></svg>
-        <span class="f-count" id="followers-count-{{ user.user_id }}">{{ user.follower_count() }}</span>
-      </div>
-      <div class="add-btn" id="friend-div" data-userId="{{ user.user_id }}">
-        <p style="margin-left: -12px;">Friends</p>
-        <svg width="24" height="24" viewBox="0 0 2048 2048" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M1536 1536h-13q-23-112-81-206t-141-162t-187-106t-218-38q-88 0-170 23t-153 64t-129 100t-100 130t-65 153t-23 170H128q0-120 35-231t101-205t156-167t204-115q-113-74-176-186t-64-248q0-106 40-199t109-163T696 40T896 0t199 40t163 109t110 163t40 200q0 66-16 129t-48 119t-75 103t-101 83q112 43 206 118t162 176zM512 512q0 80 30 149t82 122t122 83t150 30q79 0 149-30t122-82t83-122t30-150q0-79-30-149t-82-122t-123-83t-149-30q-80 0-149 30t-122 82t-83 123t-30 149m1280 1152h256v128h-256v256h-128v-256h-256v-128h256v-256h128z"/></svg>
-        <span class="f-count" id="friends-count-{{ user.user_id }}">{{ user.mutual_followers_count() }}</span>
       </div>
 
-      <div class="social-add" id="social-add">
-        <p>Add Social</p>
-        <svg id="add-social" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>
-        <div class="dropdown-content">
-          <a class="social-profile" id="facebook">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64h98.2V334.2H109.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H255V480H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64z"/></svg>
-            <p>Facebook</p>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg>
-          </a>
-          <div class="social-input">
-            <label for="soclink">Link: </label>
-            <input type="text" name="social-link" id="soclink">
-            <a id="submit-link" href="#" action="/add-social-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg></a>
-          </div>
-          <a class="social-profile" id="twitter">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm297.1 84L257.3 234.6 379.4 396H283.8L209 298.1 123.3 396H75.8l111-126.9L69.7 116h98l67.7 89.5L313.6 116h47.5zM323.3 367.6L153.4 142.9H125.1L296.9 367.6h26.3z"/></svg>
-            <p>X (Twitter)</p>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg>
-          </a>
-          <a class="social-profile" id="insta">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M194.4 211.7a53.3 53.3 0 1 0 59.3 88.7 53.3 53.3 0 1 0 -59.3-88.7zm142.3-68.4c-5.2-5.2-11.5-9.3-18.4-12c-18.1-7.1-57.6-6.8-83.1-6.5c-4.1 0-7.9 .1-11.2 .1c-3.3 0-7.2 0-11.4-.1c-25.5-.3-64.8-.7-82.9 6.5c-6.9 2.7-13.1 6.8-18.4 12s-9.3 11.5-12 18.4c-7.1 18.1-6.7 57.7-6.5 83.2c0 4.1 .1 7.9 .1 11.1s0 7-.1 11.1c-.2 25.5-.6 65.1 6.5 83.2c2.7 6.9 6.8 13.1 12 18.4s11.5 9.3 18.4 12c18.1 7.1 57.6 6.8 83.1 6.5c4.1 0 7.9-.1 11.2-.1c3.3 0 7.2 0 11.4 .1c25.5 .3 64.8 .7 82.9-6.5c6.9-2.7 13.1-6.8 18.4-12s9.3-11.5 12-18.4c7.2-18 6.8-57.4 6.5-83c0-4.2-.1-8.1-.1-11.4s0-7.1 .1-11.4c.3-25.5 .7-64.9-6.5-83l0 0c-2.7-6.9-6.8-13.1-12-18.4zm-67.1 44.5A82 82 0 1 1 178.4 324.2a82 82 0 1 1 91.1-136.4zm29.2-1.3c-3.1-2.1-5.6-5.1-7.1-8.6s-1.8-7.3-1.1-11.1s2.6-7.1 5.2-9.8s6.1-4.5 9.8-5.2s7.6-.4 11.1 1.1s6.5 3.9 8.6 7s3.2 6.8 3.2 10.6c0 2.5-.5 5-1.4 7.3s-2.4 4.4-4.1 6.2s-3.9 3.2-6.2 4.2s-4.8 1.5-7.3 1.5l0 0c-3.8 0-7.5-1.1-10.6-3.2zM448 96c0-35.3-28.7-64-64-64H64C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96zM357 389c-18.7 18.7-41.4 24.6-67 25.9c-26.4 1.5-105.6 1.5-132 0c-25.6-1.3-48.3-7.2-67-25.9s-24.6-41.4-25.8-67c-1.5-26.4-1.5-105.6 0-132c1.3-25.6 7.1-48.3 25.8-67s41.5-24.6 67-25.8c26.4-1.5 105.6-1.5 132 0c25.6 1.3 48.3 7.1 67 25.8s24.6 41.4 25.8 67c1.5 26.3 1.5 105.4 0 131.9c-1.3 25.6-7.1 48.3-25.8 67z"/></svg>
-            <p>Instagram</p>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg>
-          </a>
-          <a class="social-profile" id="linkedin">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
-            <p>LinkedIn</p>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg>
-          </a>
-        </div>
+      <div class="sections-key">
+
+      </div>
+    </div>
+
+    <div class="prof=sections">
+      <div class="prof-sec" id="essentials">
+
       </div>
 
+      <div class="prof-sec" id="goals">
+
+      </div>
+
+      <div class="prof-sec" id="badges">
+
+      </div>
+
+      <div class="prof-sec" id="photos">
+
+      </div>
+    </div>
+    <!--
+    <form id="prof-pic">
+      <img id="face" src="{{ url_for('static', filename='./images/face.jpg') }}">
+      <h2>{{ user.name }}</h2>
+      <h3>Bio:</h3>
+      {% if user.bio %}
+      <p id="bio" style="border: none; text-align: center;">{{ user.bio }}</p>
+      {% elif not user.bio and current_user.user_id != user.user_id %}
+      <p style="margin-bottom: 45px;">{{ user.username }} has not added a bio</p>
       {% else %}
-      <a class="add-btn followBtn" id="follow-div" data-userId="{{ user.user_id }}">
-        {% if current_user.is_following(user) %}
-        <p id="followText-{{ user.user_id }}" style="margin-left: -9px;">Unfollow</p>
-        {% else %}
-        <p id="followText-{{ user.user_id }}" style="margin-left: -9px;">Follow</p>
-        {% endif %}
-        <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M14 14.252v2.09A6 6 0 0 0 6 22H4a8 8 0 0 1 10-7.749M12 13c-3.315 0-6-2.685-6-6s2.685-6 6-6s6 2.685 6 6s-2.685 6-6 6m0-2c2.21 0 4-1.79 4-4s-1.79-4-4-4s-4 1.79-4 4s1.79 4 4 4m5.793 8.914l3.535-3.535l1.415 1.414l-4.95 4.95l-3.536-3.536l1.415-1.414z"/></svg>
-        <span class="f-count" id="followers-count-{{ user.user_id }}">{{ user.follower_count() }}</span>
-      </a>
-      <a class="add-btn" id="friend-div" data-userId="{{ user.user_id }}">
-        <p id="friendText" style="margin-left: -9px;">Friend</p>
-        <svg width="24" height="24" viewBox="0 0 2048 2048" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M1536 1536h-13q-23-112-81-206t-141-162t-187-106t-218-38q-88 0-170 23t-153 64t-129 100t-100 130t-65 153t-23 170H128q0-120 35-231t101-205t156-167t204-115q-113-74-176-186t-64-248q0-106 40-199t109-163T696 40T896 0t199 40t163 109t110 163t40 200q0 66-16 129t-48 119t-75 103t-101 83q112 43 206 118t162 176zM512 512q0 80 30 149t82 122t122 83t150 30q79 0 149-30t122-82t83-122t30-150q0-79-30-149t-82-122t-123-83t-149-30q-80 0-149 30t-122 82t-83 123t-30 149m1280 1152h256v128h-256v256h-128v-256h-256v-128h256v-256h128z"/></svg>
-        <span class="f-count" id="friends-count-{{ user.user_id }}">{{ user.mutual_followers_count() }}</span>
-      </a>
+      <textarea id="bio" name="bio" placeholder="Enter a Brief Description of Yourself..."></textarea>
       {% endif %}
+
+      <div class="follow-friend">
+        {% if current_user.user_id == user.user_id %}
+        <div class="add-btn followBtn" id="follow-div" data-userId="{{ user.user_id }}">
+          <p class="add-btn" style="margin-left: -18px;">Followers</p>
+          <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M14 14.252v2.09A6 6 0 0 0 6 22H4a8 8 0 0 1 10-7.749M12 13c-3.315 0-6-2.685-6-6s2.685-6 6-6s6 2.685 6 6s-2.685 6-6 6m0-2c2.21 0 4-1.79 4-4s-1.79-4-4-4s-4 1.79-4 4s1.79 4 4 4m5.793 8.914l3.535-3.535l1.415 1.414l-4.95 4.95l-3.536-3.536l1.415-1.414z"/></svg>
+          <span class="f-count" id="followers-count-{{ user.user_id }}">{{ user.follower_count() }}</span>
+        </div>
+        <div class="add-btn" id="friend-div" data-userId="{{ user.user_id }}">
+          <p style="margin-left: -12px;">Friends</p>
+          <svg width="24" height="24" viewBox="0 0 2048 2048" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M1536 1536h-13q-23-112-81-206t-141-162t-187-106t-218-38q-88 0-170 23t-153 64t-129 100t-100 130t-65 153t-23 170H128q0-120 35-231t101-205t156-167t204-115q-113-74-176-186t-64-248q0-106 40-199t109-163T696 40T896 0t199 40t163 109t110 163t40 200q0 66-16 129t-48 119t-75 103t-101 83q112 43 206 118t162 176zM512 512q0 80 30 149t82 122t122 83t150 30q79 0 149-30t122-82t83-122t30-150q0-79-30-149t-82-122t-123-83t-149-30q-80 0-149 30t-122 82t-83 123t-30 149m1280 1152h256v128h-256v256h-128v-256h-256v-128h256v-256h128z"/></svg>
+          <span class="f-count" id="friends-count-{{ user.user_id }}">{{ user.mutual_followers_count() }}</span>
+        </div>
+
+        <div class="social-add" id="social-add">
+          <p>Add Social</p>
+          <svg id="add-social" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>
+          <div class="dropdown-content">
+            <a class="social-profile" id="facebook">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64h98.2V334.2H109.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H255V480H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64z"/></svg>
+              <p>Facebook</p>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg>
+            </a>
+            <div class="social-input">
+              <label for="soclink">Link: </label>
+              <input type="text" name="social-link" id="soclink">
+              <a id="submit-link" href="#" action="/add-social-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg></a>
+            </div>
+            <a class="social-profile" id="twitter">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm297.1 84L257.3 234.6 379.4 396H283.8L209 298.1 123.3 396H75.8l111-126.9L69.7 116h98l67.7 89.5L313.6 116h47.5zM323.3 367.6L153.4 142.9H125.1L296.9 367.6h26.3z"/></svg>
+              <p>X (Twitter)</p>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg>
+            </a>
+            <a class="social-profile" id="insta">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M194.4 211.7a53.3 53.3 0 1 0 59.3 88.7 53.3 53.3 0 1 0 -59.3-88.7zm142.3-68.4c-5.2-5.2-11.5-9.3-18.4-12c-18.1-7.1-57.6-6.8-83.1-6.5c-4.1 0-7.9 .1-11.2 .1c-3.3 0-7.2 0-11.4-.1c-25.5-.3-64.8-.7-82.9 6.5c-6.9 2.7-13.1 6.8-18.4 12s-9.3 11.5-12 18.4c-7.1 18.1-6.7 57.7-6.5 83.2c0 4.1 .1 7.9 .1 11.1s0 7-.1 11.1c-.2 25.5-.6 65.1 6.5 83.2c2.7 6.9 6.8 13.1 12 18.4s11.5 9.3 18.4 12c18.1 7.1 57.6 6.8 83.1 6.5c4.1 0 7.9-.1 11.2-.1c3.3 0 7.2 0 11.4 .1c25.5 .3 64.8 .7 82.9-6.5c6.9-2.7 13.1-6.8 18.4-12s9.3-11.5 12-18.4c7.2-18 6.8-57.4 6.5-83c0-4.2-.1-8.1-.1-11.4s0-7.1 .1-11.4c.3-25.5 .7-64.9-6.5-83l0 0c-2.7-6.9-6.8-13.1-12-18.4zm-67.1 44.5A82 82 0 1 1 178.4 324.2a82 82 0 1 1 91.1-136.4zm29.2-1.3c-3.1-2.1-5.6-5.1-7.1-8.6s-1.8-7.3-1.1-11.1s2.6-7.1 5.2-9.8s6.1-4.5 9.8-5.2s7.6-.4 11.1 1.1s6.5 3.9 8.6 7s3.2 6.8 3.2 10.6c0 2.5-.5 5-1.4 7.3s-2.4 4.4-4.1 6.2s-3.9 3.2-6.2 4.2s-4.8 1.5-7.3 1.5l0 0c-3.8 0-7.5-1.1-10.6-3.2zM448 96c0-35.3-28.7-64-64-64H64C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96zM357 389c-18.7 18.7-41.4 24.6-67 25.9c-26.4 1.5-105.6 1.5-132 0c-25.6-1.3-48.3-7.2-67-25.9s-24.6-41.4-25.8-67c-1.5-26.4-1.5-105.6 0-132c1.3-25.6 7.1-48.3 25.8-67s41.5-24.6 67-25.8c26.4-1.5 105.6-1.5 132 0c25.6 1.3 48.3 7.1 67 25.8s24.6 41.4 25.8 67c1.5 26.3 1.5 105.4 0 131.9c-1.3 25.6-7.1 48.3-25.8 67z"/></svg>
+              <p>Instagram</p>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg>
+            </a>
+            <a class="social-profile" id="linkedin">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+              <p>LinkedIn</p>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        {% else %}
+        <a class="add-btn followBtn" id="follow-div" data-userId="{{ user.user_id }}">
+          {% if current_user.is_following(user) %}
+          <p id="followText-{{ user.user_id }}" style="margin-left: -9px;">Unfollow</p>
+          {% else %}
+          <p id="followText-{{ user.user_id }}" style="margin-left: -9px;">Follow</p>
+          {% endif %}
+          <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M14 14.252v2.09A6 6 0 0 0 6 22H4a8 8 0 0 1 10-7.749M12 13c-3.315 0-6-2.685-6-6s2.685-6 6-6s6 2.685 6 6s-2.685 6-6 6m0-2c2.21 0 4-1.79 4-4s-1.79-4-4-4s-4 1.79-4 4s1.79 4 4 4m5.793 8.914l3.535-3.535l1.415 1.414l-4.95 4.95l-3.536-3.536l1.415-1.414z"/></svg>
+          <span class="f-count" id="followers-count-{{ user.user_id }}">{{ user.follower_count() }}</span>
+        </a>
+        <a class="add-btn" id="friend-div" data-userId="{{ user.user_id }}">
+          <p id="friendText" style="margin-left: -9px;">Friend</p>
+          <svg width="24" height="24" viewBox="0 0 2048 2048" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M1536 1536h-13q-23-112-81-206t-141-162t-187-106t-218-38q-88 0-170 23t-153 64t-129 100t-100 130t-65 153t-23 170H128q0-120 35-231t101-205t156-167t204-115q-113-74-176-186t-64-248q0-106 40-199t109-163T696 40T896 0t199 40t163 109t110 163t40 200q0 66-16 129t-48 119t-75 103t-101 83q112 43 206 118t162 176zM512 512q0 80 30 149t82 122t122 83t150 30q79 0 149-30t122-82t83-122t30-150q0-79-30-149t-82-122t-123-83t-149-30q-80 0-149 30t-122 82t-83 123t-30 149m1280 1152h256v128h-256v256h-128v-256h-256v-128h256v-256h128z"/></svg>
+          <span class="f-count" id="friends-count-{{ user.user_id }}">{{ user.mutual_followers_count() }}</span>
+        </a>
+        {% endif %}
+      </div>
+
+      <h3>Yearly Goals</h3>
+      {% if user.bench_now and user.bench_future or user.squat_now and user.squat_future or user.clean_now and user.clean_future or user.deadlift_now and user.deadlift_future %}
+      {% if user.bench_now and user.bench_future %}
+      <h4>Bench Progress</h4>
+      <div class="prog-bar-contain">
+        <div class="prog-bar" id="prog-bench" data-prog="{{ user.bench_now }}" data-goal="{{ user.bench_future }}"></div>
+      </div>
+      {% endif %}
+      {% if user.squat_now and user.squat_future %}
+      <h4>Squat Progress</h4>
+      <div class="prog-bar-contain">
+        <div class="prog-bar" id="prog-squat" data-prog="{{ user.squat_now }}" data-goal="{{ user.squat_future }}"></div>
+      </div>
+      {% endif %}
+      {% if user.clean_now and user.clean_future %}
+      <h4>Clean Progress</h4>
+      <div class="prog-bar-contain">
+        <div class="prog-bar" id="prog-clean" data-prog="{{ user.clean_now }}" data-goal="{{ user.clean_future }}"></div>
+      </div>
+      {% endif %}
+      {% if user.deadlift_now and user.deadlift_future %}
+      <h4>Deadlift Progress</h4>
+      <div class="prog-bar-contain">
+        <div class="prog-bar" id="prog-deadlift" data-prog="{{ user.deadlift_now }}" data-goal="{{ user.deadlift_future }}"></div>
+      </div>
+      {% endif %}
+      {% else %}
+      <p>{{ user.username }} has not added any yearly goals</p>
+      {% endif %}
+
+      <h3>Life Motto:</h3>
+      {% if user.life_motto %}
+      <p id="motto" style="border: none; text-align: center;">"{{ user.life_motto }}"</p>
+      {% elif not user.life_motto and current_user.user_id != user.user_id %}
+      <p>{{ user.username }} has not added a life motto</p>
+      {% else %}
+      <input id="motto" type="text" name="motto" placeholder="Enter Your Life Motto...">
+      {% endif %}
+    </form>
+
+    <div class="contain">
+      <form class="box" id="info">
+        <h2>Basic Info</h2>
+        <div class="info">
+          <h3>Birthday:</h3>
+
+          {% if user.birthday %}
+          <p>{{ user.birthday }}</p>
+          {% elif not user.birthday and current_user.user_id != user.user_id %}
+          <p>Unknown</p>
+          {% else %}
+          <select id="birthday" name="birthday-month">
+            <option value="01">January</option>
+            <option value="02">February</option>
+            <option value="03">March</option>
+            <option value="04">April</option>
+            <option value="05">May</option>
+            <option value="06">June</option>
+            <option value="07">July</option>
+            <option value="08">August</option>
+            <option value="09">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+          </select>
+
+          <select name="birthday-day">
+            <option value="01">01</option>
+            <option value="02">02</option>
+            <option value="03">03</option>
+            <option value="04">04</option>
+            <option value="05">05</option>
+            <option value="06">06</option>
+            <option value="07">07</option>
+            <option value="08">08</option>
+            <option value="09">09</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+            <option value="21">21</option>
+            <option value="22">22</option>
+            <option value="23">23</option>
+            <option value="24">24</option>
+            <option value="25">25</option>
+            <option value="26">26</option>
+            <option value="27">27</option>
+            <option value="28">28</option>
+            <option value="29">29</option>
+            <option value="30">30</option>
+            <option value="31">31</option>
+          </select>
+
+          <select name="birthday-year">
+            <option value="2025">2025</option>
+            <option value="2024">2024</option>
+            <option value="2023">2023</option>
+            <option value="2022">2022</option>
+            <option value="2021">2021</option>
+            <option value="2020">2020</option>
+            <option value="2019">2019</option>
+            <option value="2018">2018</option>
+            <option value="2017">2017</option>
+            <option value="2016">2016</option>
+            <option value="2015">2015</option>
+            <option value="2014">2014</option>
+            <option value="2013">2013</option>
+            <option value="2012">2012</option>
+            <option value="2011">2011</option>
+            <option value="2010">2010</option>
+            <option value="2009">2009</option>
+            <option value="2008">2008</option>
+            <option value="2007">2007</option>
+            <option value="2006">2006</option>
+            <option value="2005">2005</option>
+            <option value="2004">2004</option>
+            <option value="2003">2003</option>
+            <option value="2002">2002</option>
+            <option value="2001">2001</option>
+            <option value="2000">2000</option>
+            <option value="1999">1999</option>
+            <option value="1998">1998</option>
+            <option value="1997">1997</option>
+            <option value="1996">1996</option>
+            <option value="1995">1995</option>
+            <option value="1994">1994</option>
+            <option value="1993">1993</option>
+            <option value="1992">1992</option>
+            <option value="1991">1991</option>
+            <option value="1990">1990</option>
+            <option value="1989">1989</option>
+            <option value="1988">1988</option>
+            <option value="1987">1987</option>
+            <option value="1986">1986</option>
+            <option value="1985">1985</option>
+            <option value="1984">1984</option>
+            <option value="1983">1983</option>
+            <option value="1982">1982</option>
+            <option value="1981">1981</option>
+            <option value="1980">1980</option>
+            <option value="1979">1979</option>
+            <option value="1978">1978</option>
+            <option value="1977">1977</option>
+            <option value="1976">1976</option>
+            <option value="1975">1975</option>
+            <option value="1974">1974</option>
+            <option value="1973">1973</option>
+            <option value="1972">1972</option>
+            <option value="1971">1971</option>
+            <option value="1970">1970</option>
+            <option value="1969">1969</option>
+            <option value="1968">1968</option>
+            <option value="1967">1967</option>
+            <option value="1966">1966</option>
+            <option value="1965">1965</option>
+            <option value="1964">1964</option>
+            <option value="1963">1963</option>
+            <option value="1962">1962</option>
+            <option value="1961">1961</option>
+            <option value="1960">1960</option>
+            <option value="1959">1959</option>
+            <option value="1958">1958</option>
+            <option value="1957">1957</option>
+            <option value="1956">1956</option>
+            <option value="1955">1955</option>
+            <option value="1954">1954</option>
+            <option value="1953">1953</option>
+            <option value="1952">1952</option>
+            <option value="1951">1951</option>
+            <option value="1950">1950</option>
+            <option value="1949">1949</option>
+            <option value="1948">1948</option>
+            <option value="1947">1947</option>
+            <option value="1946">1946</option>
+            <option value="1945">1945</option>
+            <option value="1944">1944</option>
+            <option value="1943">1943</option>
+            <option value="1942">1942</option>
+            <option value="1941">1941</option>
+            <option value="1940">1940</option>
+            <option value="1939">1939</option>
+            <option value="1938">1938</option>
+            <option value="1937">1937</option>
+            <option value="1936">1936</option>
+            <option value="1935">1935</option>
+            <option value="1934">1934</option>
+            <option value="1933">1933</option>
+            <option value="1932">1932</option>
+            <option value="1931">1931</option>
+            <option value="1930">1930</option>
+            <option value="1929">1929</option>
+            <option value="1928">1928</option>
+            <option value="1927">1927</option>
+            <option value="1926">1926</option>
+          </select>
+          {% endif %}
+        </div>
+
+        <div class="info">
+          <h3>Gender:</h3>
+          {% if user.gender %}
+            {% if user.gender == "bro" %}
+            <p>Gym Bro</p>
+            {% else %}
+            <p>Gym Girl</p>
+            {% endif %}
+          {% elif not user.gender and current_user.user_id != user.user_id %}
+          <p>Unknown</p>
+          {% else %}
+          <p><em>And Please NO BULLSHIT! </em></p>
+          <select id="gender" name="gender">
+            <option value="bro">Gym Bro</option>
+            <option value="girl">Gym Girl</option>
+          </select>
+          {% endif %}
+        </div>
+        <div class="info">
+          <h3>Relationship Status:</h3>
+          {% if user.relationship_status %}
+            {% if user.relationship_status == 'true' %}
+            <p>Single Pringle</p>
+            {% else %}
+            <p>Taken</p>
+            {% endif %}
+          {% elif not user.relationship_status and current_user.user_id != user.user_id %}
+          <p>Unknown</p>
+          {% else %}
+          <select id="relation" name="relation">
+            <option value="true">Single Pringle</option>
+            <option value="false">I AM NOT SINGLE</option>
+          </select>
+          {% endif %}
+        </div>
+        <div class="info">
+          <h3>Proteins & Supplements:</h3>
+          <ul>
+            <li>Creatine</li>
+            <li>Whey Protein</li>
+            <li>Jocko Mölk</li>
+          </ul>
+        </div>
+      </form>
+
+      <form class="box" id="stats">
+        <h2>Current Stats</h2>
+        <div class="info">
+          <h3>Max Lifts:</h3>
+          <div class="ranks first-goal">
+          {% if user.bench_now and user.squat_now %}
+            <p class="lst" style="margin-left: 25px;"><strong>Bench</strong>: <span>{{ user.bench_now }}</span></p>
+          {% elif user.bench_now and not user.squat_now %}
+            <p class="lst" style="margin-left: 25px; padding-bottom: 10px;"><strong>Bench</strong>: <span>{{ user.bench_now }}</span></p>
+          {% elif not user.bench_now and current_user.user_id != user.user_id %}
+            <p class="lst" style="margin-left: 25px;"><strong>Bench</strong>: <span>Unknown</span></p>
+          {% else %}
+            <label for="bench-now">Bench:</label>
+            <input type="text" id="bench-now" name="bench-now">
+          {% endif %}
+          </div>
+          <div class="ranks">
+          {% if user.squat_now and user.clean_now %}
+            <p class="lst" style="margin-left: 25px;"><strong>Squat</strong>: <span>{{ user.squat_now }}</span></p>
+          {% elif user.squat_now and not user.clean_now %}
+            <p class="lst" style="margin-left: 25px; padding-bottom: 10px;"><strong>Squat</strong>: <span>{{ user.squat_now }}</span></p>
+          {% elif not user.squat_now and current_user.user_id != user.user_id %}
+            <p class="lst" style="margin-left: 25px;"><strong>Squat</strong>: <span>Unknown</span></p>
+          {% else %}
+            <label for="squat-now">Squat:</label>
+            <input type="text" id="squat-now" name="squat-now">
+          {% endif %}
+          </div>
+          <div class="ranks">
+          {% if user.clean_now and user.deadlift_now %}
+            <p class="lst" style="margin-left: 25px;"><strong>Clean</strong>: <span>{{ user.clean_now }}</span></p>
+          {% elif user.clean_now and not user.deadlift_now %}
+            <p class="lst" style="margin-left: 25px; padding-bottom: 10px;"><strong>Clean</strong>: <span>{{ user.clean_now }}</span></p>
+          {% elif not user.clean_now and current_user.user_id != user.user_id %}
+            <p class="lst" style="margin-left: 25px;"><strong>Clean</strong>: <span>Unknown</span></p>
+          {% else %}
+            <label for="clean-now">Clean:</label>
+            <input type="text" id="clean-now" name="clean-now">
+          {% endif %}
+          </div>
+          <div class="ranks">
+          {% if user.deadlift_now %}
+            <p style="margin-left: 25px;"><strong>Deadlift</strong>: <span>{{ user.deadlift_now }}</span></p>
+          {% elif not user.deadlift_now and current_user.user_id != user.user_id %}
+            <p style="margin-left: 25px;"><strong>Deadlift</strong>: <span>Unknown</span></p>
+          {% else %}
+            <label for="deadlift-now">Deadlift:</label>
+            <input type="text" id="deadlift-now" name="deadlift-now">
+          {% endif %}
+          </div>
+        </div>
+        <div class="info">
+          <h3>Other Sports:</h3>
+          <p class="lst">Wrestling</p>
+          <p class="lst">Boxing</p>
+          <p>Jiu Jitsu</p>
+        </div>
+        <div class="info">
+          <h3>Natty Status:</h3>
+          {% if user.natty_status %}
+            {% if user.natty_status == 'true' %}
+            <p>Natty</p>
+            {% else %}
+            <p>NOT Natty</p>
+            {% endif %}
+          {% elif not user.natty_status and current_user.user_id != user.user_id %}
+          <p>Unknown</p>
+          {% else %}
+          <select id="natty" name="natty">
+            <option value="true">Positive (I am Natty)</option>
+            <option value="false">Negative (I am not Natty)</option>
+          </select>
+          {% endif %}
+        </div>
+      </form>
+
+      <form class="box" id="goals">
+        <h2>Future Goals</h2>
+        <div class="info">
+          <h3>Max Lifts by End of Year:</h3>
+          <div class="ranks first-goal">
+          {% if user.bench_future and user.squat_future %}
+            <p class="lst"><strong>Bench</strong>: <span>{{ user.bench_future }}</span></p>
+          {% elif user.bench_future and not user.squat_future %}
+            <p class="lst" style="padding-bottom: 10px;"><strong>Bench</strong>: <span>{{ user.bench_future }}</span></p>
+          {% elif not user.bench_future and current_user.user_id != user.user_id %}
+            <p class="lst"><strong>Bench</strong>: <span>Unknown</span></p>
+          {% else %}
+            <label for="bench-future">Bench:</label>
+            <input type="text" id="bench-future" name="bench-future">
+          {% endif %}
+          </div>
+          <div class="ranks">
+          {% if user.squat_future and user.clean_future %}
+            <p class="lst"><strong>Squat</strong>: <span>{{ user.squat_future }}</span></p>
+          {% elif user.squat_future and not user.clean_future %}
+            <p class="lst" style="padding-bottom: 10px;"><strong>Squat</strong>: <span>{{ user.squat_future }}</span></p>
+          {% elif not user.squat_future and current_user.user_id != user.user_id %}
+            <p class="lst"><strong>Squat</strong>: <span>Unknown</span></p>
+          {% else %}
+            <label for="squat-future">Squat:</label>
+            <input type="text" id="squat-future" name="squat-future">
+          {% endif %}
+          </div>
+          <div class="ranks">
+          {% if user.clean_future and user.deadlift_future %}
+            <p class="lst"><strong>Clean</strong>: <span>{{ user.clean_future }}</span></p>
+          {% elif user.clean_future and not user.deadlift_future %}
+            <p class="lst" style="padding-bottom: 10px;"><strong>Clean</strong>: <span>{{ user.clean_future }}</span></p>
+          {% elif not user.clean_future and current_user.user_id != user.user_id %}
+            <p class="lst"><strong>Clean</strong>: <span>Unknown</span></p>
+          {% else %}
+            <label for="clean-future">Clean:</label>
+            <input type="text" id="clean-future" name="clean-future">
+          {% endif %}
+          </div>
+          <div class="ranks">
+          {% if user.deadlift_future %}
+            <p><strong>Deadlift</strong>: <span>{{ user.deadlift_future }}</span></p>
+          {% elif not user.deadlift_future and current_user.user_id != user.user_id %}
+            <p><strong>Deadlift</strong>: <span>Unknown</span></p>
+          {% else %}
+            <label for="deadlift-future">Deadlift:</label>
+            <input type="text" id="deadlift-future" name="deadlift-future">
+          {% endif %}
+          </div>
+        </div>
+        <div class="info">
+          <h3>Sports:</h3>
+          <p class="lst">Wrestle in College Division I</p>
+          <p class="lst">Wrestle in State Tournament 2025</p>
+          <p>Purple Belt in Jiu Jitsu 2025</p>
+        </div>
+        <div class="info">
+          <h3>Dream Physique:</h3>
+          {% if user.dream_build %}
+          <p>{{ user.dream_build }}</p>
+          {% elif not user.dream_build and current_user.user_id != user.user_id %}
+          <p>{{ user.username }} had not added a dream physique</p>
+          {% else %}
+          <input type="text" id="dream-build" name="dream-build" placeholder="Briefly Describe Your Vision...">
+          {% endif %}
+        </div>
+      </form>
     </div>
 
-    <h3>Yearly Goals</h3>
-    {% if user.bench_now and user.bench_future or user.squat_now and user.squat_future or user.clean_now and user.clean_future or user.deadlift_now and user.deadlift_future %}
-    {% if user.bench_now and user.bench_future %}
-    <h4>Bench Progress</h4>
-    <div class="prog-bar-contain">
-      <div class="prog-bar" id="prog-bench" data-prog="{{ user.bench_now }}" data-goal="{{ user.bench_future }}"></div>
-    </div>
-    {% endif %}
-    {% if user.squat_now and user.squat_future %}
-    <h4>Squat Progress</h4>
-    <div class="prog-bar-contain">
-      <div class="prog-bar" id="prog-squat" data-prog="{{ user.squat_now }}" data-goal="{{ user.squat_future }}"></div>
-    </div>
-    {% endif %}
-    {% if user.clean_now and user.clean_future %}
-    <h4>Clean Progress</h4>
-    <div class="prog-bar-contain">
-      <div class="prog-bar" id="prog-clean" data-prog="{{ user.clean_now }}" data-goal="{{ user.clean_future }}"></div>
-    </div>
-    {% endif %}
-    {% if user.deadlift_now and user.deadlift_future %}
-    <h4>Deadlift Progress</h4>
-    <div class="prog-bar-contain">
-      <div class="prog-bar" id="prog-deadlift" data-prog="{{ user.deadlift_now }}" data-goal="{{ user.deadlift_future }}"></div>
-    </div>
-    {% endif %}
+    {% if user.dream_build and user.life_motto and user.bio and user.birthday and user.gender and user.relationship_status and user.natty_status and user.bench_now and user.squat_now and user.clean_now and user.deadlift_now and user.bench_future and user.squat_future and user.clean_future and user.deadlift_future %}
+    {% elif current_user.user_id != user.user_id %}
     {% else %}
-    <p>{{ user.username }} has not added any yearly goals</p>
+    <div style="display: flex; align-items: center; justify-content: center;">
+      <button id="sub-all-btn" type="button" onclick="submitAllForms()">Save Profile</button>
+    </div>
     {% endif %}
-
-    <h3>Life Motto:</h3>
-    {% if user.life_motto %}
-    <p id="motto" style="border: none; text-align: center;">"{{ user.life_motto }}"</p>
-    {% elif not user.life_motto and current_user.user_id != user.user_id %}
-    <p>{{ user.username }} has not added a life motto</p>
-    {% else %}
-    <input id="motto" type="text" name="motto" placeholder="Enter Your Life Motto...">
-    {% endif %}
-  </form>
-
-  <div class="contain">
-    <form class="box" id="info">
-      <h2>Basic Info</h2>
-      <div class="info">
-        <h3>Birthday:</h3>
-
-        {% if user.birthday %}
-        <p>{{ user.birthday }}</p>
-        {% elif not user.birthday and current_user.user_id != user.user_id %}
-        <p>Unknown</p>
-        {% else %}
-        <select id="birthday" name="birthday-month">
-          <option value="01">January</option>
-          <option value="02">February</option>
-          <option value="03">March</option>
-          <option value="04">April</option>
-          <option value="05">May</option>
-          <option value="06">June</option>
-          <option value="07">July</option>
-          <option value="08">August</option>
-          <option value="09">September</option>
-          <option value="10">October</option>
-          <option value="11">November</option>
-          <option value="12">December</option>
-        </select>
-
-        <select name="birthday-day">
-          <option value="01">01</option>
-          <option value="02">02</option>
-          <option value="03">03</option>
-          <option value="04">04</option>
-          <option value="05">05</option>
-          <option value="06">06</option>
-          <option value="07">07</option>
-          <option value="08">08</option>
-          <option value="09">09</option>
-          <option value="10">10</option>
-          <option value="11">11</option>
-          <option value="12">12</option>
-          <option value="13">13</option>
-          <option value="14">14</option>
-          <option value="15">15</option>
-          <option value="16">16</option>
-          <option value="17">17</option>
-          <option value="18">18</option>
-          <option value="19">19</option>
-          <option value="20">20</option>
-          <option value="21">21</option>
-          <option value="22">22</option>
-          <option value="23">23</option>
-          <option value="24">24</option>
-          <option value="25">25</option>
-          <option value="26">26</option>
-          <option value="27">27</option>
-          <option value="28">28</option>
-          <option value="29">29</option>
-          <option value="30">30</option>
-          <option value="31">31</option>
-        </select>
-
-        <select name="birthday-year">
-          <option value="2025">2025</option>
-          <option value="2024">2024</option>
-          <option value="2023">2023</option>
-          <option value="2022">2022</option>
-          <option value="2021">2021</option>
-          <option value="2020">2020</option>
-          <option value="2019">2019</option>
-          <option value="2018">2018</option>
-          <option value="2017">2017</option>
-          <option value="2016">2016</option>
-          <option value="2015">2015</option>
-          <option value="2014">2014</option>
-          <option value="2013">2013</option>
-          <option value="2012">2012</option>
-          <option value="2011">2011</option>
-          <option value="2010">2010</option>
-          <option value="2009">2009</option>
-          <option value="2008">2008</option>
-          <option value="2007">2007</option>
-          <option value="2006">2006</option>
-          <option value="2005">2005</option>
-          <option value="2004">2004</option>
-          <option value="2003">2003</option>
-          <option value="2002">2002</option>
-          <option value="2001">2001</option>
-          <option value="2000">2000</option>
-          <option value="1999">1999</option>
-          <option value="1998">1998</option>
-          <option value="1997">1997</option>
-          <option value="1996">1996</option>
-          <option value="1995">1995</option>
-          <option value="1994">1994</option>
-          <option value="1993">1993</option>
-          <option value="1992">1992</option>
-          <option value="1991">1991</option>
-          <option value="1990">1990</option>
-          <option value="1989">1989</option>
-          <option value="1988">1988</option>
-          <option value="1987">1987</option>
-          <option value="1986">1986</option>
-          <option value="1985">1985</option>
-          <option value="1984">1984</option>
-          <option value="1983">1983</option>
-          <option value="1982">1982</option>
-          <option value="1981">1981</option>
-          <option value="1980">1980</option>
-          <option value="1979">1979</option>
-          <option value="1978">1978</option>
-          <option value="1977">1977</option>
-          <option value="1976">1976</option>
-          <option value="1975">1975</option>
-          <option value="1974">1974</option>
-          <option value="1973">1973</option>
-          <option value="1972">1972</option>
-          <option value="1971">1971</option>
-          <option value="1970">1970</option>
-          <option value="1969">1969</option>
-          <option value="1968">1968</option>
-          <option value="1967">1967</option>
-          <option value="1966">1966</option>
-          <option value="1965">1965</option>
-          <option value="1964">1964</option>
-          <option value="1963">1963</option>
-          <option value="1962">1962</option>
-          <option value="1961">1961</option>
-          <option value="1960">1960</option>
-          <option value="1959">1959</option>
-          <option value="1958">1958</option>
-          <option value="1957">1957</option>
-          <option value="1956">1956</option>
-          <option value="1955">1955</option>
-          <option value="1954">1954</option>
-          <option value="1953">1953</option>
-          <option value="1952">1952</option>
-          <option value="1951">1951</option>
-          <option value="1950">1950</option>
-          <option value="1949">1949</option>
-          <option value="1948">1948</option>
-          <option value="1947">1947</option>
-          <option value="1946">1946</option>
-          <option value="1945">1945</option>
-          <option value="1944">1944</option>
-          <option value="1943">1943</option>
-          <option value="1942">1942</option>
-          <option value="1941">1941</option>
-          <option value="1940">1940</option>
-          <option value="1939">1939</option>
-          <option value="1938">1938</option>
-          <option value="1937">1937</option>
-          <option value="1936">1936</option>
-          <option value="1935">1935</option>
-          <option value="1934">1934</option>
-          <option value="1933">1933</option>
-          <option value="1932">1932</option>
-          <option value="1931">1931</option>
-          <option value="1930">1930</option>
-          <option value="1929">1929</option>
-          <option value="1928">1928</option>
-          <option value="1927">1927</option>
-          <option value="1926">1926</option>
-        </select>
-        {% endif %}
-      </div>
-
-      <div class="info">
-        <h3>Gender:</h3>
-        {% if user.gender %}
-          {% if user.gender == "bro" %}
-          <p>Gym Bro</p>
-          {% else %}
-          <p>Gym Girl</p>
-          {% endif %}
-        {% elif not user.gender and current_user.user_id != user.user_id %}
-        <p>Unknown</p>
-        {% else %}
-        <p><em>And Please NO BULLSHIT! </em></p>
-        <select id="gender" name="gender">
-          <option value="bro">Gym Bro</option>
-          <option value="girl">Gym Girl</option>
-        </select>
-        {% endif %}
-      </div>
-      <div class="info">
-        <h3>Relationship Status:</h3>
-        {% if user.relationship_status %}
-          {% if user.relationship_status == 'true' %}
-          <p>Single Pringle</p>
-          {% else %}
-          <p>Taken</p>
-          {% endif %}
-        {% elif not user.relationship_status and current_user.user_id != user.user_id %}
-        <p>Unknown</p>
-        {% else %}
-        <select id="relation" name="relation">
-          <option value="true">Single Pringle</option>
-          <option value="false">I AM NOT SINGLE</option>
-        </select>
-        {% endif %}
-      </div>
-      <div class="info">
-        <h3>Proteins & Supplements:</h3>
-        <ul>
-          <li>Creatine</li>
-          <li>Whey Protein</li>
-          <li>Jocko Mölk</li>
-        </ul>
-      </div>
-    </form>
-
-    <form class="box" id="stats">
-      <h2>Current Stats</h2>
-      <div class="info">
-        <h3>Max Lifts:</h3>
-        <div class="ranks first-goal">
-        {% if user.bench_now and user.squat_now %}
-          <p class="lst" style="margin-left: 25px;"><strong>Bench</strong>: <span>{{ user.bench_now }}</span></p>
-        {% elif user.bench_now and not user.squat_now %}
-          <p class="lst" style="margin-left: 25px; padding-bottom: 10px;"><strong>Bench</strong>: <span>{{ user.bench_now }}</span></p>
-        {% elif not user.bench_now and current_user.user_id != user.user_id %}
-          <p class="lst" style="margin-left: 25px;"><strong>Bench</strong>: <span>Unknown</span></p>
-        {% else %}
-          <label for="bench-now">Bench:</label>
-          <input type="text" id="bench-now" name="bench-now">
-        {% endif %}
-        </div>
-        <div class="ranks">
-        {% if user.squat_now and user.clean_now %}
-          <p class="lst" style="margin-left: 25px;"><strong>Squat</strong>: <span>{{ user.squat_now }}</span></p>
-        {% elif user.squat_now and not user.clean_now %}
-          <p class="lst" style="margin-left: 25px; padding-bottom: 10px;"><strong>Squat</strong>: <span>{{ user.squat_now }}</span></p>
-        {% elif not user.squat_now and current_user.user_id != user.user_id %}
-          <p class="lst" style="margin-left: 25px;"><strong>Squat</strong>: <span>Unknown</span></p>
-        {% else %}
-          <label for="squat-now">Squat:</label>
-          <input type="text" id="squat-now" name="squat-now">
-        {% endif %}
-        </div>
-        <div class="ranks">
-        {% if user.clean_now and user.deadlift_now %}
-          <p class="lst" style="margin-left: 25px;"><strong>Clean</strong>: <span>{{ user.clean_now }}</span></p>
-        {% elif user.clean_now and not user.deadlift_now %}
-          <p class="lst" style="margin-left: 25px; padding-bottom: 10px;"><strong>Clean</strong>: <span>{{ user.clean_now }}</span></p>
-        {% elif not user.clean_now and current_user.user_id != user.user_id %}
-          <p class="lst" style="margin-left: 25px;"><strong>Clean</strong>: <span>Unknown</span></p>
-        {% else %}
-          <label for="clean-now">Clean:</label>
-          <input type="text" id="clean-now" name="clean-now">
-        {% endif %}
-        </div>
-        <div class="ranks">
-        {% if user.deadlift_now %}
-          <p style="margin-left: 25px;"><strong>Deadlift</strong>: <span>{{ user.deadlift_now }}</span></p>
-        {% elif not user.deadlift_now and current_user.user_id != user.user_id %}
-          <p style="margin-left: 25px;"><strong>Deadlift</strong>: <span>Unknown</span></p>
-        {% else %}
-          <label for="deadlift-now">Deadlift:</label>
-          <input type="text" id="deadlift-now" name="deadlift-now">
-        {% endif %}
-        </div>
-      </div>
-      <div class="info">
-        <h3>Other Sports:</h3>
-        <p class="lst">Wrestling</p>
-        <p class="lst">Boxing</p>
-        <p>Jiu Jitsu</p>
-      </div>
-      <div class="info">
-        <h3>Natty Status:</h3>
-        {% if user.natty_status %}
-          {% if user.natty_status == 'true' %}
-          <p>Natty</p>
-          {% else %}
-          <p>NOT Natty</p>
-          {% endif %}
-        {% elif not user.natty_status and current_user.user_id != user.user_id %}
-        <p>Unknown</p>
-        {% else %}
-        <select id="natty" name="natty">
-          <option value="true">Positive (I am Natty)</option>
-          <option value="false">Negative (I am not Natty)</option>
-        </select>
-        {% endif %}
-      </div>
-    </form>
-
-    <form class="box" id="goals">
-      <h2>Future Goals</h2>
-      <div class="info">
-        <h3>Max Lifts by End of Year:</h3>
-        <div class="ranks first-goal">
-        {% if user.bench_future and user.squat_future %}
-          <p class="lst"><strong>Bench</strong>: <span>{{ user.bench_future }}</span></p>
-        {% elif user.bench_future and not user.squat_future %}
-          <p class="lst" style="padding-bottom: 10px;"><strong>Bench</strong>: <span>{{ user.bench_future }}</span></p>
-        {% elif not user.bench_future and current_user.user_id != user.user_id %}
-          <p class="lst"><strong>Bench</strong>: <span>Unknown</span></p>
-        {% else %}
-          <label for="bench-future">Bench:</label>
-          <input type="text" id="bench-future" name="bench-future">
-        {% endif %}
-        </div>
-        <div class="ranks">
-        {% if user.squat_future and user.clean_future %}
-          <p class="lst"><strong>Squat</strong>: <span>{{ user.squat_future }}</span></p>
-        {% elif user.squat_future and not user.clean_future %}
-          <p class="lst" style="padding-bottom: 10px;"><strong>Squat</strong>: <span>{{ user.squat_future }}</span></p>
-        {% elif not user.squat_future and current_user.user_id != user.user_id %}
-          <p class="lst"><strong>Squat</strong>: <span>Unknown</span></p>
-        {% else %}
-          <label for="squat-future">Squat:</label>
-          <input type="text" id="squat-future" name="squat-future">
-        {% endif %}
-        </div>
-        <div class="ranks">
-        {% if user.clean_future and user.deadlift_future %}
-          <p class="lst"><strong>Clean</strong>: <span>{{ user.clean_future }}</span></p>
-        {% elif user.clean_future and not user.deadlift_future %}
-          <p class="lst" style="padding-bottom: 10px;"><strong>Clean</strong>: <span>{{ user.clean_future }}</span></p>
-        {% elif not user.clean_future and current_user.user_id != user.user_id %}
-          <p class="lst"><strong>Clean</strong>: <span>Unknown</span></p>
-        {% else %}
-          <label for="clean-future">Clean:</label>
-          <input type="text" id="clean-future" name="clean-future">
-        {% endif %}
-        </div>
-        <div class="ranks">
-        {% if user.deadlift_future %}
-          <p><strong>Deadlift</strong>: <span>{{ user.deadlift_future }}</span></p>
-        {% elif not user.deadlift_future and current_user.user_id != user.user_id %}
-          <p><strong>Deadlift</strong>: <span>Unknown</span></p>
-        {% else %}
-          <label for="deadlift-future">Deadlift:</label>
-          <input type="text" id="deadlift-future" name="deadlift-future">
-        {% endif %}
-        </div>
-      </div>
-      <div class="info">
-        <h3>Sports:</h3>
-        <p class="lst">Wrestle in College Division I</p>
-        <p class="lst">Wrestle in State Tournament 2025</p>
-        <p>Purple Belt in Jiu Jitsu 2025</p>
-      </div>
-      <div class="info">
-        <h3>Dream Physique:</h3>
-        {% if user.dream_build %}
-        <p>{{ user.dream_build }}</p>
-        {% elif not user.dream_build and current_user.user_id != user.user_id %}
-        <p>{{ user.username }} had not added a dream physique</p>
-        {% else %}
-        <input type="text" id="dream-build" name="dream-build" placeholder="Briefly Describe Your Vision...">
-        {% endif %}
-      </div>
-    </form>
+    -->
+    <script src="{{ url_for('static', filename='profile.js') }}"></script>
   </div>
-
-  {% if user.dream_build and user.life_motto and user.bio and user.birthday and user.gender and user.relationship_status and user.natty_status and user.bench_now and user.squat_now and user.clean_now and user.deadlift_now and user.bench_future and user.squat_future and user.clean_future and user.deadlift_future %}
-  {% elif current_user.user_id != user.user_id %}
-  {% else %}
-  <div style="display: flex; align-items: center; justify-content: center;">
-    <button id="sub-all-btn" type="button" onclick="submitAllForms()">Save Profile</button>
-  </div>
-  {% endif %}
-  <script src="{{ url_for('static', filename='profile.js') }}"
 {% endblock %}
 
 {% block foot %}{% endblock %}
