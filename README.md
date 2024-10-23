@@ -7,7 +7,7 @@ This is a social media app, joining gym goers from around the world to celebrate
 ### Stack:
 
 | Type  | Structure | Style | Elements   | Routes  | Database |
-| ----- | --------- | ----- | ---------- | ------- | -------- |
+| :---: | :-------: | :---: | :--------: | :-----: | :------: |
 | Flask | HTML5     | CSS3  | JavaScript | Python3 | MYSQL    |
 
 ### Main Features:
