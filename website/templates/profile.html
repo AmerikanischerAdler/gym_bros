@@ -248,7 +248,53 @@
       </div>
 
       <div class="prof-sec" id="badges">
+        <h2>Badges Awarded</h2>
+        <div class="ver-cont">
+          {% for badge in badges %}
+          <div class="hor-cont badge-key">
+            {% if badge == "natty" %}
+              <svg width="26" height="26" viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg"><g fill="currentColor"><path fill-rule="evenodd" d="M6.207 14.571a2 2 0 0 0 0 2.829l1.414 1.414a2 2 0 0 0 2.829 0l6.97-6.971a2 2 0 0 0 .586-1.46l-.032-1.407a2 2 0 0 0-1.978-1.955l-1.375-.014a2 2 0 0 0-1.435.585zm10.507-3.436l-6.971 6.972a1 1 0 0 1-1.415 0l-1.414-1.415a1 1 0 0 1 0-1.414L13.893 8.3a1 1 0 0 1 .718-.293l1.374.014a1 1 0 0 1 .99.978l.031 1.407a1 1 0 0 1-.292.73" clip-rule="evenodd"/><path d="M12.52 15.107a.5.5 0 1 1-.706.707l-1.415-1.415a.5.5 0 1 1 .708-.707zm-5.956 5.657a.5.5 0 0 1-.707.707l-2.529-2.529a.5.5 0 1 1 .708-.707zm3.79-.118a.5.5 0 1 1-.708.707l-6-6a.5.5 0 1 1 .708-.707zm4.288-7.661a.5.5 0 0 1-.707.707l-1.414-1.414a.5.5 0 0 1 .707-.707z"/><path d="m5 20.457l-.707-.707l2.457-2.457l.707.707zM19.854 4.354a.5.5 0 1 1 .707.707l-3 3a.5.5 0 1 1-.707-.707zM4.15 4.878a.514.514 0 0 1 .728-.727l16.971 16.971a.514.514 0 0 1-.727.727z"/><path fill-rule="evenodd" d="M13 24.5c6.351 0 11.5-5.149 11.5-11.5S19.351 1.5 13 1.5S1.5 6.649 1.5 13S6.649 24.5 13 24.5m0 1c6.904 0 12.5-5.596 12.5-12.5S19.904.5 13 .5S.5 6.096.5 13S6.096 25.5 13 25.5" clip-rule="evenodd"/></g></svg>
+              <h4>= Registered Natty</h4>
+          </div>
+          <p>Awarded only to those who have selected "natty" in profile. This
+          does not necessarily indicate that a user is natural (not taken
+          steroids), but a user claims this badge by claiming to be natty.</p>
+          <div class="hor-cont badge-key">
 
+            {% elif badge == "bom" %}
+              <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M4 16v4h4v2H2v-6zm18 0v6h-6v-2h4v-4zM7.5 7a4.5 4.5 0 0 0 3.5 4.389V17h2l.001-5.612A4.5 4.5 0 0 0 16.5 7h2a6.5 6.5 0 0 1-3.499 5.767L15 19H9v-6.232A6.5 6.5 0 0 1 5.5 7zM12 5a2.5 2.5 0 1 1 0 5a2.5 2.5 0 0 1 0-5M8 2v2l-4-.001V8H2V2zm14 0v6h-2V4h-4V2z"/></svg>
+              <h4>= Verified Body of the Month Winner</h4>
+          </div>
+          <p>This badge is earned when a user has been voted by others in his or
+          her league to represent the entire Gym Bros platform as Body of the
+          Month. This means that the winner's top ranked photo will be inserted
+          into the mini gallery on the welcome page for new users.</p>
+          <div class="hor-cont badge-key">
+
+            {% elif badge == "influencer" %}
+              <!-- add vertical dumbbell in shape of I --> 
+              <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M20.57 14.86L22 13.43L20.57 12L17 15.57L8.43 7L12 3.43L10.57 2L9.14 3.43L7.71 2L5.57 4.14L4.14 2.71L2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57L3.43 12L7 8.43L15.57 17L12 20.57L13.43 22l1.43-1.43L16.29 22l2.14-2.14l1.43 1.43l1.43-1.43l-1.43-1.43L22 16.29z"/></svg>
+              <h4>= Influencer Status (1000+ followers)</h4>
+          </div>
+          <p>The Influencer badge is awarded to users who have accumulated over
+          1000 followers. With this level of popularity comes many benefits,
+          including greater likelihood of being voted in for Body of the Month
+          and the chance for free Gym Bro drip.</p>
+          <div class="hor-cont badge-key">
+
+            {% elif badge == "new" %}
+              <svg width="36" height="36" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="m34.59 23l-4.08-5l4-4.9a1.82 1.82 0 0 0 .23-1.94a1.93 1.93 0 0 0-1.8-1.16h-31A1.91 1.91 0 0 0 0 11.88v12.25A1.91 1.91 0 0 0 1.94 26h31.11a1.93 1.93 0 0 0 1.77-1.09a1.82 1.82 0 0 0-.23-1.91M2 24V12h30.78l-4.84 5.93L32.85 24Z" class="clr-i-outline clr-i-outline-path-1"/><path fill="currentColor" d="M9.39 19.35L6.13 15H5v6.18h1.13v-4.34l3.26 4.34h1.12V15H9.39z" class="clr-i-outline clr-i-outline-path-2"/><path fill="currentColor" d="M12.18 21.18h4.66v-1.02h-3.53v-1.61h3.19v-1.03h-3.19v-1.49h3.53V15h-4.66z" class="clr-i-outline clr-i-outline-path-3"/><path fill="currentColor" d="M24.52 19.43L23.06 15h-1.22l-1.47 4.43L19.05 15h-1.23l1.96 6.18h1.11l1.56-4.59L24 21.18h1.13L27.08 15h-1.23z" class="clr-i-outline clr-i-outline-path-4"/><path fill="none" d="M0 0h36v36H0z"/></svg>
+              <h4>= New to the Gym</h4>
+          </div>
+          <p>This badge goes to those who are in their first year training in
+          the gym. The first few years of a gym rat's life are the most
+          critical. The habits formed at this stage will be carried into life
+          outside of the gym.</p>
+          <div class="hor-cont badge-key">
+            {% endif %}
+          </div>
+          {% endfor %}
+        </div>
       </div>
 
       <div class="prof-sec" id="photos">

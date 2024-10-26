@@ -304,7 +304,19 @@ h1 {
 /* Badges */
 
 #badges {
-    height: 300px;
+    padding: 20px 0px;
+}
+
+#badges > h2 {
+    text-align: center;
+}
+
+.badge-key {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 1vw;
 }
 
 /* Photos */

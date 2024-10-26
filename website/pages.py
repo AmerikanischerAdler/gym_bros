@@ -63,7 +63,9 @@ def profile(username):
         # To add posts to Profile page
         #posts = user.posts
 
-    return render_template('profile.html', user=user)#, posts=posts)
+    badges = ["natty", "influencer", "five", "bom", "new"]
+
+    return render_template('profile.html', user=user, badges=badges)#, posts=posts)
 
 @pages.route('/update-profile', methods=["POST"])
 @login_required
