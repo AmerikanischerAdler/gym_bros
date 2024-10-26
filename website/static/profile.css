@@ -92,6 +92,8 @@ h1 {
     position: relative;
     box-sizing: border-box;
     padding: 10px 0px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    border-radius: 15px;
 }
 
 /* Essentials */
@@ -100,8 +102,6 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
-    border-radius: 15px;
 }
 
 .outer-ess {
@@ -160,7 +160,7 @@ h1 {
     justify-content: center;
 }
 
-.ver-cont h4 {
+.ver-cont h4:not(#mode-weight) {
     margin: 0;
 }
 
@@ -221,21 +221,95 @@ h1 {
 /* Goals */
 
 #goals {
-    border: 2px solid #000;
-    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#goals h2 {
+    text-align: center;
+}
+
+#goals h3 {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.tri {
+    height: 30px;
+    width: 90%;
+    background-color: transparent;
+    border: none;
+    display: flex;
+    align-items: left;
+    gap: 0;
+}
+
+.prog-bar-contain {
+    height: 15px;
+    width: 100%;
+    background-color: #ccc;
+    border: none;
+    padding: 2px;
+    display: flex;
+    align-items: left;
+    gap: 0;
+}
+
+.triangle-cont {
+    margin: 0;
+    padding: 0;
+    height: 0;
+    width: 0;
+    border-bottom: 19px solid #ccc;
+    border-right: 19px solid transparent;
+}
+
+.prog-bar {
+    height: 15px;
+    width: 1%;
+    background-color: #9D0000;
+    border: none;
+}
+
+.triangle {
+    margin: 0;
+    padding: 0;
+    height: 0;
+    width: 0;
+    border-bottom: 15px solid #9D0000;
+    border-right: 15px solid transparent;
+}
+
+.chart-rep {
+    height: 100px;
+    width: 90%;
+    background-color: #ccc;
+    margin-bottom: 10px;
+}
+
+#goals .outer-ess h4 span {
+    color: #BA9593;
+}
+
+#mode-weight {
+    margin-right: 35%;
+    margin-top: 0px;
+}
+
+#goals .ver-cont h5 span {
+    color: #BA9593;
 }
 
 /* Badges */
 
 #badges {
-    border: 2px solid #000;
     height: 300px;
 }
 
 /* Photos */
 
 #photos {
-    border: 2px solid #000;
     height: 300px;
 }
 
@@ -257,22 +331,6 @@ h1 {
     height: auto;
     width: 200px;
     
-}
-
-.prog-bar-contain {
-    height: 30px;
-    width: 70%;
-    background-color: #ccc;
-    border: none;
-    border-radius: 5px;
-}
-
-.prog-bar {
-    height: 30px;
-    width: 1%;
-    background-color: #9D0000;
-    border: none;
-    border-radius: 5px;
 }
 
 .contain {

@@ -147,7 +147,104 @@
       </div>
 
       <div class="prof-sec" id="goals">
+        <div class="outer-ess">
+          <h2>Strength</h2>
+          {% if user.bench_now and user.bench_future or user.squat_now and user.squat_future or user.clean_now and user.clean_future or user.deadlift_now and user.deadlift_future %}
+          <div class="ver-cont">
+            <h3>Bench 1RM</h3>
+            {% if user.bench_now and user.bench_future %}
+            <div class="tri">
+              <div class="prog-bar-contain">
+                <div class="prog-bar" id="prog-bench" data-prog="{{ user.bench_now }}" data-goal="{{ user.bench_future }}"></div>
+                <div class="triangle"></div>
+              </div>
+              <div class="triangle-cont"></div>
+            </div>
+            {% endif %}
+          </div>
+          <div class="ver-cont">
+            <h3>Squat 1RM</h3>
+            {% if user.squat_now and user.squat_future %}
+            <div class="tri">
+              <div class="prog-bar-contain">
+                <div class="prog-bar" id="prog-squat" data-prog="{{ user.squat_now }}" data-goal="{{ user.squat_future }}"></div>
+                <div class="triangle"></div>
+              </div>
+              <div class="triangle-cont"></div>
+            </div>
+            {% endif %}
+          </div>
+          <div class="ver-cont">
+            <h3>Clean 1RM</h3>
+            {% if user.clean_now and user.clean_future %}
+            <div class="tri">
+              <div class="prog-bar-contain">
+                <div class="prog-bar" id="prog-clean" data-prog="{{ user.clean_now }}" data-goal="{{ user.clean_future }}"></div>
+                <div class="triangle"></div>
+              </div>
+              <div class="triangle-cont"></div>
+            </div>
+            {% endif %}
+          </div>
+          <div class="ver-cont">
+            <h3>Deadlift 1RM</h3>
+            {% if user.deadlift_now and user.deadlift_future %}
+            <div class="tri">
+              <div class="prog-bar-contain">
+                <div class="prog-bar" id="prog-deadlift" data-prog="{{ user.deadlift_now }}" data-goal="{{ user.deadlift_future }}"></div>
+                <div class="triangle"></div>
+              </div>
+              <div class="triangle-cont"></div>
+            </div>
+            {% endif %}
+          </div>
+          {% else %}
+          <p>{{ user.username }} has not added any strength goals</p>
+          {% endif %}
+        </div>
 
+        <div class="inner-ess">
+          <div class="ver-cont">
+            <h2>Overall</h2>
+            <div class="tri">
+              <div class="prog-bar-contain">
+                <!-- Add summed goal progress here -->
+                <div class="prog-bar" id="prog-deadlift" data-prog="90" data-goal="100"></div>
+                <div class="triangle"></div>
+              </div>
+              <div class="triangle-cont"></div>
+            </div>
+
+            <div class="ver-cont">
+              <h3>Overall Strength</h3>
+              <div class="chart-rep"></div>
+            </div>
+            <div class="ver-cont">
+              <h3>Overall Weight</h3>
+              <div class="chart-rep"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="outer-ess">
+          <div class="ver-cont">
+            <h2>Weight</h2>
+            <h4 id="mode-weight">I am <span>Bulking</span></h4>
+            <div class="tri">
+              <div class="prog-bar-contain">
+                <!-- Add summed goal progress here -->
+                <div class="prog-bar" id="prog-deadlift" data-prog="145" data-goal="165"></div>
+                <div class="triangle"></div>
+              </div>
+              <div class="triangle-cont"></div>
+            </div>
+            <div class="ver-cont">
+              <h5>Start Weight: <span>125</span></h5>
+              <h5>Current Weight: <span>145</span></h5>
+              <h5>Goal Weight: <span>165</span></h5>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="prof-sec" id="badges">
