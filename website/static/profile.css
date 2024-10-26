@@ -94,21 +94,26 @@ h1 {
 /* Essentials */
 
 #essentials {
-    border: 2px solid #000;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    border-radius: 15px;
 }
 
 .outer-ess {
     height: 320px;
     width: 25%;
-    border: 2px solid #000;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    border-radius: 15px;
+
 }
 
 .inner-ess {
     width: 40%;
-    border: 2px solid #000;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    border-radius: 15px;
+
 }
 
 #basic-ess {
