@@ -85,26 +85,153 @@ h1 {
 }
 
 .prof-sec {
-    height: 300px;
     width: 80%;
     position: relative;
+    box-sizing: border-box;
+    padding: 10px 0px;
 }
+
+/* Essentials */
 
 #essentials {
     border: 2px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 }
+
+.outer-ess {
+    height: 320px;
+    width: 25%;
+    border: 2px solid #000;
+}
+
+.inner-ess {
+    width: 40%;
+    border: 2px solid #000;
+}
+
+#basic-ess {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#basic-ess img {
+    width: 100%;
+    clip-path: circle(50%);
+}
+
+.hor-cont {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    overflow-wrap: break-word;
+}
+
+.hor-cont h2 {
+    max-width: 90%;
+    margin: 0;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.hor-cont h4 span {
+    color: #BA9593;
+}
+
+.ver-cont {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.ver-cont h4 {
+    margin: 0;
+}
+
+.ver-cont p {
+    width: 90%;
+}
+
+#mtto {
+    text-align: center;
+}
+
+.follow-friend {
+    height: 50px;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 25px;
+}
+
+.follow-friend span {
+    color: #BA9593;
+}
+
+.f-count {
+    margin-left: -35px;
+}
+
+.add-btn {
+    width: 30px;
+    padding: 0px 5px;
+}
+
+.add-btn:hover {
+    cursor: pointer;
+}
+
+#social-ess {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-link {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 1vw;
+    margin-top: -15px;
+}
+
+.social-link svg {
+    width: 15px;
+}
+
+/* Goals */
 
 #goals {
     border: 2px solid #000;
+    height: 300px;
 }
+
+/* Badges */
 
 #badges {
     border: 2px solid #000;
+    height: 300px;
 }
+
+/* Photos */
 
 #photos {
     border: 2px solid #000;
+    height: 300px;
 }
+
+/* End */
 
 #prof-pic {
     width: 100%;
@@ -237,41 +364,6 @@ h1 {
     outline: none;
 }
 
-.follow-friend {
-    height: 50px;
-    width: 40%;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    margin-bottom: 25px;
-}
-
-.f-count {
-    margin-left: -35px;
-}
-
-.add-btn {
-    width: 30px;
-}
-
-.add-btn:hover {
-    cursor: pointer;
-}
-
-.social-add {
-    position: relative;      
-    display: inline-block;      
-    cursor: pointer;
-}
-
-.social-add p {
-    margin-left: -20px;
-}
-
-#add-social {
-    height: 25px;
-}
-
 .dropdown-content {
     display: none;
     position: absolute;
@@ -341,28 +433,5 @@ h1 {
 
 #sub-all-btn:hover {
     cursor: pointer;
-}
-
-.social-profile {
-    display: inline-flex;
-    align-items: center;
-}
-
-.social-input {
-    display: none;
-    align-items: center;
-    padding: 5px;
-    gap: 5px;
-}
-
-.social-input input {
-    font-size: 15px;
-    border: 0.5px solid #000;
-    border-radius: 5px;
-    outline: none;
-}
-
-.social-input a svg {
-    width: 15px;
 }
 
