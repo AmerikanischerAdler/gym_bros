@@ -45,6 +45,8 @@ h1 {
     box-sizing: border-box;
     align-items: center;
     justify-content: space-between;
+    color: #000;
+    text-decoration: none;
 }
 
 .sidebar-opt svg {
@@ -94,6 +96,7 @@ h1 {
     padding: 10px 0px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
     border-radius: 15px;
+    scroll-margin-top: 75px;
 }
 
 /* Essentials */
