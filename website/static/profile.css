@@ -321,8 +321,114 @@ h1 {
 
 /* Photos */
 
-#photos {
+#pinned {
+    margin-right: 70%;
+}
+
+.ver-cont-img {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5vh;
+}
+
+.ver-cont-img > h3 {
+    margin-bottom: -15px;
+}
+
+.img-cont-cont {
+    height: 400px;
+    overflow-y: scroll;
+}
+
+.img-cont {
+    width: 90%;
+    max-width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 2vw;
+    padding: 10px;
+}
+
+.img {
+    width: 30%;
+}
+
+#empty-hold {
+    width: 90px;
+    height: 0;
+}
+
+.is_pinned .pinned-a {
+    clip-path: circle(50%);
+    background-color: #9D0000;
+    color: #fff;
+}
+
+.is_pinned .pinned-a:hover {
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.prof-pic-btn-cont {
+    height: 50px;
+    width: 30%;
+    z-index: 150;
+    margin-top: -55px;
+    margin-bottom: 20px;
+}
+
+.prof-pic-btn-cont a {
+    height: 100%;
+    width: 12%;
+    padding: 0px 10px;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.prof-pic-btn-cont a:hover:not(#empty-hold, .is_pinned .pinned-a) {
+    clip-path: circle(50%);
+    background-color: #9D0000;
+    color: #fff;
+    cursor: pointer;
+}
+
+.prof-pic-btn-cont a svg {
+    width: 100%;
+    color: #fff;
+}
+
+#smalled {
+    width: 20px;
+}
+
+.just-line {
+    height: 0;
+    width: 90%;
+    border: 2px solid #000;
+}
+
+.img-cont-cont div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.img-cont-cont div img {
+    height: auto;
+    width: 100%;
+}
+
+.img-rep {
     height: 300px;
+    width: 150px;
+    background-color: #ccc;
 }
 
 /* End */

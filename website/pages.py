@@ -63,9 +63,19 @@ def profile(username):
         # To add posts to Profile page
         #posts = user.posts
 
+    # Just for Test
+    pictures = ["man5.jpg", "man2.jpg", "man3.jpg", "girl4.jpg", "girl8.jpg",
+                "girl3.jpg", "man25.jpg", "girl.jpeg", "man24.jpg", "man4.jpg",
+                "man7.jpg", "man6.jpg", "man1.jpg", "man8.jpg", "man17.jpg",
+                "bro3.avif", "bro2.avif", "bro1.avif", "bro5.jpeg",
+                "nerd.jpeg", "bro4.jpeg"]
+
+    ppictures = ["man5.jpg", "man2.jpg", "man3.jpg", "girl4.jpg", "girl8.jpg",
+                "girl3.jpg", "man25.jpg", "girl.jpeg", "man24.jpg"]
+
     badges = ["natty", "influencer", "five", "bom", "new"]
 
-    return render_template('profile.html', user=user, badges=badges)#, posts=posts)
+    return render_template('profile.html', user=user, badges=badges, pictures=pictures, ppictures=ppictures)#, posts=posts)
 
 @pages.route('/update-profile', methods=["POST"])
 @login_required
