@@ -69,7 +69,15 @@
           <div class="hor-cont">
             <h4>Age: <span>25</span></h4>
             <h4>Birthday: <span>July 13th</span></h4>
-            <h4>Gender: <span>Gym Bro</span></h4>
+            {% if user.gender %}
+              {% if user.gender == "bro" %}
+                <h4>Gender: <span>Gym Bro</span></h4>
+              {% else %}
+                <h4>Gender: <span>Gym Girl</span></h4>
+              {% endif %}
+            {% else %}
+                <h4>Gender: <span>Unknown</span></h4>
+            {% endif %}
           </div>
           <div class="ver-cont">
             <h4>About Me</h4>
