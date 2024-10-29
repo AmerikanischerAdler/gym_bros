@@ -171,6 +171,11 @@ h1 {
     width: 90%;
 }
 
+#bio-text {
+    height: 125px;
+    overflow-y: scroll;
+}
+
 #mtto {
     text-align: center;
 }

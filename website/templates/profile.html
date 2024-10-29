@@ -81,7 +81,11 @@
           </div>
           <div class="ver-cont">
             <h4>About Me</h4>
-            <p>Fugiat pariatur mollit aute culpa pariatur non aliquip aliquip dolore anim cupidatat duis non labore veniam. Officia consequat voluptate occaecat ullamco anim id id eu ut. Aliquip laboris magna culpa ex ullamco id cillum incididunt aute aliquip aliqua in id nisi. Culpa labore nulla nisi sunt dolore est.</p>
+            {% if user.bio %}
+            <p id="bio-text">{{ user.bio }}</p>
+            {% else %}
+            <p id="bio-text">{{ user.username }} has not yet entered a bio.</p>
+            {% endif %}
           </div>
           <div class="ver-cont">
             <div class="ver-cont">
