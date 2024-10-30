@@ -90,7 +90,11 @@
           <div class="ver-cont">
             <div class="ver-cont">
               <h4>Life Motto</h4>
+              {% if user.life_motto %}
+              <p id="mtto">{{ user.life_motto }}</p>
+              {% else %}
               <p id="mtto">What we do in life echoes in eternity</p>
+              {% endif %}
             </div>
 
             <div class="follow-friend">

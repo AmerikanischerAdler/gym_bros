@@ -177,7 +177,9 @@ h1 {
 }
 
 #mtto {
+    height: 35px;
     text-align: center;
+    overflow-y: scroll;
 }
 
 .follow-friend {
