@@ -225,11 +225,39 @@
             <div class="tri">
               <div class="prog-bar-contain">
                 <!-- Add summed goal progress here -->
-                <div class="prog-bar" id="prog-deadlift" data-prog="90" data-goal="100"></div>
+                {% set prog = 0 %}
+                {% if user.bench_now %}
+                  {% set prog = prog + user.bench_now %}
+                {% endif %}
+                {% if user.squat_now %}
+                  {% set prog = prog + user.squat_now %}
+                {% endif %}
+                {% if user.clean_now %}
+                  {% set prog = prog + user.clean_now %}
+                {% endif %}
+                {% if user.deadlift_now %}
+                  {% set prog = prog + user.deadlift_now %}
+                {% endif %}
+
+                {% set goal = 0 %}
+                {% if user.bench_future %}
+                  {% set goal = goal + user.bench_future %}
+                {% endif %}
+                {% if user.squat_future %}
+                  {% set goal = goal + user.squat_future %}
+                {% endif %}
+                {% if user.clean_future %}
+                  {% set goal = goal + user.clean_future %}
+                {% endif %}
+                {% if user.deadlift_future %}
+                  {% set goal = goal + user.deadlift_future %}
+                {% endif %}
+                <div class="prog-bar" id="prog-deadlift" data-prog="{{ prog }}" data-goal="{{ goal }}"></div>
                 <div class="triangle"></div>
               </div>
               <div class="triangle-cont"></div>
             </div>
+            <p>{{ prog }}</p>
 
             <div class="ver-cont">
               <h3>Overall Strength</h3>
