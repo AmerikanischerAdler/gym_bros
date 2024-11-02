@@ -58,9 +58,8 @@
       <div class="prof-sec" id="essentials">
         <div class="outer-ess" id="basic-ess">
           <img src="{{ url_for('static', filename='./images/face.jpg') }}">
-          <div class="hor-cont">
-            <h2>FName</h3>
-            <h2>LastName</h3>
+          <div class="ver-cont">
+            <h2>{{ user.name }}</h2>
           </div>
           <h3>{{ user.username }}</h2>
         </div>
@@ -75,16 +74,23 @@
               {% else %}
                 <h4>Gender: <span>Gym Girl</span></h4>
               {% endif %}
-            {% else %}
+            {% elif not user.gender and current_user.user_id != user.user_id %}
                 <h4>Gender: <span>Unknown</span></h4>
+            {% else %}
+                <select id="gender" name="gender">
+                  <option value="bro">Gym Bro</option>
+                  <option value="girl">Gym Girl</option>
+                </select>
             {% endif %}
           </div>
           <div class="ver-cont">
             <h4>About Me</h4>
             {% if user.bio %}
             <p id="bio-text">{{ user.bio }}</p>
+            {% elif not user.bio and current_user.user_id != user.user_id %}
+            <p id="bio-text">{{ user.username }} has not yet added a bio.</p>
             {% else %}
-            <p id="bio-text">{{ user.username }} has not yet entered a bio.</p>
+            <textarea id="bio" name="bio" placeholder="Enter a Brief Description of Yourself..."></textarea>
             {% endif %}
           </div>
           <div class="ver-cont">
@@ -92,8 +98,10 @@
               <h4>Life Motto</h4>
               {% if user.life_motto %}
               <p id="mtto">{{ user.life_motto }}</p>
+              {% elif not user.life_motto and current_user.user_id != user.user_id %}
+              <p>{{ user.username }} has not yet added a life motto</p>
               {% else %}
-              <p id="mtto">What we do in life echoes in eternity</p>
+              <input id="motto" type="text" name="motto" placeholder="Enter Your Life Motto...">
               {% endif %}
             </div>
 
@@ -224,7 +232,7 @@
             <h2>Overall</h2>
             <div class="tri">
               <div class="prog-bar-contain">
-                <!-- Add summed goal progress here -->
+                <!-- Add goal progress here -->
                 {% set prog = 0 %}
                 {% if user.bench_now %}
                   {% set prog = prog + user.bench_now %}
@@ -257,7 +265,6 @@
               </div>
               <div class="triangle-cont"></div>
             </div>
-            <p>{{ prog }}</p>
 
             <div class="ver-cont">
               <h3>Overall Strength</h3>
@@ -404,62 +411,6 @@
     </div>
 
     <!--
-    <form id="prof-pic">
-      <img id="face" src="{{ url_for('static', filename='./images/face.jpg') }}">
-      <h2>{{ user.name }}</h2>
-      <h3>Bio:</h3>
-      {% if user.bio %}
-      <p id="bio" style="border: none; text-align: center;">{{ user.bio }}</p>
-      {% elif not user.bio and current_user.user_id != user.user_id %}
-      <p style="margin-bottom: 45px;">{{ user.username }} has not added a bio</p>
-      {% else %}
-      <textarea id="bio" name="bio" placeholder="Enter a Brief Description of Yourself..."></textarea>
-      {% endif %}
-
-      <h3>Yearly Goals</h3>
-      {% if user.bench_now and user.bench_future or user.squat_now and user.squat_future or user.clean_now and user.clean_future or user.deadlift_now and user.deadlift_future %}
-      {% if user.bench_now and user.bench_future %}
-      <h4>Bench Progress</h4>
-      <div class="prog-bar-contain">
-        <div class="prog-bar" id="prog-bench" data-prog="{{ user.bench_now }}" data-goal="{{ user.bench_future }}"></div>
-      </div>
-      {% endif %}
-      {% if user.squat_now and user.squat_future %}
-      <h4>Squat Progress</h4>
-      <div class="prog-bar-contain">
-        <div class="prog-bar" id="prog-squat" data-prog="{{ user.squat_now }}" data-goal="{{ user.squat_future }}"></div>
-      </div>
-      {% endif %}
-      {% if user.clean_now and user.clean_future %}
-      <h4>Clean Progress</h4>
-      <div class="prog-bar-contain">
-        <div class="prog-bar" id="prog-clean" data-prog="{{ user.clean_now }}" data-goal="{{ user.clean_future }}"></div>
-      </div>
-      {% endif %}
-      {% if user.deadlift_now and user.deadlift_future %}
-      <h4>Deadlift Progress</h4>
-      <div class="prog-bar-contain">
-        <div class="prog-bar" id="prog-deadlift" data-prog="{{ user.deadlift_now }}" data-goal="{{ user.deadlift_future }}"></div>
-      </div>
-      {% endif %}
-      {% else %}
-      <p>{{ user.username }} has not added any yearly goals</p>
-      {% endif %}
-
-      <h3>Life Motto:</h3>
-      {% if user.life_motto %}
-      <p id="motto" style="border: none; text-align: center;">"{{ user.life_motto }}"</p>
-      {% elif not user.life_motto and current_user.user_id != user.user_id %}
-      <p>{{ user.username }} has not added a life motto</p>
-      {% else %}
-      <input id="motto" type="text" name="motto" placeholder="Enter Your Life Motto...">
-      {% endif %}
-    </form>
-
-    <div class="contain">
-      <form class="box" id="info">
-        <h2>Basic Info</h2>
-        <div class="info">
           <h3>Birthday:</h3>
 
           {% if user.birthday %}
@@ -621,24 +572,6 @@
           {% endif %}
         </div>
 
-        <div class="info">
-          <h3>Gender:</h3>
-          {% if user.gender %}
-            {% if user.gender == "bro" %}
-            <p>Gym Bro</p>
-            {% else %}
-            <p>Gym Girl</p>
-            {% endif %}
-          {% elif not user.gender and current_user.user_id != user.user_id %}
-          <p>Unknown</p>
-          {% else %}
-          <p><em>And Please NO BULLSHIT! </em></p>
-          <select id="gender" name="gender">
-            <option value="bro">Gym Bro</option>
-            <option value="girl">Gym Girl</option>
-          </select>
-          {% endif %}
-        </div>
         <div class="info">
           <h3>Relationship Status:</h3>
           {% if user.relationship_status %}
