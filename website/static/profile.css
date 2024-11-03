@@ -1,8 +1,10 @@
 #title {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     padding-bottom: 25px;
+    margin-left: 25px;
 }
 
 h1 {
@@ -12,6 +14,33 @@ h1 {
     color: #9D0000;
     margin-top: 0;
     margin-bottom: 15px;
+}
+
+.edit-btn {
+    height: 35px;
+    width: 35px;
+    padding: 3px;
+    margin-left: 10px;
+    margin-bottom: -85px;
+    background-color: #BA9593;
+    clip-path: circle(50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-btn a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-btn svg {
+    width: 70%;
+}
+
+.edit-btn:hover {
+    cursor: pointer;
 }
 
 .profile-contain {
@@ -80,7 +109,7 @@ h1 {
 
 .prof-sections {
     width: 75%;
-    margin-left: 25px;
+    margin-left: 45px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -132,6 +161,10 @@ h1 {
 #basic-ess img {
     width: 100%;
     clip-path: circle(50%);
+}
+
+#basic-ess h2 {
+    margin-bottom: 0;
 }
 
 .hor-cont {
