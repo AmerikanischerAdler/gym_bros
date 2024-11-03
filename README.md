@@ -2,7 +2,15 @@
 
 ## Description
 
-This is a social media app, joining gym goers from around the world to celebrate progress and encourage one another. Users can post about their progress and view the words of other people, who are just as driven to succeed as they are.
+Gym Bros is a social media app for the gym. It seeks to connect users around the
+world to foster a supportive and motivating environment, designed to encourage
+and develop each user by providing a means of tracking growth toward goals,
+sharing prgress with other users, and competing with friends or against others
+of one's particular body type. 
+
+### User Story
+
+As a gym bro (or gym girl) I want to track & share my progress so that I can stay motivated and build a competitive & constructive community at my gym and around the world. 
 
 ### Stack:
 
@@ -12,7 +20,36 @@ This is a social media app, joining gym goers from around the world to celebrate
 
 ### Main Features:
 
-Coming Soon!
+1) Accountability 
+
+* Users can choose to have their goals made public to the entire world, exclusively to those who follow them, just to friends, or only to themselves
+* Users may set their own goals, whether in a particular lift or in weight
+  loss/gain (see below NOTE)
+
+**NOTE**: Minimum goals are assigned based upon body type, natty status, gender, and
+  other factors in order to maintain fairness in competition
+
+2) Competition
+
+* Users can join a worldwide leaderboard to measure their progress against that
+  of others
+* Users can create their own competitions around a certain goal and invite other
+  users
+* Users can participate in monthly challenges hosted by the Gym Bros Team, with
+  chances to win discounts on their gym memberships or free Gym Bro drip from
+  our Drip Store
+
+3) Progress 
+
+* Progress is tracked through goals set by user, and visible through timelines
+  in profile, as well as through progress pictures
+* Users are tasked to provide a starting photo of themselves before beginning in
+  the app. Every month, users receive a notification prompting them to submit an
+  update photo, which will be appended to the progress timeline in profile.
+  Through this users can visibly measure their own aesthetics and feel a sense
+  of accomplishment over time.
+
+*More Coming Soon!*
 
 ## Installation
 
