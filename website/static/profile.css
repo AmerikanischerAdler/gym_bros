@@ -209,10 +209,33 @@ h1 {
     overflow-y: scroll;
 }
 
+/* this is the input element for bio */
+#bio {
+    width: 50%;
+    padding-bottom: 30px;
+    padding-top: 15px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    border: 0.5px solid #000;
+    border-radius: 5px;
+    outline: none;
+}
+
 #mtto {
     height: 35px;
     text-align: center;
     overflow-y: scroll;
+}
+
+/* this is the input element for life_motto */
+#motto {
+    width: 49%;
+    padding: 10px;
+    font-size: 20px;
+    border: 0.5px solid #000;
+    border-radius: 5px;
+    outline: none;
+    margin-bottom: 25px;
 }
 
 .follow-friend {
@@ -476,31 +499,6 @@ h1 {
 
 /* End */
 
-#prof-pic {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-#prof-pic h2 {
-    font-size: 50px;
-}
-
-#face {
-    height: auto;
-    width: 200px;
-    
-}
-
-.contain {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-}
-
 .box {
     width: 30vw;
     display: flex;
@@ -568,27 +566,6 @@ h1 {
 
 .lst {
     margin-bottom: -10px;
-}
-
-#motto {
-    width: 49%;
-    padding: 10px;
-    font-size: 20px;
-    border: 0.5px solid #000;
-    border-radius: 5px;
-    outline: none;
-    margin-bottom: 25px;
-}
-
-#bio {
-    width: 50%;
-    padding-bottom: 30px;
-    padding-top: 15px;
-    margin-bottom: 20px;
-    font-size: 20px;
-    border: 0.5px solid #000;
-    border-radius: 5px;
-    outline: none;
 }
 
 .dropdown-content {
