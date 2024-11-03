@@ -23,6 +23,7 @@ h1 {
     margin-left: 10px;
     margin-bottom: -85px;
     background-color: #BA9593;
+    color: #fff;
     clip-path: circle(50%);
     display: flex;
     align-items: center;
@@ -128,6 +129,85 @@ h1 {
     scroll-margin-top: 75px;
 }
 
+/* Form Stuff */
+
+#all-prof input:not(#age, #birthday, .soci-link) {
+    width: 90%;
+    margin-bottom: 5px;
+    border: 0.5px solid #000;
+    border-radius: 5px;
+    outline: none;
+}
+
+#all-prof input:focus, #all-prof textarea:focus {
+    border: 1.5px solid #9D0000;
+}
+
+#age {
+    width: 30px;
+    font-size: 12px;
+    border: 0.5px solid #000;
+    border-radius: 5px;
+    outline: none;
+}
+
+#birthday {
+    width: 65px;
+    font-size: 12px;
+    border: 0.5px solid #000;
+    border-radius: 5px;
+    outline: none;
+}
+
+.soc-form {
+    padding: 8px 0px;
+}
+
+.soci-link {
+    width: 40%;
+    float: right;
+    margin-bottom: 5px;
+    font-size: 12px;
+    border: 0.5px solid #000;
+    border-radius: 5px;
+    outline: none;
+}
+
+.ih2 {
+    font-size: 24px;
+}
+
+.ih3 {
+    font-size: 18.72px;
+    margin-top: 5px;
+    margin-bottom: -10px;
+}
+
+.pic-input {
+    display: none;
+}
+
+#img-label {
+    height: 200px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    clip-path: circle(50%);
+    background-color: #f1f1f1;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+#img-label svg {
+    width: 30%;
+}
+
+#img-label:hover {
+    cursor: pointer;
+}
+
 /* Essentials */
 
 #essentials {
@@ -165,6 +245,14 @@ h1 {
 
 #basic-ess h2 {
     margin-bottom: 0;
+}
+
+#exp-ess > .hor-cont > .ver-cont {
+    padding: 15px 0px;
+}
+
+#exp-ess > .hor-cont > .ver-cont > .hor-cont {
+    padding: 5px 0px;
 }
 
 .hor-cont {
@@ -209,13 +297,12 @@ h1 {
     overflow-y: scroll;
 }
 
-/* this is the input element for bio */
 #bio {
-    width: 50%;
-    padding-bottom: 30px;
-    padding-top: 15px;
-    margin-bottom: 20px;
+    height: 125px;
+    width: 90%;
     font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     border: 0.5px solid #000;
     border-radius: 5px;
     outline: none;
@@ -227,15 +314,15 @@ h1 {
     overflow-y: scroll;
 }
 
-/* this is the input element for life_motto */
 #motto {
-    width: 49%;
-    padding: 10px;
-    font-size: 20px;
+    height: 35px;
+    width: 90%;
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     border: 0.5px solid #000;
     border-radius: 5px;
     outline: none;
-    margin-bottom: 25px;
 }
 
 .follow-friend {
@@ -278,6 +365,10 @@ h1 {
     justify-content: left;
     gap: 1vw;
     margin-top: -15px;
+}
+
+.soc-form {
+    margin-top: 0;
 }
 
 .social-link svg {
@@ -498,128 +589,6 @@ h1 {
 }
 
 /* End */
-
-.box {
-    width: 30vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #fff;
-    border-radius: 30px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
-}
-
-.box h2 {
-    color: #9D0000;
-}
-
-.box .ranks {
-    width: 40%;
-    display: flex;
-    align-items: left;
-    justify-content: left;
-    padding: 2px;
-    margin-top: 5px;
-    gap: 5px;
-}
-
-.box .first-goal {
-    margin-top: 15px;
-}
-
-.ranks label {
-    font-weight: 700;
-}
-
-.ranks input {
-    width: 80%;
-    font-size: 15px;
-    border: 0.5px solid #000;
-    border-radius: 5px;
-    outline: none;
-}
-
-.ranks input:focus, #dream-build:focus, #natty:focus, #bio:focus, #motto:focus, .social-input input:focus {
-    border: 1.5px solid #9D0000;
-}
-
-.info {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.info h3 {
-    margin-bottom: -10px;
-}
-
-.info ul li {
-    margin-left: -30px;
-}
-
-.info span {
-    color: #9D0000;
-}
-
-.lst {
-    margin-bottom: -10px;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    padding: 10px 0;
-    min-width: 160px;
-    z-index: 10;
-}
-
-.dropdown-content a {
-    color: black;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-}
-
-.dropdown-content a p {
-    padding: 1px 16px;
-    text-align: center;
-}
-
-.dropdown-content a svg {
-    width: 25px;
-}
-
-.dropdown-content a:hover {
-    background-color: #f1f1f1;
-}
-
-.info select {
-    width: 40%;
-    font-size: 15px;
-    border: 0.5px solid #000;
-    border-radius: 5px;
-    outline: none;
-}
-
-#natty, #relation, #birthday {
-    margin-top: 20px;
-}
-
-#dream-build {
-    width: 80%;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    font-size: 20px;
-    border: 0.5px solid #000;
-    border-radius: 5px;
-    outline: none;
-}
 
 #sub-all-btn {
     width: 40%;

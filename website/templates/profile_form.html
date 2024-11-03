@@ -1,26 +1,3 @@
-{% extends "base.html" %}
-
-{% block page %}Profile | {{ user.username }}{% endblock %}
-
-{% block style %}profile{% endblock %}
-
-{% block title %}
-  <div id="title">
-    {% if current_user.user_id == user.user_id %}
-    <h1>My Profile</h1>
-    {% set editing = false %}
-    <div id="editing" style="display: none;">{{ editing }}</div>
-    <div id="editor" class="edit-btn">
-      <a><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"/></svg></a>
-    </div>
-    {% else %}
-    <h1>Profile: {{ user.username }}</h1>
-    {% endif %}
-  </div>
-{% endblock %}
-
-{% block content %}
-  <div class="profile-contain" id="ajax-target-repl">
     <div class="sidebar">
       <div class="views">
         <h2>Views</h2>
@@ -59,18 +36,86 @@
       </div>
     </div>
 
-    <div class="prof-sections" id="all-prof">
+    <form class="prof-sections" id="all-prof">
       <div class="prof-sec" id="essentials">
         <div class="outer-ess" id="basic-ess">
+        {% if editing == true %}
+          <label id="img-label" for="prof-pic">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM323.8 202.5c-4.5-6.6-11.9-10.5-19.8-10.5s-15.4 3.9-19.8 10.5l-87 127.6L170.7 297c-4.6-5.7-11.5-9-18.7-9s-14.2 3.3-18.7 9l-64 80c-5.8 7.2-6.9 17.1-2.9 25.4s12.4 13.6 21.6 13.6h96 32H424c8.9 0 17.1-4.9 21.2-12.8s3.6-17.4-1.4-24.7l-120-176zM112 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"/></svg>
+          </label>
+          <input type="file" id="prof-pic" name="prof-pic" class="pic-input">
+
+          <input type="text" class="names ih2" name="name" placeholder="Name">
+          <input type="text" class="names ih3" name="username" placeholder="Username">
+        {% else %}
           <img src="{{ url_for('static', filename='./images/face.jpg') }}">
           <h2>{{ user.name }}</h2>
           <h3>{{ user.username }}</h2>
+        {% endif %}
         </div>
 
         <div class="inner-ess" id="exp-ess">
           <div class="hor-cont">
+          {% if editing == true %}
+            <div class="ver-cont">
+              <div class="hor-cont">
+                <label for="age">Age: </label>
+                <input type="number" id="age" name="age" min="6" max="120">
+
+                <label for="birthday">Birthday: </label>
+                <input type="date" id="birthday" name="birthday"
+                min="1925-01-01" max="2025-01-01">
+
+                <label for="gender">Gender: </label>
+                <select id="gender" name="gender">
+                  <option value="bro">Gym Bro</option>
+                  <option value="girl">Gym Girl</option>
+                </select>
+              </div>
+            </div>
+          {% else %}
+
+          <!-- fix age -->
             <h4>Age: <span>25</span></h4>
-            <h4>Birthday: <span>July 13th</span></h4>
+
+            {% if user.birthday %}
+
+            {% set year = user.birthday.strftime('%Y') %}
+            {% set month = user.birthday.strftime('%m') %}
+
+            {% if month == "01" %}
+              {% set month = "January" %}
+            {% elif month == "02" %}
+              {% set month = "February" %}
+            {% elif month == "03" %}
+              {% set month = "March" %}
+            {% elif month == "04" %}
+              {% set month = "April" %}
+            {% elif month == "05" %}
+              {% set month = "May" %}
+            {% elif month == "06" %}
+              {% set month = "June" %}
+            {% elif month == "07" %}
+              {% set month = "July" %}
+            {% elif month == "08" %}
+              {% set month = "August" %}
+            {% elif month == "09" %}
+              {% set month = "September" %}
+            {% elif month == "10" %}
+              {% set month = "October" %}
+            {% elif month == "11" %}
+              {% set month = "November" %}
+            {% elif month == "12" %}
+              {% set month = "December" %}
+            {% endif %}
+
+            {% set day = user.birthday.strftime('%d') %}
+
+            <h4>Birthday: <span>{{ month }} {{ day }}</span></h4>
+            {% elif not user.birthday and current_user.user_id != user.user_id %}
+            <p>Unknown</p>
+            {% endif %}
+
             {% if user.gender %}
               {% if user.gender == "bro" %}
                 <h4>Gender: <span>Gym Bro</span></h4>
@@ -85,9 +130,14 @@
                   <option value="girl">Gym Girl</option>
                 </select>
             {% endif %}
+          {% endif %}
           </div>
+
           <div class="ver-cont">
             <h4>About Me</h4>
+          {% if editing == true %}
+            <textarea id="bio" name="bio" placeholder="Enter a Brief Description of Yourself..."></textarea>
+          {% else %}
             {% if user.bio %}
             <p id="bio-text">{{ user.bio }}</p>
             {% elif not user.bio and current_user.user_id != user.user_id %}
@@ -95,10 +145,14 @@
             {% else %}
             <textarea id="bio" name="bio" placeholder="Enter a Brief Description of Yourself..."></textarea>
             {% endif %}
+          {% endif %}
           </div>
           <div class="ver-cont">
             <div class="ver-cont">
               <h4>Life Motto</h4>
+          {% if editing == true %}
+              <input id="motto" type="text" name="motto" placeholder="Enter Your Life Motto...">
+          {% else %}
               {% if user.life_motto %}
               <p id="mtto">{{ user.life_motto }}</p>
               {% elif not user.life_motto and current_user.user_id != user.user_id %}
@@ -106,6 +160,7 @@
               {% else %}
               <input id="motto" type="text" name="motto" placeholder="Enter Your Life Motto...">
               {% endif %}
+          {% endif %}
             </div>
 
             <div class="follow-friend">
@@ -146,6 +201,40 @@
 
         <div class="outer-ess" id="social-ess">
           <h3>Socials</h3>
+          {% if editing == true %}
+          <div class="social-link soc-form">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+            <label for="insta">Instagram</label>
+            <input type="text" id="insta" name="instagram" class="soci-link">
+          </div>
+          <div class="social-link soc-form">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+            <label for="twitter">X (Twitter)</label>
+            <input type="text" id="twitter" name="twitter" class="soci-link">
+          </div>
+          <div class="social-link soc-form">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64h98.2V334.2H109.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H255V480H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64z"/></svg>
+            <label for="facebook">Facebook</label>
+            <input type="text" id="facebook" name="facebook" class="soci-link">
+          </div>
+          <div class="social-link soc-form">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+            <label for="linkedin">LinkedIn</label>
+            <input type="text" id="linkedin" name="linkedin" class="soci-link">
+          </div>
+          <div class="social-link soc-form">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+            <label for="youtube">YouTube</label>
+            <input type="text" id="youtube" name="youtube" class="soci-link">
+          </div>
+          <div class="social-link soc-form">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/></svg>
+            <label for="tiktok">TikTok</label>
+            <input type="text" id="tiktok" name="tiktok" class="soci-link">
+          </div>
+
+          {% else %}
+
           <div class="social-link">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
             <h5>Instagram: <span>account.name</span></h5>
@@ -170,6 +259,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/></svg>
             <h5>TikTok: <span>account.name</span></h5>
           </div>
+          {% endif %}
         </div>
       </div>
 
@@ -301,6 +391,9 @@
         </div>
       </div>
 
+      <!-- add leagues prof-sec with form to ask for requisite factors (Proteins
+        & Supplements, natty_status, bodytype, etc. -->
+
       <div class="prof-sec" id="badges">
         <h2>Badges Awarded</h2>
         <div class="ver-cont">
@@ -411,38 +504,5 @@
           </div>
         </div>
       </div>
-    </div>
-
-    <!--
-       <div class="info">
-          <h3>Natty Status:</h3>
-          {% if user.natty_status %}
-            {% if user.natty_status == 'true' %}
-            <p>Natty</p>
-            {% else %}
-            <p>NOT Natty</p>
-            {% endif %}
-          {% elif not user.natty_status and current_user.user_id != user.user_id %}
-          <p>Unknown</p>
-          {% else %}
-          <select id="natty" name="natty">
-            <option value="true">Positive (I am Natty)</option>
-            <option value="false">Negative (I am not Natty)</option>
-          </select>
-          {% endif %}
-        </div>
-      </form>
-
-    {% if user.life_motto and user.bio and user.birthday and user.gender and user.natty_status and user.bench_now and user.squat_now and user.clean_now and user.deadlift_now and user.bench_future and user.squat_future and user.clean_future and user.deadlift_future %}
-    {% elif current_user.user_id != user.user_id %}
-    {% else %}
-    <div style="display: flex; align-items: center; justify-content: center;">
-      <button id="sub-all-btn" type="button" onclick="submitAllForms()">Save Profile</button>
-    </div>
-    {% endif %}
-    -->
+    </form>
     <script src="{{ url_for('static', filename='profile.js') }}"></script>
-  </div>
-{% endblock %}
-
-{% block foot %}{% endblock %}

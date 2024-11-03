@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, request, flash, jsonify, send_file, abort
+from flask import Blueprint, render_template, redirect, url_for, request, flash, jsonify, send_file, abort, session
 from flask_login import login_required, current_user
 from datetime import datetime
 from .models import db, User, Post, Comment, Like, Follow
@@ -76,6 +76,27 @@ def profile(username):
     badges = ["natty", "influencer", "five", "bom", "new"]
 
     return render_template('profile.html', user=user, badges=badges, pictures=pictures, ppictures=ppictures)#, posts=posts)
+
+@pages.route("/toggle_editing", methods=["POST"])
+def toggle_editing():
+    user = current_user
+
+    session['editing'] = not session.get('editing', False)
+    editing = session['editing']
+
+    # Just for Test
+    pictures = ["man5.jpg", "man2.jpg", "man3.jpg", "girl4.jpg", "girl8.jpg",
+                "girl3.jpg", "man25.jpg", "girl.jpeg", "man24.jpg", "man4.jpg",
+                "man7.jpg", "man6.jpg", "man1.jpg", "man8.jpg", "man17.jpg",
+                "bro3.avif", "bro2.avif", "bro1.avif", "bro5.jpeg",
+                "nerd.jpeg", "bro4.jpeg"]
+
+    ppictures = ["man5.jpg", "man2.jpg", "man3.jpg", "girl4.jpg", "girl8.jpg",
+                "girl3.jpg", "man25.jpg", "girl.jpeg", "man24.jpg"]
+
+    badges = ["natty", "influencer", "five", "bom", "new"]
+
+    return render_template('profile_form.html', user=user, badges=badges, pictures=pictures, ppictures=ppictures, editing=editing)#, posts=posts)
 
 @pages.route('/update-profile', methods=["POST"])
 @login_required

@@ -97,3 +97,26 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
+var editingDiv = document.getElementById("editing");
+var editBtn = document.getElementById("editor");
+
+var isOn = editingDiv.textContent.trim() === "true";
+
+editBtn.addEventListener("click", function() {
+    fetch('/toggle_editing', { method: 'POST' })
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById("ajax-target-repl").innerHTML = html;
+        })
+        .catch(error => console.error('Error:', error));
+
+    if (isOn) {
+        editBtn.style.backgroundColor = "#BA9593";
+    } else {
+        editBtn.style.backgroundColor = "#646F58";
+    }
+    
+    isOn = !isOn;
+    editingDiv.textContent = isOn;
+});
+
