@@ -17,6 +17,7 @@ function submitAllForms() {
   finalForm.submit();
 }
 
+// Progress Bars
 function move(bar) {
   var prog = parseInt(bar.dataset.prog);
   var goal = parseInt(bar.dataset.goal);
@@ -35,16 +36,15 @@ function move(bar) {
   }
 }
 
-window.onload = function() {
+function initializeProgressBars() {
   var bars = document.querySelectorAll(".prog-bar");
-  
   bars.forEach(function(bar) {
     move(bar);
   });
-};
+}
 
-// Following
-document.addEventListener("DOMContentLoaded", function() {
+// Follow User
+function initializeFollowButtons() {
   const followButtons = document.querySelectorAll('.follow-friend .followBtn');
 
   followButtons.forEach(followButton => {
@@ -76,12 +76,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
 
             var followText = document.querySelector(`#followText-${followedUserId}`);
-            var friendText = document.querySelector(`#friendText-${followedUserId}`);
-
             followText.textContent = data.isFollowing ? 'Unfollow' : 'Follow';
-
-            // for friend request
-            //friendText.textContent = data.friendStatus
 
           } else if (data.error) {
             console.error(data.error);  
@@ -95,28 +90,37 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     });
   });
-});
+}
 
+window.onload = function() {
+  initializeProgressBars();
+  initializeFollowButtons();
+};
+
+// Edit Mode
 var editingDiv = document.getElementById("editing");
 var editBtn = document.getElementById("editor");
 
 var isOn = editingDiv.textContent.trim() === "true";
 
 editBtn.addEventListener("click", function() {
-    fetch('/toggle_editing', { method: 'POST' })
-        .then(response => response.text())
-        .then(html => {
-            document.getElementById("ajax-target-repl").innerHTML = html;
-        })
-        .catch(error => console.error('Error:', error));
+  fetch('/toggle_editing', { method: 'POST' })
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById("ajax-target-repl").innerHTML = html;
 
-    if (isOn) {
-        editBtn.style.backgroundColor = "#BA9593";
-    } else {
-        editBtn.style.backgroundColor = "#646F58";
-    }
-    
-    isOn = !isOn;
-    editingDiv.textContent = isOn;
+      initializeProgressBars();
+      initializeFollowButtons();
+    })
+    .catch(error => console.error('Error:', error));
+
+  if (isOn) {
+    editBtn.style.backgroundColor = "#BA9593";
+  } else {
+    editBtn.style.backgroundColor = "#646F58";
+  }
+  
+  isOn = !isOn;
+  editingDiv.textContent = isOn;
 });
 
