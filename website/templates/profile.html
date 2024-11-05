@@ -69,42 +69,74 @@
 
         <div class="inner-ess" id="exp-ess">
           <div class="hor-cont">
+          <!-- fix age -->
             <h4>Age: <span>25</span></h4>
-            <h4>Birthday: <span>July 13th</span></h4>
+
+            {% if user.birthday %}
+
+              {% set year = user.birthday.strftime('%Y') %}
+              {% set month = user.birthday.strftime('%m') %}
+
+              {% if month == "01" %}
+                {% set month = "January" %}
+              {% elif month == "02" %}
+                {% set month = "February" %}
+              {% elif month == "03" %}
+                {% set month = "March" %}
+              {% elif month == "04" %}
+                {% set month = "April" %}
+              {% elif month == "05" %}
+                {% set month = "May" %}
+              {% elif month == "06" %}
+                {% set month = "June" %}
+              {% elif month == "07" %}
+                {% set month = "July" %}
+              {% elif month == "08" %}
+                {% set month = "August" %}
+              {% elif month == "09" %}
+                {% set month = "September" %}
+              {% elif month == "10" %}
+                {% set month = "October" %}
+              {% elif month == "11" %}
+                {% set month = "November" %}
+              {% elif month == "12" %}
+                {% set month = "December" %}
+              {% endif %}
+
+              {% set day = user.birthday.strftime('%d') %}
+
+            <h4>Birthday: <span>{{ month }} {{ day }}</span></h4>
+            {% else %}
+            <p>Unknown</p>
+            {% endif %}
+
             {% if user.gender %}
               {% if user.gender == "bro" %}
                 <h4>Gender: <span>Gym Bro</span></h4>
               {% else %}
                 <h4>Gender: <span>Gym Girl</span></h4>
               {% endif %}
-            {% elif not user.gender and current_user.user_id != user.user_id %}
-                <h4>Gender: <span>Unknown</span></h4>
             {% else %}
-                <select id="gender" name="gender">
-                  <option value="bro">Gym Bro</option>
-                  <option value="girl">Gym Girl</option>
-                </select>
+                <h4>Gender: <span>Unknown</span></h4>
             {% endif %}
           </div>
+
           <div class="ver-cont">
             <h4>About Me</h4>
             {% if user.bio %}
             <p id="bio-text">{{ user.bio }}</p>
-            {% elif not user.bio and current_user.user_id != user.user_id %}
-            <p id="bio-text">{{ user.username }} has not yet added a bio.</p>
             {% else %}
-            <textarea id="bio" name="bio" placeholder="Enter a Brief Description of Yourself..."></textarea>
+            <p id="bio-text">{{ user.username }} has not yet added a bio.</p>
             {% endif %}
           </div>
+
           <div class="ver-cont">
             <div class="ver-cont">
               <h4>Life Motto</h4>
               {% if user.life_motto %}
               <p id="mtto">{{ user.life_motto }}</p>
-              {% elif not user.life_motto and current_user.user_id != user.user_id %}
-              <p>{{ user.username }} has not yet added a life motto</p>
               {% else %}
-              <input id="motto" type="text" name="motto" placeholder="Enter Your Life Motto...">
+              <p>{{ user.username }} has not yet added a life motto</p>
               {% endif %}
             </div>
 
@@ -146,6 +178,7 @@
 
         <div class="outer-ess" id="social-ess">
           <h3>Socials</h3>
+          <!-- Add social links: if link: display, else: "none added" -->
           <div class="social-link">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
             <h5>Instagram: <span>account.name</span></h5>
