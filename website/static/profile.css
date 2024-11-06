@@ -458,6 +458,12 @@ h1 {
     color: #BA9593;
 }
 
+/* Leagues */
+
+#leagues h2 {
+    text-align: center;
+}
+
 /* Badges */
 
 #badges {
