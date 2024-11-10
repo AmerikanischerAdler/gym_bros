@@ -1,0 +1,16 @@
+#title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    height: auto;
+    font-size: 150px;
+    letter-spacing: -10px;
+    color: #9D0000;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+

@@ -403,3 +403,7 @@ def poll():
 def plate_calc():
     return render_template('plate_calc.html', user=current_user)
 
+@pages.route('/one_rm_calc')
+def one_rm_calc():
+    return render_template('one_rm_calc.html', user=current_user)
+

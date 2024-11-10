@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block page %}1RM Calculator{% endblock %}
+
+{% block style %}one_rm_calc{% endblock %}
+
+{% block title %}
+  <div id="title">
+    <h1>1 Rep Max Calculator</h1>
+    <h2 class="h2-key">Description</h2>
+    <h4>This tool will calculate your one-rep max based on your any-rep max.</h4>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="contain">
+
+  </div>
+  <script type="text/javascript" src="{{ url_for('static', filename='one_rm_calc.js') }}"></script>
+{% endblock %}
+{% block foot %}{% endblock %}
