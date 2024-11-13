@@ -15,3 +15,222 @@ h1 {
     margin-bottom: 15px;
 }
 
+.lg-contain {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.options {
+    width: 60%;
+    min-width: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.options select {
+    height: 25px;
+    width: 160px;
+    min-height: 25px;
+    min-width: 160px;
+    font-size: 18px;
+    text-align: center;
+    background-color: #ccc;
+}
+
+.options h2 {
+    font-size: 35px;
+}
+
+.lg-stats {
+    width: 70%;
+    min-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.lg-list {
+    height: 400px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-y: scroll;
+    padding: 20px 0;
+    margin-top: 15px;
+    gap: 10px;
+}
+
+.div-bar {
+    height: 0;
+    width: 100%;
+    border: 2px solid #000;
+}
+
+.top3 {
+    height: 250px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    overflow-y: hidden;
+}
+
+.user {
+    height: 50px;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-contain {
+    height: 100%;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.place, .profpic {
+    height: 100%;
+    width: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: 2px solid #000;
+    border-right: none;
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
+}
+
+.place h3 {
+    font-size: 30px;
+}
+
+.profpic a {
+    height: 100%;
+}
+
+.profpic img {
+    height: 100%;
+    clip-path: circle(50%);
+}
+
+.uname {
+    height: 100%;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: 2px solid #000;
+    border-right: none;
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
+}
+
+.uname a {
+    text-decoration: none;
+    background-color: #9D0000;
+    color: #fff;
+    padding: 5px 20px;
+    font-size: 20px;
+    overflow-x: scroll;
+    border: none;
+    border-radius: 8px;
+}
+
+.progbar {
+    height: 100%;
+    width: 380px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: 2px solid #000;
+    border-right: none;
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
+    margin: 0;
+    padding-right: 0;
+}
+
+.tri {
+    height: 30px;
+    width: 90%;
+    background-color: transparent;
+    border: none;
+    display: flex;
+    align-items: left;
+    gap: 0;
+}
+
+.prog-bar-contain {
+    height: 25px;
+    width: 100%;
+    background-color: #ccc;
+    border: none;
+    padding: 2px;
+    display: flex;
+    align-items: left;
+    gap: 0;
+    z-index: 2;
+}
+
+.triangle-cont {
+    margin: 0;
+    padding: 0;
+    height: 0;
+    width: 0;
+    border-bottom: 29px solid #ccc;
+    border-right: 29px solid transparent;
+    z-index: 2;
+}
+
+.prog-bar {
+    height: 25px;
+    width: 1%;
+    background-color: #9D0000;
+    border: none;
+}
+
+.triangle {
+    margin: 0;
+    padding: 0;
+    height: 0;
+    width: 0;
+    border-bottom: 25px solid #9D0000;
+    border-right: 25px solid transparent;
+}
+
+.info-triangle {
+    position: relative;
+    height: 0;
+    width: 0;
+    border-bottom: 50px solid #fff; 
+    border-right: 50px solid transparent;
+    margin-left: -4px;
+}
+
+.info-triangle::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 0;
+    width: 0;
+    border-bottom: 54px solid #000; 
+    border-right: 54px solid transparent;
+    margin-top: -2px; 
+    z-index: -1;
+}
+

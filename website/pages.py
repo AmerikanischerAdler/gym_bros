@@ -30,7 +30,8 @@ def search():
 @pages.route('/leagues')
 @login_required
 def leagues():
-    return render_template('leagues.html', user=current_user)
+    users = User.query.all()
+    return render_template('leagues.html', user=current_user, users=users)
 
 @pages.route('/gallery')
 def gallery():
