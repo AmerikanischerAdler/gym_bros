@@ -42,8 +42,29 @@ h1 {
     background-color: #ccc;
 }
 
+.options select:hover {
+    cursor: pointer;
+}
+
+.options select:focus {
+    outline: none;
+}
+
 .options h2 {
     font-size: 35px;
+}
+
+.options > a {
+    font-size: 18px;
+    background-color: #9D0000;
+    color: #fff;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 8px;
+}
+
+.options > a:hover {
+    cursor: pointer;
 }
 
 .lg-stats {

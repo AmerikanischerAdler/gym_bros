@@ -114,22 +114,30 @@
 
   <div class="lg-contain">
     <form class="options">
-
+      <h2>My Competitions:</h2>
+      <select name="who">
+        <option value="all-friends">All Friends</option>
+      </select>
+      <h2>|</h2>
+      <select name="comp-type">
+        <option value="avg">Overall (avg)</option>
+        <option value="strength">Strength (avg)</option>
+        <option value="weight">Weight (avg)</option>
+        <option value="bench">Bench (1RM)</option>
+        <option value="squat">Squat (1RM)</option>
+        <option value="clean">Clean (1RM)</option>
+        <option value="deadlift">Deadlift (1RM)</option>
+      </select>
+      <h2>|</h2>
+      <a>+ Create Competition</a>
     </form>
     <div class="lg-stats">
       <!-- if more than 10 users in group competition -->
-      <div class="top3">
-        <div class="user"></div>
-        <div class="user"></div>
-        <div class="user"></div>
-      </div>
+      <div class="top3"></div>
 
       <div class="div-bar"></div>
 
-      <div class="lg-list">
-        <!-- for user in users organize by rank -->
-        <div class="user"></div>
-      </div>
+      <div class="lg-list"></div>
     </div>
   </div>
   <script src="{{ url_for('static', filename='leagues.js') }}"></script>
