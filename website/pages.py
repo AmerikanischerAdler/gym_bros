@@ -61,7 +61,7 @@ def profile(username):
             flash("Username Does Not Exist", "error")
             return redirect(url_for("pages.home"))
 
-        # To add posts to Profile page
+        # add posts to Profile page
         #posts = user.posts
 
     # Just for Test
