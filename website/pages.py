@@ -61,7 +61,7 @@ def profile(username):
             flash("Username Does Not Exist", "error")
             return redirect(url_for("pages.home"))
 
-        # add posts to Profile page
+        #To add posts to Profile page
         #posts = user.posts
 
     # Just for Test
@@ -104,10 +104,6 @@ def toggle_editing():
 def update_profile():
     user = current_user
     
-    #if request.form.get("firstname"):
-    #    user.firstname = request.form.get("firstname")
-    #if request.form.get("lastname"):
-    #    user.lastname = request.form.get("lastname")
     if request.form.get("motto"):
         user.life_motto = request.form.get('motto')
     if request.form.get("bio"):
