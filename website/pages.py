@@ -259,7 +259,6 @@ def post():
 
         else: 
             if not image:
-                #flash("Must Include Image", "error")
                 image_data = None
                 image_mime_type = None
 
