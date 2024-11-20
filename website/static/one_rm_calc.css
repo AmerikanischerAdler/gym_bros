@@ -14,3 +14,19 @@ h1 {
     margin-bottom: 15px;
 }
 
+
+.contain {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #000;
+}
+
+.inner-wrap {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+

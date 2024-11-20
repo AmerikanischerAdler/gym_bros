@@ -14,7 +14,18 @@
 
 {% block content %}
   <div class="contain">
+    <div class="inner-wrap">
+      <form>
+        <label for="max">Max</label>
+        <input type="number" name="max" id="max">
 
+        <label for="count">Times</label>
+        <input type="number" name="count" id="count">
+
+        <label for="onerm">1 Rep Max</label>
+        <input type="number" name="onerm" id="onerm">
+      </form>
+    </div>
   </div>
   <script type="text/javascript" src="{{ url_for('static', filename='one_rm_calc.js') }}"></script>
 {% endblock %}
