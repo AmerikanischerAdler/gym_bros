@@ -28,5 +28,21 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 2px solid #000;
+}
+
+.inner-wrap label {
+    font-size: 25px;
+}
+
+.inner-wrap input {
+    font-size: 25px;
+    text-align: center;
+    border: 1px solid #000;
+    outline: none;
+}
+
+#onerm {
+    pointer-events: none;
 }
 
