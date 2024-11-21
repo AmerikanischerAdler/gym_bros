@@ -15,15 +15,24 @@
 {% block content %}
   <div class="contain">
     <div class="inner-wrap">
-      <form>
-        <label for="max">Max</label>
-        <input type="number" name="max" id="max">
-
-        <label for="count">Times</label>
-        <input type="number" name="count" id="count">
-
-        <label for="onerm">1 Rep Max</label>
+      <div class="over">
+        <h2>One Rep Max</h2>
         <input type="text" name="onerm" id="onerm">
+      </div>
+      <form>
+        <div class="form-contain">
+          <label for="max">Max</label>
+          <input type="number" name="max" id="max">
+          <select name="measure">
+            <option value="lbs">lbs</option>
+            <option value="kg">kg</option>
+          </select>
+        </div>
+
+        <div class="form-contain">
+          <label for="count">Reps</label>
+          <input type="number" name="count" id="count">
+        </div>
       </form>
     </div>
   </div>

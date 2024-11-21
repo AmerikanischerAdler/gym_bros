@@ -17,32 +17,94 @@ h1 {
 
 .contain {
     width: 100%;
+    margin-top: 25px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid #000;
 }
 
 .inner-wrap {
     width: 80%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     border: 2px solid #000;
+    padding: 45px 5px;
 }
 
 .inner-wrap label {
+    min-width: 80px;
     font-size: 25px;
 }
 
 .inner-wrap input {
+    width: 100px;
     font-size: 25px;
     text-align: center;
     border: 1px solid #000;
     outline: none;
 }
 
+.inner-wrap select {
+    width: 70px;
+    font-size: 25px;
+    text-align: center;
+    border: 1px solid #000;
+    outline: none;
+    cursor: pointer;
+}
+
+.over {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding-bottom: 25px;
+}
+
+.over h2 {
+    font-size: 45px;
+    margin: 0;
+    padding: 0;
+}
+
+.over input {
+    width: 150px;
+    font-size: 45px;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.form-contain {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
 #onerm {
     pointer-events: none;
+}
+
+@media screen and (max-width: 920px) {
+    form {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .form-contain {
+        width: 80%;
+        align-items: left;
+        justify-content: left;
+    }
 }
 
