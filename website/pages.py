@@ -403,3 +403,7 @@ def plate_calc():
 def one_rm_calc():
     return render_template('one_rm_calc.html', user=current_user)
 
+@pages.route('/gym_dict')
+def gym_dict():
+    return render_template('gym_dict.html', user=current_user)
+
