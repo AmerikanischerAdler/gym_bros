@@ -318,6 +318,25 @@
             transform: translate(calc(-50% - 0.5rem));
         }
     }
+
+    @keyframes fade-out {
+        from {
+            opacity: 1;
+        }
+    
+        to {
+            opacity: 0;
+        }
+    }
+    
+    .fade-out {
+        animation-name: fade-out;
+    }
+    
+    .animated {
+        animation-duration: 1s;
+        animation-fill-mode: both;
+    }
   </style>
 </head>
 <body>
@@ -421,6 +440,22 @@
       {% endif %}
     {% endwith %}
   </div>
+
+  <script>
+    var flashMsgs = document.querySelectorAll(".flash"); 
+    var flashContainer = document.getElementById("flash-contain");
+    
+    flashMsgs.forEach((msg) => {
+        setTimeout(() => clearMsg(msg), 5000);
+    });
+    
+    function clearMsg(msg) {
+        msg.classList.add("animated", "fade-out"); 
+        msg.addEventListener("animationend", () => {
+            flashContainer.removeChild(msg);
+        });
+    }
+  </script>
 
   <div id="empty-flash-copy"></div>
 
