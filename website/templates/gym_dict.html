@@ -4,14 +4,49 @@
 
 {% block style %}gym_dict{% endblock %}
 
-{% block title %}
-  <div id="title">
-    <h1>Gym Dictionary</h1>
-  </div>
-{% endblock %}
+{% block title %}{% endblock %}
 
 {% block content %}
+  <div class="all-contain">
+    <div id="front-cover" class="cover">
+        <h1>Gym Dictionary</h1>
+        <small>By: Gym Bros</small>
+    </div>
+    <div class="book-contain">
+      <div class="book">
+        <div class="hard">
+          <h1>Gym Dictionary</h1>
+          <small>By: Gym Bros</small>
+        </div>
+        <div class="hard"></div>
 
+        <div>
+          <small>"this is a quote"</small>
+          <small>Wow this is crazy</small>
+        </div>
+
+        <div>
+          <small>Page 1</small>
+        </div>
+
+        <div>
+          <small>Page 2</small>
+        </div>
+
+        <div>
+          <small>Page 3</small>
+        </div>
+
+        <div class="hard"></div>
+        <div class="hard">Message for Gym Bros</div>
+      </div>
+    </div>
+    <div id="back-cover" class="cover"></div>
+  </div>
+
+  <script src="{{ url_for('static', filename='jquery.js') }}"></script>
+  <script src="{{ url_for('static', filename='turn.js') }}"></script>
+  <script>$(".book").turn()</script>
 {% endblock %}
 
 {% block foot %}{% endblock %}
