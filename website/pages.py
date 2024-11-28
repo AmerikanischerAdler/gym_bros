@@ -407,3 +407,7 @@ def one_rm_calc():
 def gym_dict():
     return render_template('gym_dict.html', user=current_user)
 
+@pages.route('/rulebook')
+def rulebook():
+    return render_template('rulebook.html', user=current_user)
+
