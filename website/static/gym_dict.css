@@ -94,6 +94,7 @@
     justify-content: center;
     visibility: visible;
     opacity: 1;
+    transition: visibility 0s linear 0.2s, opacity 0.5s ease;
 }
 
 #front-cover img {
