@@ -29,6 +29,15 @@
     gap: 8px;
 }
 
+.content-contain {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: left;
+    gap: 10px;
+}
+
 .cover-container {
     height: 600px;
     width: 500px;
@@ -160,6 +169,10 @@
     z-index: 50;
 }
 
+.book h4 {
+    width: 80%;
+}
+
 .book .hard {
     color: #000;
     font-weight: bold;
@@ -167,10 +180,19 @@
 }
 
 .book .hard small {
+    width: 80%;
     font-style: italic;
     font-weight: lighter;
+    text-align: center;
     opacity: 0.7;
     font-size: 14px;
+    padding: 5px 20px;
+}
+
+.book .hard h5 a {
+    color: #9D0000;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .book .turn-page {
@@ -181,6 +203,19 @@
     justify-content: center;
     gap: 10px;
     border: 1px solid rgba(0, 0, 0, 0.11);
+}
+
+.turn-page ol {
+    font-size: 18px;
+}
+
+.turn-page dl {
+    width: 80%;
+    border: solid 0 #ccc;
+    border-width: 0.0625em 0;
+    break-inside: avoid-column;
+    margin: 1em auto;
+    padding: 1em 0;
 }
 
 @keyframes open-cover {
