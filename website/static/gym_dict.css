@@ -61,6 +61,7 @@
 #front-cover {
     z-index: 100;
     cursor: pointer;
+    transform: translateZ(5px);
 }
 
 #front-cover::before, #back-cover::after {
