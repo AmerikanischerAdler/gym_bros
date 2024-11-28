@@ -132,6 +132,7 @@
     margin: 0;
     padding: 0;
     font-size: 75px;
+    text-align: center;
 }
 
 #front-cover h3 {
@@ -187,6 +188,10 @@
     opacity: 0.7;
     font-size: 14px;
     padding: 5px 20px;
+}
+
+.book .hard h4 {
+    text-align: center;
 }
 
 .book .hard h5 a {
