@@ -390,6 +390,13 @@ def not_settings():
 def tools():
     return render_template('tools.html', user=current_user)
 
+@pages.route('/library')
+def library():
+    return render_template('library.html', user=current_user)
+
+@pages.route('/politics')
+def politics():
+    return render_template('politics.html', user=current_user)
 
 @pages.route('/poll')
 def poll():
