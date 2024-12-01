@@ -411,3 +411,7 @@ def gym_dict():
 def rulebook():
     return render_template('rulebook.html', user=current_user)
 
+@pages.route('/motivation')
+def motivation():
+    return render_template('motivation.html')
+
