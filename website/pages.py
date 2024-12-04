@@ -9,6 +9,8 @@ pages = Blueprint("pages", __name__)
 
 i_usernames = ["bro", "thatguy", "username", "andy", "Smithy", "WiseGuy"]
 
+
+# Base
 @pages.route('/')
 @pages.route('/home')
 def home():
@@ -27,12 +29,16 @@ def search():
 
     return render_template('search_results.html', query=query, posts=posts, users=users, user=current_user)
 
+
+# Leaderboards & Leagues
 @pages.route('/leagues')
 @login_required
 def leagues():
     users = User.query.all()
     return render_template('leagues.html', user=current_user, users=users)
 
+
+# Gallery
 @pages.route('/gallery')
 def gallery():
     # Just for Test
@@ -48,6 +54,8 @@ def gallery():
 
     return render_template('gallery.html', user=current_user, i_usernames=i_usernames, badges=badges, pictures=pictures)
 
+
+# Profile
 @pages.route('/profile/<username>')
 @login_required
 def profile(username):
@@ -126,11 +134,9 @@ def update_profile():
     if birthday_month and birthday_day and birthday_year:
         user.birthday = f"{birthday_year}-{birthday_month}-{birthday_day}"
 
-    # Gender & Relationship
+    # Gender & Health
     if request.form.get("gender"):
         user.gender = request.form.get('gender')
-    if request.form.get("relation"):
-        user.relationship_status = request.form.get('relation')
     if request.form.get("natty"):
         user.natty_status = request.form.get('natty')
 
@@ -153,8 +159,6 @@ def update_profile():
         user.clean_future = request.form.get('clean-future')
     if request.form.get("deadlift-future"):
         user.deadlift_future = request.form.get('deadlift-future')
-    if request.form.get("dream-build"):
-        user.dream_build = request.form.get('dream-build')
 
     try:
         db.session.commit()
@@ -164,26 +168,6 @@ def update_profile():
         flash(f"An error occurred: {e}", "error")
 
     return redirect(url_for('pages.profile', username=user.username))
-
-@pages.route('/add-social-link', methods=['POST'])
-@login_required
-def add_social_link():
-    user = current_user  
-
-    try:
-        data = request.get_json()
-        social_link = data.get('link')
-
-        if not social_link or social_link.strip() == "":
-            return jsonify({'error': 'Social link cannot be empty'}), 400
-
-        user.social_link = social_link
-        db.session.commit()
-
-        return jsonify({'message': 'Social link added successfully', 'link': social_link}), 200
-
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
 
 @pages.route('/follow/<int:user_id>', methods=['POST'])
 @login_required
@@ -219,30 +203,8 @@ def follow_user(user_id):
         'isFollowing': is_following,
     }), 200
 
-@pages.route('/saved')
-@login_required
-def saved():
-    liked_posts = Post.query.join(Like, Post.id == Like.post_id).filter(Like.author == current_user.user_id).all()
 
-    return render_template('saved.html', user=current_user, liked_posts=liked_posts, i_usernames=i_usernames)
-
-@pages.route('/not-saved')
-def not_saved():
-    return render_template('not_saved.html', user=current_user, i_usernames=i_usernames)
-
-@pages.route('/post_image/<int:post_id>')
-def post_image(post_id):
-    post = Post.query.get(post_id)
-    if post and post.image and post.image_mime_type:
-        return send_file(
-            io.BytesIO(post.image),
-            mimetype=post.image_mime_type,
-            as_attachment=False,
-            download_name=f'post_{post_id}.jpeg'
-        )
-    else:
-        abort(404)
-
+# Posts
 @pages.route('/post-template', methods=["GET", "POST"])
 @login_required
 def post():
@@ -358,6 +320,34 @@ def like(post_id):
  
     return jsonify({"likes": len(post.likes), "liked": current_user.user_id in map(lambda x: x.author, post.likes)})
 
+@pages.route('/post_image/<int:post_id>')
+def post_image(post_id):
+    post = Post.query.get(post_id)
+    if post and post.image and post.image_mime_type:
+        return send_file(
+            io.BytesIO(post.image),
+            mimetype=post.image_mime_type,
+            as_attachment=False,
+            download_name=f'post_{post_id}.jpeg'
+        )
+    else:
+        abort(404)
+
+
+# Saved Posts
+@pages.route('/saved')
+@login_required
+def saved():
+    liked_posts = Post.query.join(Like, Post.id == Like.post_id).filter(Like.author == current_user.user_id).all()
+
+    return render_template('saved.html', user=current_user, liked_posts=liked_posts, i_usernames=i_usernames)
+
+@pages.route('/not-saved')
+def not_saved():
+    return render_template('not_saved.html', user=current_user, i_usernames=i_usernames)
+
+
+# Settings
 @pages.route('/settings', methods=['GET', 'POST'])
 @login_required
 def settings():
@@ -386,21 +376,11 @@ def settings():
 def not_settings():
     return render_template('not_settings.html', user=current_user)
 
+
+# Gym Tools
 @pages.route('/tools')
 def tools():
     return render_template('tools.html', user=current_user)
-
-@pages.route('/library')
-def library():
-    return render_template('library.html', user=current_user)
-
-@pages.route('/politics')
-def politics():
-    return render_template('politics.html', user=current_user)
-
-@pages.route('/poll')
-def poll():
-    return render_template('poll.html', user=current_user)
 
 @pages.route('/plate_calc')
 def plate_calc():
@@ -410,6 +390,16 @@ def plate_calc():
 def one_rm_calc():
     return render_template('one_rm_calc.html', user=current_user)
 
+@pages.route('/weight_conv')
+def weight_conv():
+    return render_template('weight_conv.html', user=current_user)
+
+
+# Gym Books
+@pages.route('/library')
+def library():
+    return render_template('library.html', user=current_user)
+
 @pages.route('/gym_dict')
 def gym_dict():
     return render_template('gym_dict.html', user=current_user)
@@ -417,6 +407,16 @@ def gym_dict():
 @pages.route('/rulebook')
 def rulebook():
     return render_template('rulebook.html', user=current_user)
+
+
+# Gym Politics
+@pages.route('/politics')
+def politics():
+    return render_template('politics.html', user=current_user)
+
+@pages.route('/poll')
+def poll():
+    return render_template('poll.html', user=current_user)
 
 @pages.route('/motivation')
 def motivation():
