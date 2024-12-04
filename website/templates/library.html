@@ -9,11 +9,13 @@
 {% block content %}
   <div class="contain-all">
     <div class="journal-contain">
-      <div class="container">
+      <a href="{{ url_for('pages.gym_dict') }}" class="container">
 	    	<div class="book">
 	  		  <div class="front">
 	  			  <div class="cover">
               <h3 class="name">Gym Dictionary</h3>
+              <h4>Learn the Language of the Gym</h4>
+              <img src="{{ url_for('static', filename='./images/bro.jpeg') }}">
               <p class=author>Gym Bros</p>
 	  			  </div>
 	  		  </div>
@@ -24,13 +26,15 @@
 	  			  </h2>
 	  		  </div>
 	  	  </div>
-	    </div>
+	    </a>
 
-      <div class="container">
+      <a href="{{ url_for('pages.rulebook') }}" class="container">
 	    	<div class="book">
 	  		  <div class="front">
 	  			  <div class="cover">
               <h3 class="name">The Unwritten Rulebook</h3>
+              <h4>Learn the Unwritten Rules of the Gym</h4>
+              <img src="{{ url_for('static', filename='./images/never.png') }}">
               <p class=author>Gym Bros</p>
 	  			  </div>
 	  		  </div>
@@ -41,7 +45,7 @@
 	  			  </h2>
 	  		  </div>
 	  	  </div>
-	    </div>
+	    </a>
     </div>
   </div>
 {% endblock %}

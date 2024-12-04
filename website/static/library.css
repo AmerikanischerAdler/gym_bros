@@ -84,7 +84,6 @@
     font-size: 30px;
     transform: rotate(0deg);
     top: 75px;
-    left: 75px;
 }
 
 .author {
@@ -139,6 +138,25 @@
 
 .cover {
     background-color: #25283D;
+}
+
+.cover img {
+    height: 150px;
+    width: 100%;
+    margin-top: 50px;
+    border-top: 2px solid #9D0000;
+    border-bottom: 2px solid #9D0000;
+}
+
+.cover h3 {
+    width: 100%;
+    text-align: center;
+}
+
+.cover h4 {
+    width: 100%;
+    text-align: center;
+    margin-top: 160px;
 }
 
 .left-side h2 span:first-child {
