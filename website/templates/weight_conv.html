@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block page %}Weight Unit Converter{% endblock %}
+
+{% block style %}one_rm_calc{% endblock %}
+
+{% block title %}
+  <div id="title">
+    <h1>Weight Unit Converter</h1>
+    <h2 class="h2-key">Description</h2>
+    <h4>This will handle conversions between kilograms (kg) and pounds (lbs)</h4>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="contain">
+    <div class="inner-wrap">
+      <div class="over">
+        <h2>Weight Converted to <span id="weight-type">Kilograms (kg)</span></h2>
+        <input type="text" name="onerm" id="onerm">
+      </div>
+      <form>
+        <div class="form-contain">
+          <label for="weight">Weight</label>
+          <input type="number" name="weight" id="weight">
+          <select name="measure" id="measure">
+            <option value="lbs">lbs</option>
+            <option value="kg">kg</option>
+          </select>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script type="text/javascript" src="{{ url_for('static', filename='weight_conv.js') }}"></script>
+{% endblock %}
+{% block foot %}{% endblock %}
