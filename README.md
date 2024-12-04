@@ -144,7 +144,6 @@ CREATE TABLE users (
     bio TEXT NULL,
     birthday DATE NULL,
     gender VARCHAR(50) NULL,
-    relationship_status VARCHAR(50) NULL,
     natty_status VARCHAR(50) NULL,
     bench_now INT NULL,
     squat_now INT NULL,
@@ -154,7 +153,6 @@ CREATE TABLE users (
     squat_future INT NULL,
     clean_future INT NULL,
     deadlift_future INT NULL,
-    dream_build VARCHAR(250) NULL,
     UNIQUE(email),
     UNIQUE(username)
 );

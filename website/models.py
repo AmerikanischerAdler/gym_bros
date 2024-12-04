@@ -25,7 +25,6 @@ class User(db.Model, UserMixin):
     bio = db.Column(db.Text, nullable=True)
     birthday = db.Column(db.Date, nullable=True)
     gender = db.Column(db.String(50), nullable=True)
-    relationship_status = db.Column(db.String(50), nullable=True)
     natty_status = db.Column(db.String(50), nullable=True)
 
     bench_now = db.Column(db.Integer, nullable=True)
@@ -37,7 +36,6 @@ class User(db.Model, UserMixin):
     squat_future = db.Column(db.Integer, nullable=True)
     clean_future = db.Column(db.Integer, nullable=True)
     deadlift_future = db.Column(db.Integer, nullable=True)
-    dream_build = db.Column(db.String(250), nullable=True)
 
     # Relationships
     posts = db.relationship("Post", backref="user", passive_deletes=True)
