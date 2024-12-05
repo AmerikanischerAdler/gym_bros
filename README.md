@@ -1,5 +1,11 @@
 # Gym Bros
 
+## Update
+
+**Gym Bros is Now Under Reconstruction!**
+
+There Probably Won't be Many Commits Over the Coming Months
+
 ## Description
 
 Gym Bros is a social media app for the gym. It seeks to connect users around the
